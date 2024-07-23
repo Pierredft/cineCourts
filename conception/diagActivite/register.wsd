@@ -1,0 +1,38 @@
+@startuml CineCourts
+title "S'inscrire"
+
+|#LightBlue|Utilisateur|
+|#Orange|Admin|
+|#Red|Serveur|
+
+    |Utilisateur|
+    start
+    :Clique sur le bouton de création de compte;
+    :Rempli le formulaire;
+    |Serveur|
+    :Enregistre les informations;
+    |Utilisateur|
+    :Message de succès;
+    |Serveur|
+    :Renvoie sur la page d'abonnement; 
+    |Utilisateur|
+    :Sélectionne un abonnement; 
+    |Serveur|
+    :Génère la page de paiement; 
+    |Utilisateur|
+    :Procède au paiement;
+    |Serveur|
+    :Vérifie le paiement; 
+    repeat
+        backward: Réessayer;
+        |Utilisateur|
+        |Serveur|
+        repeatwhile (Paiement accepté) is (non) not (oui)
+        :Accepte le paiement;
+        |Utilisateur|
+        :Message de succès d'abonnement;
+        end
+
+
+
+@enduml

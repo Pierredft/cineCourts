@@ -1,0 +1,21 @@
+@startuml CineCourts
+title "Voir les films"
+
+|#LightBlue|Utilisateur|
+|#Orange|Admin|
+|#Red|Serveur|
+
+    |Utilisateur|
+    start
+    :Selectionne la catégorie souhaitée;
+    |Serveur|
+    :Liste les films correspondants;
+    |Utilisateur|
+    :Affiche les résultats;
+    :Selectionne le film;
+    |Serveur|
+    :Génère le lecteur vidéo;
+    |Utilisateur|
+    :Affiche le lecteur vidéo;
+    end
+@enduml

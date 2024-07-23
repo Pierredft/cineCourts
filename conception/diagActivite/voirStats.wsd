@@ -1,0 +1,18 @@
+@startuml "CineCourt"
+title "Voir les statistiques"
+
+|#LightBlue|Utilisateur|
+|#Orange|Admin|
+|#Red|Serveur|
+
+    |Admin|
+    start
+    :Accède a la page de statistiques;
+    |Serveur|
+    :Reçoit la requête;
+    :Récupère les données de statistiques;
+    |Admin|
+    :Affichage des statistiques;
+    end
+
+@enduml

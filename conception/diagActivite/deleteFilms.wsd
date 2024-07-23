@@ -1,0 +1,20 @@
+@startuml CineCourts
+title "Supprime un film"
+
+|#Orange|Admin|
+|#Red|Serveur|
+
+    |Admin|
+    start
+    :Selectionne le film a supprimer;   
+    |Serveur|
+    :Demande la confirmation de supprimer le film;
+    |Admin|
+    :Affiche le message de confirmation;
+    :Confirmes la suppression;
+    |Serveur|
+    :Supprime le film de la base de données;
+    :Retourne la liste des films;
+    |Admin|
+    :Affiche les films;
+    end

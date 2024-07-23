@@ -1,0 +1,27 @@
+@startuml CineCourts
+title "Commenter un film"
+
+|#LightBlue|Utilisateur|
+|#Orange|Admin|
+|#Red|Serveur|
+
+    |Utilisateur|
+    start
+    :Selectionne le film;
+    :Saisit le commentaire;
+    :Valide le commentaire;
+    |Serveur|
+    :Enregistre le commentaire;
+    |Admin|
+    if (valide le commentaire) then (non)
+    :Refuse le commentaire;
+    :Notifie l utilisateur;
+    |Serveur|
+    :Supprime le commentaire;
+    else (oui)
+    :Approuve le commentaire;
+    |Utilisateur|
+    :Affiche le commentaire;
+    endif
+    |Admin|
+    end

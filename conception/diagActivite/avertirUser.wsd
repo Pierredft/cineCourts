@@ -1,0 +1,22 @@
+@startuml "CineCourt"
+title "Avertir un utilisateur"
+
+|#LightBlue|Utilisateur|
+|#Orange|Admin|
+|#Red|Serveur|
+
+    |Admin|
+    start
+    :Accède a la listes des utilisateur signalés;
+    |Serveur|
+    :Reçoit la requête;
+    |Admin|
+    :Affichage du résultat;
+    :Sélectionne un utilisateur signalé;
+    :Envoie d'un message d'avertissement;
+    |Serveur|
+    :Reçoit la requête;
+    |Utilisateur|
+    :Reception du message d'avertissment;
+    end
+@enduml

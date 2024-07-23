@@ -1,0 +1,29 @@
+@startuml CineCourts
+title "Ajouter/Retirer un film en favori"
+
+|#LightBlue|Utilisateur|
+|#Orange|Admin|
+|#Red|Serveur|
+
+rectangle Ajouter un film en favori {
+|Utilisateur|
+    start
+    :Clique sur le bouton d'ajout aux favoris;
+    |Serveur|
+    :Reçoit la requete d'ajout;
+        |Utilisateur|
+        :Message de succès d'ajout aux favoris;
+        end
+}
+
+rectangle Supprimer un film des favoris {
+        |Utilisateur|
+    start
+    :Clique sur le bouton de retrait des favoris;
+    |Serveur|
+    :Reçoit la requete de suppression;
+        |Utilisateur|
+        :Message de succès du film supprimé des favoris;
+        end
+}
+@enduml

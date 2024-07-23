@@ -1,0 +1,17 @@
+@startuml CineCourts
+title "Voir les notes d'un film"
+
+|#LightBlue|Utilisateur|
+|#Orange|Admin|
+|#Red|Serveur|
+
+    |Utilisateur|
+    start
+    :Selectionne le film souhaité;
+    |Serveur|
+    :Reçoit la requête;
+    :Affiche le film;
+    |Utilisateur|
+    :Visualise les notes du film sur la page;
+    end
+@enduml

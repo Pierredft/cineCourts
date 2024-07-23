@@ -1,0 +1,21 @@
+@startuml "CineCourt"
+title "Bannir un utilisateur"
+
+|#LightBlue|Utilisateur|
+|#Orange|Admin|
+|#Red|Serveur|
+
+    |Admin|
+    start
+    :Accède a la listes des utilisateur signalés;
+    |Serveur|
+    :Reçoit la requête;
+    |Admin|
+    :Affichage du résultat;
+    :Sélectionne un utilisateur signalé;
+    :Bannissement de l'utilisateur;
+    |Serveur|
+    :Reçoit la requête;
+    :Revoque les accès a l'app de l'utilisateur;
+    end
+@enduml

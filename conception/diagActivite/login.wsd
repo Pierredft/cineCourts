@@ -1,0 +1,24 @@
+@startuml CineCourts
+title "Se connecter"
+
+|#LightBlue|Utilisateur|
+|#Orange|Admin|
+|#Red|Serveur|
+
+|Utilisateur|
+    start
+    :Clique sur le bouton de connexion;
+    :Rempli le formulaire de connexion;
+    |Serveur|
+    :Reçoit la requete de connexion;
+    repeat
+        |Utilisateur|
+        backward: Réessayer;
+        |Serveur|
+        repeatwhile (données conformes) is (non) not (oui)
+        :Accepte la connexion;
+        |Utilisateur|
+        :Message de succès de connexion;
+        end
+
+@enduml
