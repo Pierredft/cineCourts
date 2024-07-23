@@ -1,0 +1,17 @@
+@startuml CineCourts
+title "Se déconnecter"
+
+|#LightBlue|Utilisateur|
+|#Orange|Admin|
+|#Red|Serveur|
+
+|Utilisateur|
+    start
+    :Clique sur le bouton de deconnexion;
+    |Serveur|
+    :Reçoit la requete de deconnexion;
+        |Utilisateur|
+        :Message de succès de deconnexion;
+        end
+
+@enduml

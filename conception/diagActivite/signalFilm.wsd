@@ -1,0 +1,19 @@
+@startuml "CineCourt"
+title "Signaler un film"
+
+|#LightBlue|Utilisateur|
+|#Orange|Admin|
+|#Red|Serveur|
+
+    |Utilisateur|
+    start
+    :Selectionne un film;
+    |Serveur|
+    :Reçoit la requete;
+    |Utilisateur|
+    :Affiche la page du film;
+    :Signaler le film;
+    |Serveur|
+    :Reçoit la requete;
+    :Ajout dans la BDD;
+    end

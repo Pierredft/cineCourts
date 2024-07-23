@@ -1,0 +1,59 @@
+@startuml test
+class U as "Utilisateur"
+{
+    + Nom : string
+    + Prénom : string
+    + Mail : string
+    + Mot de passe : string
+    + Se connecter ()
+    + Se deconnecter()
+    + Visonner ()
+    + Gestion profil ()
+    + Ajout favoris ()
+    + Noter ()
+    + Commenter ()
+
+
+}
+class A as "Admin"
+{
+    + Identifiant : string
+    + Mot de passe : string
+    + Modification Utilisateur ()
+    + Suppression Utilisateur ()
+    + Ajout Film ()
+    + Modification Film ()
+    + Suppression Film ()
+    + Ajout type de Film ()
+    + Modification type de Film ()
+    + Suppression type de Film ()
+
+}
+
+class F as "Film"
+{
+    + Titre : string
+    + Durée : number
+    + Synopsis : string
+    + Date de sortie : date
+}
+
+class TF as "Type de film"
+{
+    + Dénomination : string
+}
+
+
+class R as "Réalisateur"
+{
+    + Nom : string
+    + Prénom : string
+}
+
+TF "1" --|> "0..*" F : Est de type
+R "1" --|> "0..*" F : Réalise
+U "0..*" -- "1" F : Accède
+R"1..*" - "1" A : Ajoute
+TF "1..*" - "1" A : Crée
+F "1..*" - "1" A : Upload
+U "1..*" - "1" A : Gère

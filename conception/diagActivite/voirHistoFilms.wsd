@@ -1,0 +1,22 @@
+@startuml CineCourts
+title "Voir l'historique des films vus"
+
+|#LightBlue|Utilisateur|
+|#Orange|Admin|
+|#Red|Serveur|
+
+    |Utilisateur|
+    start
+    :Selectionne la page du profil d'utilisateur;
+    |Serveur|
+    :Reçoit la requête;
+    :Affiche le profil;
+    |Utilisateur|
+    :Selectionne le bouton d'historique des films;
+    |Serveur|
+    :Reçoit la requête; 
+    :Affiche la page d'historique;
+    |Utilisateur|
+    :Visualise son historique;
+    end
+@enduml

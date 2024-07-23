@@ -1,0 +1,17 @@
+@startuml CineCourts
+title "demande ajout films"
+
+|#LightBlue|Utilisateur|
+|#Orange|Admin|
+|#Red|Serveur|
+
+    |Utilisateur|
+    start
+    repeat
+    backward: Les données saisie ne sont pas correcte;
+    :remplis le formulaire;
+    :envoie le formulaire;
+    |Serveur|
+    repeat while (formulaire valide) is (non) not (oui)
+    :Enregistre la demande;
+    end

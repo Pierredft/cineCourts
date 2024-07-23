@@ -1,0 +1,61 @@
+@startuml CineCourt
+skinparam actorStyle Hollow 
+left to right direction
+"User" as U
+"Admin" as A
+
+    usecase "inscription" as UC1
+    usecase "connexion" as UC2
+    usecase "deconnexion" as UC3
+    usecase "voir les catégories" as UC4
+    usecase "choisir un film" as UC5
+    usecase "voir un film" as UC6
+    usecase "mettre en favoris" as UC7
+    usecase "voir les favoris" as UC8
+    usecase "voir les films vus" as UC9
+    usecase "noter un film" as UC10
+    usecase "voir les notes" as UC11
+    usecase "voir les commentaires" as UC12
+    usecase "commenter un film" as UC13
+    usecase "signaler un commentaire" as UC14
+    usecase "signaler un film" as UC15
+    usecase "demander l'ajout d'un film" as UC16
+
+    usecase "Ajouter un film" as AC1
+    usecase "Modifier un film" as AC2
+    usecase "Supprimer un film" as AC3
+    usecase "Modérer les commentaires" as AC4
+    usecase "Modérer les films" as AC5
+    usecase "Voir les statistiques" as AC6
+    usecase "Avertir un utilisateur" as AC7
+    usecase "Bannir un utilisateur" as AC8
+
+U --> UC1
+U--> UC2
+U --> UC3
+U --> UC4
+U --> UC5
+U --> UC6
+U --> UC7
+U --> UC8
+U --> UC9
+U --> UC10
+U --> UC11
+U --> UC12
+U --> UC13
+U --> UC14
+U --> UC15
+U --> UC16
+
+A -> AC1
+A -> AC2
+A -> AC3
+A -> AC4
+A -> AC5
+A -> AC6
+A -> AC7
+A -> AC8
+
+A --> U
+
+@enduml

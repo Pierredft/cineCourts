@@ -1,0 +1,22 @@
+@startuml CineCourts
+title "Ajoute un film"
+
+|#Orange|Admin|
+|#Red|Serveur|
+
+    |Admin|
+    start
+    :Ajoute un film;
+    repeat
+    :Ajoute les informations du film;    
+    |Admin|
+        backward: Les données saisie existe deja;
+    |Serveur|
+    :vérifie si le film existe;
+    repeat while (le film existe) is (oui) not (non)
+    :Ajoute le film à la base de données;
+
+    :Retourne la liste des films;
+    |Admin|
+    :Affiche les films;
+    end

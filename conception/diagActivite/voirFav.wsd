@@ -1,0 +1,21 @@
+@startuml CineCourt
+title "Voir les favoris"
+
+|#LightBlue|Utilisateur|
+|#Orange|Admin|
+|#Red|Serveur|
+
+    |Utilisateur|
+    start
+    :Accède a son profil;
+    |Serveur|
+    :Données Utilisateur correspondantes;
+    |Utilisateur|
+    :Affiche les données;
+    :Accède aux favoris;
+    |Serveur|
+    :Favoris Utilisateur;
+    |Utilisateur|
+    :Affiche les favoris;
+    end
+

@@ -1,0 +1,21 @@
+@startuml CineCourts
+title "Modifie un film"
+
+|#Orange|Admin|
+|#Red|Serveur|
+
+    |Admin|
+    start
+    :Selectionne le film a modifier;
+    repeat
+    :Modifie les informations du film;    
+    |Admin|
+        backward: Les données saisie ne sont pas correct;
+    |Serveur|
+    :vérifie si la conformité des données;
+    repeat while (les modification sont correct) is (non) not (oui)
+    :Ajoute les modification à la base de données;
+    :Retourne la liste des films;
+    |Admin|
+    :Affiche les films;
+    end

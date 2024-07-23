@@ -1,0 +1,22 @@
+@startuml CineCourts
+title "Signaler un commentaire"
+
+|#LightBlue|Utilisateur|
+|#Orange|Admin|
+|#Red|Serveur|
+
+    |Utilisateur|
+    start
+    :Selectionne le bouton de signalement au niveau du commentaire;
+    |Serveur|
+    :Reçoit la requête;
+    :Affiche la page de signalement;
+    |Utilisateur|
+    :Indique les raisons du signalement;
+    |Serveur|
+    :Enregistre le signalement;
+    :Transfert le signalement aux admins;
+    |Utilisateur|
+    :Message de succès : signalement enregistré;
+    end
+@enduml

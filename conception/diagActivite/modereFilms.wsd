@@ -1,0 +1,16 @@
+@startuml "CineCourt"
+title "Moderer les films"
+
+|#LightBlue|Utilisateur|
+|#Orange|Admin|
+|#Red|Serveur|
+
+    |Admin|
+    start
+    :Accède a la listes des films signalé;
+    |Serveur|
+    :Reçoit la requête;
+    |Admin|
+    :Affichage du résultat;
+    end
+@enduml
