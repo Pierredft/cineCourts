@@ -50,7 +50,7 @@ abstract class AbstractOAuthAuthenticator extends OAuth2Authenticator
             return new RedirectResponse($targetPath); 
         }
 
-        return new RedirectResponse($this->router->generate('index'));
+        return new RedirectResponse($this->router->generate('app_home'));
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
@@ -59,7 +59,9 @@ abstract class AbstractOAuthAuthenticator extends OAuth2Authenticator
             $request->getSession()->set(SecurityRequestAttributes::AUTHENTICATION_ERROR, $exception);
         }
 
-        return new RedirectResponse($this->router->generate(name: 'auth_oauth_check'));
+        return new RedirectResponse($this->router->generate('auth_oauth_check', [
+            'service' => $this->serviceName
+        ]));
     }
 
     public function authenticate(Request $request): SelfValidatingPassport 

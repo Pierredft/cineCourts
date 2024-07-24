@@ -55,8 +55,8 @@ class LoginController extends AbstractController
             ->redirect(self::SCOPES[$service], []);
     }
 
-    #[Route('/oauth/check/{service}', name: 'check', methods: ['GET', 'POST'])]
-    public function check(): Response
+    #[Route('/oauth/check/{service}', name: 'auth_oauth_check', methods: ['GET', 'POST'])]
+    public function check(string $service): Response
     {
         return new Response('', 200);
     }
