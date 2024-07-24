@@ -52,7 +52,7 @@ class LoginController extends AbstractController
 
         return $clientRegistry
             ->getClient($service)
-            ->redirect(self::SCOPES[$service]);
+            ->redirect(self::SCOPES[$service], []);
     }
 
     #[Route('/oauth/check/{service}', name: 'check', methods: ['GET', 'POST'])]
