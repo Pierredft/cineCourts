@@ -17,7 +17,8 @@ Ouvrez votre fichier php.ini et mettez à jour les lignes suivantes (elles seron
         [openssl]
         openssl.cafile = "C:\php\extras\ssl\cacert.pem"
 
-        >SOUS MACOS : 
+
+    >SOUS MACOS : 
 Pareil.
         [curl]
         curl.cainfo = "/usr/local/etc/openssl@1.1/cert.pem"
