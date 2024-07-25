@@ -7,6 +7,8 @@ use App\Entity\Genre;
 use App\Entity\Acteurs;
 use App\Entity\Arcom;
 use App\Entity\Categories;
+use App\Entity\FilmsMovie;
+use App\Entity\FilmsMovies;
 use App\Entity\Realisateur;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -39,5 +41,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Genres', 'fas fa-list', Genre::class);
         yield MenuItem::linkToCrud('Arcom', 'fas fa-film', Arcom::class);
         yield MenuItem::linkToCrud('Catégories', 'fas fa-list', Categories::class);
+        yield MenuItem::linkToCrud('Films', 'fas fa-film', Films::class);
+        yield MenuItem::linkToCrud('Movies', 'fas fa-film', FilmsMovies::class);
     }
 }
