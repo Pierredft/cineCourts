@@ -3,6 +3,10 @@
 {% block title %}Login{% endblock %}
 
 {% block body %}
+
+<div class="modalLogin fade" id="modalLogin">
+<div class="modal-dialog">
+    <div class="modal-content">
     <div class="container">
         <h2 class="mt-4">Se connecter</h2>
         {% for message in app.flashes('success') %}
@@ -45,4 +49,10 @@
             </span>
             </a>
     </div>
+    
+    </div>
+
+</div>
+</div>
+
 {% endblock %}
