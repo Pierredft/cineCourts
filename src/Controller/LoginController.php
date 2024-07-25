@@ -43,6 +43,13 @@ class LoginController extends AbstractController
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
+    // #[Route('/logout', name: 'auth_oauth_logout', methods: ['GET'])]
+    // public function logoutOAuth(): never
+    // {
+    //     // controller can be blank: it will never be executed!
+    //     throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+    // }
+
     #[Route("/oauth/connect/{service}", name: 'auth_oauth_connect', methods: ['GET'])]
     public function connect(string $service, ClientRegistry $clientRegistry): RedirectResponse
     {
