@@ -7,7 +7,7 @@ use App\Repository\UserRepository;
 use League\OAuth2\Client\Provider\GoogleUser; 
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 
-final readonly class OAuthRegistrationService 
+final class OAuthRegistrationService 
 {
     public function __construct (
         private UserRepository $repository
@@ -25,9 +25,9 @@ final readonly class OAuthRegistrationService
             ->setEmail($resourceOwner->getEmail())
             ->setGoogleId($resourceOwner->getId())
             ->setPassword('password')
-            ->setNom('DefaultNom')
-            ->setPrenom('DefaultPrenom')
-            ->setTelephone('DefaultTel');
+            ->setNom($resourceOwner->getLastName())
+            ->setPrenom($resourceOwner->getFirstName())
+            ->setTelephone('telephone');
 
         $this->repository->add($user, flush: true);
         return $user; 
