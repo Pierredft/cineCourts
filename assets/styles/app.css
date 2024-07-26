@@ -16,19 +16,20 @@
 
 #modalTest2 {
   display: none;
-  
   color: white;
   border-radius: 50px 50px 0px 0px;
   background: #212121;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   width: 1055px;
+  height: 2055px;
 }
 
-.btn {
-  width: 369px;
-  height: 60px;
+.btnReg {
+  width: 300px;
+  height: 30px;
   border-radius: 50px;
   background-color: white;
+  margin-top: 15px;
 }
 
 footer{
@@ -42,5 +43,9 @@ footer{
 }
 .decoration{
   width: 499px;
+}
+
+.flex{
+  display: flex;
 }
 
