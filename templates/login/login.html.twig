@@ -2,49 +2,50 @@
 
 {% block title %}Login{% endblock %}
 
-{% block body %}
+    {% block body %}
 
-    <div class="container">
-        <h2 class="mt-4">Se connecter</h2>
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-success mt-4">
-                {{ message }}
-            </div>
-        {% endfor %}
-        {% if error %}
-            <div class="alert alert-dismissible alert-danger">
-                {{ error.messageKey|trans(error.messageData, 'security') }}
-            </div>
-        {% endif %}
+        <div class="container">
+            <h2 class="mt-4">Se connecter</h2>
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success mt-4">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% if error %}
+                <div class="alert alert-dismissible alert-danger">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
 
-        <form action="{{ path('app_login') }}" method="post" class="mt-4">
-            <div>
+            <form action="{{ path('app_login') }}" method="post" class="mt-4">
                 <div>
-                    <label for="username" class="form-label">Email : </label>
+                    <div>
+                        <label for="username" class="form-label">Email : </label>
+                    </div>
+                    <div>
+                        <input class="form-control" type="text" id="username" name="_username" value="{{ lastUsername }}">
+                    </div>
                 </div>
                 <div>
-                    <input class="form-control" type="text" id="username" name="_username" value="{{ lastUsername }}">
+                    <div>
+                        <label for="password" class="form-label">Mot de passe : </label>
+                    </div>
+                    <div>
+                        <input class="form-control" type="password" id="password" name="_password">
+                    </div>
                 </div>
-            </div>
-            <div>
-                <div>
-                    <label for="password" class="form-label">Mot de passe : </label>
-                </div>
-                <div>
-                    <input class="form-control" type="password" id="password" name="_password">
-                </div>
-            </div>
 
-            <button type="submit" class="btn btn-primary mt-4">Se connecter</button>
-        </form>
+                <button type="submit" class="btn btn-primary mt-4">Se connecter</button>
+            </form>
 
-    <div class="mt-16 grid space-y-4">
-            <a href="{{path('auth_oauth_connect', {service: 'google'})}}"class="group relative flex h-11 items-center px-6 before:absolute before:inset-0 before:rounded-full before:bg-white dark:before:bg-gray-700 dark:before:border-gray-600 before:border before:border-gray-200 before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 disabled:before:bg-gray-300 disabled:before:scale-100">
-            <span class="w-full relative flex justify-center items-center gap-3 text-base font-medium text-gray-600 dark:text-gray-200">
-                <img src="" class="absolute left-0 w-5" alt="" />
-            <span>Continue with Google</span>
-            </span>
-            </a>
-    </div>
+            <div class="mt-16 grid space-y-4">
+                    <a href="{{path('auth_oauth_connect', {service: 'google'})}}"class="group relative flex h-11 items-center px-6 before:absolute before:inset-0 before:rounded-full before:bg-white dark:before:bg-gray-700 dark:before:border-gray-600 before:border before:border-gray-200 before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 disabled:before:bg-gray-300 disabled:before:scale-100">
+                    <span class="w-full relative flex justify-center items-center gap-3 text-base font-medium text-gray-600 dark:text-gray-200">
+                        <img src="" class="absolute left-0 w-5" alt="" />
+                    <span>Continue with Google</span>
+                    </span>
+                    </a>
+            </div>
+        </div>
 
 {% endblock %}
