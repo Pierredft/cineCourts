@@ -23,7 +23,6 @@
                 <div>
                     <label for="username" class="form-label">Email : </label>
                 </div>
-            
             {% if error %}
                 <div class="alert alert-dismissible alert-danger">
                     {{ error.messageKey|trans(error.messageData, 'security') }}
