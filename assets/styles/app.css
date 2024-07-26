@@ -32,6 +32,11 @@
   margin-top: 15px;
 }
 
+footer{
+  top: 100%;
+  position: sticky;
+}
+
 .center {
   display: flex;
   justify-content: center;
