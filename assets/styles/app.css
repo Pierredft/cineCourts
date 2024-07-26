@@ -35,6 +35,11 @@
   background-color: white;
 }
 
+footer{
+  top: 100%;
+  position: sticky;
+}
+
 .center {
   display: flex;
   justify-content: center;
