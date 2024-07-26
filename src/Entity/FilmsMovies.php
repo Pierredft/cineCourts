@@ -4,11 +4,8 @@ namespace App\Entity;
 
 use App\Repository\FilmsMoviesRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: FilmsMoviesRepository::class)]
-#[Vich\Uploadable]
 class FilmsMovies
 {
     #[ORM\Id]
@@ -16,65 +13,22 @@ class FilmsMovies
     #[ORM\Column]
     private ?int $id = null;
 
-    #[Vich\UploadableField(mapping: 'products', fileNameProperty: 'nom')]
-    private ?File $file = null;
-
     #[ORM\Column(length: 255)]
-    private ?string $nom = null;
-
-    #[ORM\ManyToOne(inversedBy: 'filmMovie')]
-    private ?Films $films = null;
-
-    #[ORM\Column]
-    private ?\DateTimeImmutable $updatedAt = null;
+    private ?string $filename = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getFilename(): ?string
     {
-        return $this->nom;
+        return $this->filename;
     }
 
-    public function setNom(string $nom): static
+    public function setFilename(string $filename): static
     {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getFilms(): ?Films
-    {
-        return $this->films;
-    }
-
-    public function setFilms(?Films $films): static
-    {
-        $this->films = $films;
-
-        return $this;
-    }
-
-    public function setFile(File $file = null): static
-    {
-        $this->file = $file;
-        if ($file) {
-            $this->updatedAt = new \DateTimeImmutable();
-        }
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
-    {
-        $this->updatedAt = $updatedAt;
+        $this->filename = $filename;
 
         return $this;
     }
