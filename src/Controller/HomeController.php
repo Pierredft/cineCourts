@@ -10,6 +10,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class HomeController extends AbstractController
 {
@@ -48,6 +49,26 @@ class HomeController extends AbstractController
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form,
+        ]);
+    }
+
+    /////////////// LOGIN //////////////////////////////////////////////
+
+    #[Route('', name: 'app_home')]
+    public function login(AuthenticationUtils $authenticationUtils): Response
+    {
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        // $form = $this->createForm(LoginFormType::class, [
+        //     'username' => $lastUsername,
+        // ]);
+
+        return $this->render('login/login.html.twig', [
+            'lastUsername' => $lastUsername,
+            'error' => $error,
         ]);
     }
 
