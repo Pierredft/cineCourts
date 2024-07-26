@@ -30,22 +30,12 @@
   border-radius: 50px;
   background-color: white;
   margin-top: 15px;
+#modalTest4 {
+  display: none;
+
 }
 
-footer{
+footer {
   top: 100%;
   position: sticky;
 }
-
-.center {
-  display: flex;
-  justify-content: center;
-}
-.decoration{
-  width: 499px;
-}
-
-.flex{
-  display: flex;
-}
-
