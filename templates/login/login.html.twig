@@ -2,6 +2,7 @@
 
 {% block title %}Login{% endblock %}
 
+
 {% block body %}
 <div id="modalTest4">
     <div class="container">
@@ -22,21 +23,34 @@
                 <div>
                     <label for="username" class="form-label">Email : </label>
                 </div>
-                <div>
-                    <input class="form-control" type="text" id="username" name="_username" value="{{ lastUsername }}">
+            {% endfor %}
+            {% if error %}
+                <div class="alert alert-dismissible alert-danger">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
                 </div>
-            </div>
-            <div>
-                <div>
-                    <label for="password" class="form-label">Mot de passe : </label>
-                </div>
-                <div>
-                    <input class="form-control" type="password" id="password" name="_password">
-                </div>
-            </div>
+            {% endif %}
 
-            <button type="submit" class="btn btn-primary mt-4">Se connecter</button>
-        </form>
+            <form action="{{ path('app_login') }}" method="post" class="mt-4">
+                <div>
+                    <div>
+                        <label for="username" class="form-label">Email : </label>
+                    </div>
+                    <div>
+                        <input class="form-control" type="text" id="username" name="_username" value="{{ lastUsername }}">
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label for="password" class="form-label">Mot de passe : </label>
+                    </div>
+                    <div>
+                        <input class="form-control" type="password" id="password" name="_password">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-4">Se connecter</button>
+            </form>
+
 
         <div class="mt-16 grid space-y-4">
             <a href="{{path('auth_oauth_connect', {service: 'google'})}}"class="group relative flex h-11 items-center px-6 before:absolute before:inset-0 before:rounded-full before:bg-white dark:before:bg-gray-700 dark:before:border-gray-600 before:border before:border-gray-200 before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 disabled:before:bg-gray-300 disabled:before:scale-100">
