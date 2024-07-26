@@ -36,7 +36,8 @@
         {# {% endif %} #}
         {% else %}
         <li><button class="dropdown-item" id="modalTest">S'inscrire</button></li>
-        <li><button class="dropdown-item" id="modalTest3">Se connecter</button></li>
+        
+        <li><a class="dropdown-item" href="{{path("app_login")}}">Se connecter</a></li>
         {% endif %}
           </ul>
         </li>
