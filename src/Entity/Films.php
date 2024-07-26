@@ -17,7 +17,7 @@ class Films
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $nom = null;
+    private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $synopsis = null;
@@ -25,37 +25,23 @@ class Films
     #[ORM\Column(type: Types::TIME_IMMUTABLE)]
     private ?\DateTimeImmutable $duree = null;
 
-    /**
-     * @var Collection<int, FilmsMovies>
-     */
-    #[ORM\OneToMany(targetEntity: FilmsMovies::class, mappedBy: 'films')]
-    private Collection $filmMovie;
+    #[ORM\Column]
+    private ?\DateTimeImmutable $updatedAt = null;
 
-    /**
-     * @var Collection<int, FilmsTrailer>
-     */
-    #[ORM\OneToMany(targetEntity: FilmsTrailer::class, mappedBy: 'films')]
-    private Collection $filmTrailer;
-
-    public function __construct()
-    {
-        $this->filmMovie = new ArrayCollection();
-        $this->filmTrailer = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getName(): ?string
     {
-        return $this->nom;
+        return $this->name;
     }
 
-    public function setNom(string $nom): static
+    public function setName(string $name): static
     {
-        $this->nom = $nom;
+        $this->name = $name;
 
         return $this;
     }
@@ -84,62 +70,14 @@ class Films
         return $this;
     }
 
-    /**
-     * @return Collection<int, FilmsMovies>
-     */
-    public function getFilmMovie(): Collection
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
-        return $this->filmMovie;
+        return $this->updatedAt;
     }
 
-    public function addFilmMovie(FilmsMovies $filmMovie): static
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
     {
-        if (!$this->filmMovie->contains($filmMovie)) {
-            $this->filmMovie->add($filmMovie);
-            $filmMovie->setFilms($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFilmMovie(FilmsMovies $filmMovie): static
-    {
-        if ($this->filmMovie->removeElement($filmMovie)) {
-            // set the owning side to null (unless already changed)
-            if ($filmMovie->getFilms() === $this) {
-                $filmMovie->setFilms(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, FilmsTrailer>
-     */
-    public function getFilmTrailer(): Collection
-    {
-        return $this->filmTrailer;
-    }
-
-    public function addFilmTrailer(FilmsTrailer $filmTrailer): static
-    {
-        if (!$this->filmTrailer->contains($filmTrailer)) {
-            $this->filmTrailer->add($filmTrailer);
-            $filmTrailer->setFilms($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFilmTrailer(FilmsTrailer $filmTrailer): static
-    {
-        if ($this->filmTrailer->removeElement($filmTrailer)) {
-            // set the owning side to null (unless already changed)
-            if ($filmTrailer->getFilms() === $this) {
-                $filmTrailer->setFilms(null);
-            }
-        }
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

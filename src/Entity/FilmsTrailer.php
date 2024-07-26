@@ -14,36 +14,21 @@ class FilmsTrailer
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $nom = null;
-
-    #[ORM\ManyToOne(inversedBy: 'filmTrailer')]
-    private ?Films $films = null;
+    private ?string $filname = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getFilname(): ?string
     {
-        return $this->nom;
+        return $this->filname;
     }
 
-    public function setNom(string $nom): static
+    public function setFilname(string $filname): static
     {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getFilms(): ?Films
-    {
-        return $this->films;
-    }
-
-    public function setFilms(?Films $films): static
-    {
-        $this->films = $films;
+        $this->filname = $filname;
 
         return $this;
     }
