@@ -54,22 +54,22 @@ class HomeController extends AbstractController
 
     /////////////// LOGIN //////////////////////////////////////////////
 
-    #[Route('', name: 'app_home')]
-    public function login(AuthenticationUtils $authenticationUtils): Response
-    {
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
+    // #[Route('', name: 'app_home')]
+    // public function login(AuthenticationUtils $authenticationUtils): Response
+    // {
+    //     // get the login error if there is one
+    //     $error = $authenticationUtils->getLastAuthenticationError();
+    //     // last username entered by the user
+    //     $lastUsername = $authenticationUtils->getLastUsername();
 
-        // $form = $this->createForm(LoginFormType::class, [
-        //     'username' => $lastUsername,
-        // ]);
+    //     // $form = $this->createForm(LoginFormType::class, [
+    //     //     'username' => $lastUsername,
+    //     // ]);
 
-        return $this->render('login/login.html.twig', [
-            'lastUsername' => $lastUsername,
-            'error' => $error,
-        ]);
-    }
+    //     return $this->render('login/login.html.twig', [
+    //         'lastUsername' => $lastUsername,
+    //         'error' => $error,
+    //     ]);
+    // }
 
 }
