@@ -1,5 +1,6 @@
 import './bootstrap.js';
 import './modalLogin.js';
+import './modalRegister.js'
 /*
  * Welcome to your app's main JavaScript file!
  *
