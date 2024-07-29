@@ -5,38 +5,56 @@
 
 {% block body %}
 	<div class="center">
-		<div id="modalTest2" >
-		<div class="flex">
-			<div class="container">
-				<h1 class="mt-4">Créez un compte</h1>
-				<div>
-					{{ form_errors(registrationForm) }}
+		<div id="modalTest2">
+			<div class="flex">
+				<div class="form">
+					<h1 class="mt-4">Créez un compte</h1>
+
+					<div>
+						{{ form_errors(registrationForm) }}
+					</div>
+
+					<div class="mt">
+						{{ form_start(registrationForm) }}
+						{{ form_widget(registrationForm.email, {'attr': {'class':'champs','placeholder': 'Email'}}
+						) }}
+						<hr>
+						{{ form_widget(registrationForm.nom, {'attr': {'class':'champs','placeholder': 'Nom'}}) }}
+						<hr>
+						{{ form_widget(registrationForm.prenom, {'attr': {'class':'champs','placeholder': 'Prénom'}}) }}
+						<hr>
+						{{ form_widget(registrationForm.telephone, {'attr': {'class':'champs','placeholder': 'Téléphone'}}) }}
+						<hr>
+						{{ form_widget(registrationForm.plainPassword, {'attr': {'class':'champs','placeholder': 'Mot de passe'} }) }}
+						<img src="../images/miseEnPage/eye.png" id="eye" onclick="changer()">
+						<hr>
+
+					</div>
+
+					<button type="submit" class="btnReg">S'inscrire</button>
+					<script>
+						e = true;
+function changer() {
+if (e) {
+document.getElementById("registration_form_plainPassword").setAttribute("type", "text");
+document.getElementById("eye").src = "../images/miseEnPage/eye-off.png";
+e = false;
+} else {
+document.getElementById("registration_form_plainPassword").setAttribute("type", "password");
+document.getElementById("eye").src = "../images/miseEnPage/eye.png";
+e = true;
+}
+}
+					</script>
 				</div>
-				<div class="mt-4">
-					{{ form_start(registrationForm) }}
 
-					{{ form_row(registrationForm.email, {'attr': {'class':'form-control'}}) }}
-
-					{{ form_row(registrationForm.nom, {'attr': {'class':'form-control'}}) }}
-
-					{{ form_row(registrationForm.prenom, {'attr': {'class':'form-control'}}) }}
-
-					{{ form_row(registrationForm.telephone, {'attr': {'class':'form-control'}}) }}
-
-					<label for="plainPassword" class="form-label">Mot de passe
-					</label>
-					{{ form_widget(registrationForm.plainPassword, {
-            'attr': {'class':'form-control'} }) }}
+				<div class="decoration">
+					<img src="../images/miseEnPage/decorRegister.jpg" class="decoration" alt="">
 				</div>
 
-				<button type="submit" class="btnReg">S'inscrire</button>
-			</div>
-			<div class="decoration">
-				<p>IMAGES FILMS IMAGES FILMSIMAGES FILMSIMAGES FILMSIMAGES FILMSIMAGES FILMSIMAGES FILMSIMAGES FILMS</p>
 			</div>
 
 			{{ form_end(registrationForm) }}
-			</div>
 		</div>
 	</div>
-	{% endblock %}
+{% endblock %}
