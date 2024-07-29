@@ -30,7 +30,9 @@
   border-radius: 50px;
   background-color: white;
   margin-top: 15px;
-#modalTest4 {
+}
+
+  #modalTest4 {
   display: none;
 
 }
