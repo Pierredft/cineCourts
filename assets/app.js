@@ -1,6 +1,7 @@
 import './bootstrap.js';
 import './modalLogin.js';
-import './modalRegister.js'
+import './modalRegister.js';
+import './modalBigMovie.js';
 /*
  * Welcome to your app's main JavaScript file!
  *
@@ -10,5 +11,6 @@ import './modalRegister.js'
 import './styles/app.css';
 import './styles/register.css';
 import './styles/login.css';
+import './styles/modalBigMovie.css';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
