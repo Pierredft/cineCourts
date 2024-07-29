@@ -4,7 +4,7 @@
 
 
 {% block body %}
-<div id="modalTest4">
+{# <div id="modalTest4"> #}
     <div class="container">
         <h2 class="mt-4">Se connecter</h2>
         {% for message in app.flashes('success') %}
@@ -47,6 +47,10 @@
                 <button type="submit" class="btn btn-primary mt-4">Se connecter</button>
             </form>
 
+            <div class="mt-2">
+                <a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié ?</a>
+            </div>
+
 
         <div class="mt-16 grid space-y-4">
             <a href="{{path('auth_oauth_connect', {service: 'google'})}}"class="group relative flex h-11 items-center px-6 before:absolute before:inset-0 before:rounded-full before:bg-white dark:before:bg-gray-700 dark:before:border-gray-600 before:border before:border-gray-200 before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 disabled:before:bg-gray-300 disabled:before:scale-100">
@@ -57,5 +61,5 @@
             </a>
         </div>
     </div>
-</div>
+{# </div> #}
 {% endblock %}

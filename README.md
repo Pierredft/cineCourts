@@ -27,3 +27,5 @@ Pareil.
         openssl.cafile = "/usr/local/etc/openssl@1.1/cert.pem"
 
 PUIS REDEMARREZ LE SERVEUR
+
+utilisation de Mailer (composer require symfony/mailer) pour l'envoie de mail

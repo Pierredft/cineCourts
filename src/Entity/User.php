@@ -42,6 +42,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $profilPicture = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $resetToken = null;
+    
     // Getters and Setters
     public function getId(): ?int
     {
@@ -144,6 +147,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setProfilPicture(?string $profilPicture): static
     {
         $this->profilPicture = $profilPicture;
+        return $this;
+    }
+
+
+    public function getResetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+
+    public function setResetToken(?string $resetToken): self
+    {
+        $this->resetToken = $resetToken;
+
         return $this;
     }
 }

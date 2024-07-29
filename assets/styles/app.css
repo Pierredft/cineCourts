@@ -34,3 +34,8 @@ footer {
   height: auto;
   object-fit: cover;
 }
+
+.btnSearch {
+  border-radius: 50px;
+  background-color: #c0a57d;
+}
