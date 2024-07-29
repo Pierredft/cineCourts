@@ -42,6 +42,5 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Arcom', 'fas fa-film', Arcom::class);
         yield MenuItem::linkToCrud('Catégories', 'fas fa-list', Categories::class);
         yield MenuItem::linkToCrud('Films', 'fas fa-film', Films::class);
-        yield MenuItem::linkToCrud('Movies', 'fas fa-film', FilmsMovies::class);
     }
 }

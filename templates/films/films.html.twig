@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Films index{% endblock %}
+
+{% block body %}
+    <h1>Films index</h1>
+        {% for films in films %}
+        <a href="{{path('app_films_show', {'id' : films.id})}}"><img src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt=""></a>
+        {% endfor %}
+{% endblock %}
