@@ -7,6 +7,7 @@
   width: 1055px;
   height: 950px;
   margin-top: 20px;
+  position: relative;
 }
 
 .flex {
@@ -56,4 +57,14 @@
 
 .mt {
   margin-top: 90px;
+}
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
 }
