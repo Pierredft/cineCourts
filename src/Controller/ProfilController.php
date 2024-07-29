@@ -23,7 +23,7 @@ class ProfilController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $profileImage = $form->get('profileImage')->getData();
+            $profileImage = $form->get('profilPicture')->getData();
 
             if ($profileImage) {
                 $originalFilename = pathinfo($profileImage->getClientOriginalName(), PATHINFO_FILENAME);
