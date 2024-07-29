@@ -29,7 +29,7 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-lg-end">
           {% if app.user %}
-        <li><a href="#" class="dropdown-item">Mon compte</a></li>
+        <li><a href="{{path('app_profil')}}" class="dropdown-item">Mon compte</a></li>
         <li><a href="{{path("app_logout")}}" class="dropdown-item">Déconnexion</a></li>
         {# {% if is_granted('ROLE_ADMIN') %} #}
         <li><a href="{{path('admin')}}" class="dropdown-item">Panel Admin</a></li>
