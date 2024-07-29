@@ -3,9 +3,13 @@
 {% block title %}Profil{% endblock %}
 
 {% block body %}
-<h1>Profil de {{ user.prenom }} {{ user.nom }}</h1>
+<h1>Profil de {{ app.user.prenom }} {{ app.user.nom }}</h1>
 
-    <p><strong>Email :</strong> {{ user.email }}</p>
-    <p><strong>Nom :</strong> {{ user.nom }}</p>
-    <p><strong>Prénom :</strong> {{ user.prenom }}</p>
+    <p>Email : {{ app.user.email }}</p>
+    <p>Nom : {{ app.user.nom }}</p>
+    <p>Prénom :{{ app.user.prenom }}</p>
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit">Sauvegarder</button>
+    {{ form_end(form) }}
 {% endblock %}
