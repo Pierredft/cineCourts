@@ -24,18 +24,13 @@
   height: 2055px;
 }
 
-.btn {
-  width: 369px;
-  height: 60px;
-  border-radius: 50px;
-  background-color: white;
-  margin-top: 15px;
-#modalTest4 {
-  display: none;
-
-}
-
 footer {
   top: 100%;
   position: sticky;
+}
+
+.imgAff{
+  width: 50%;
+  height: auto;
+  object-fit: cover;
 }
