@@ -9,3 +9,6 @@ if (file_exists(dirname(__DIR__).'/config/bootstrap.php')) {
 } elseif (method_exists(Dotenv::class, 'bootEnv')) {
     (new Dotenv())->bootEnv(dirname(__DIR__).'/.env');
 }
+
+// Définir le fuseau horaire par défaut
+date_default_timezone_set('Europe/Paris');

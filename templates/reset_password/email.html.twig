@@ -1,16 +1,74 @@
-<h1>Hi!</h1>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réinitialisation de mot de passe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            color: #333;
+            margin: 0;
+            padding: 20px 0;
+        }
 
-<p>To reset your password, please visit the following link</p>
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-{# Utilisez absolute_url pour générer une URL absolue avec le port spécifié #}
-{% set reset_url = absolute_url(url('app_reset_password', {token: resetToken.token})) %}
-{% if 'localhost' in reset_url and ':8000' not in reset_url %}
-    {% set reset_url = reset_url|replace({'http://localhost': 'http://localhost:8000'}) %}
-{% endif %}
-<a href="{{ reset_url }}">
-    {{ reset_url }}
-</a>
+        h1 {
+            color: #333;
+        }
 
-<p>This link will expire in {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
+        p {
+            line-height: 1.6;
+        }
 
-<p>Cheers!</p>
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #000000;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background-color: #C0A57D;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bonjour,</h1>
+
+        <p>Pour réinitialiser votre mot de passe, cliquez sur le lien ci-dessous.</p>
+
+        {% set reset_url = absolute_url(url('app_reset_password', {token: resetToken.token})) %}
+        {% if 'localhost' in reset_url and ':8000' not in reset_url %}
+            {% set reset_url = reset_url|replace({'http://localhost': 'http://localhost:8000'}) %}
+        {% endif %}
+        <a href="{{ reset_url }}">
+            Réinitialiser mon mot de passe
+        </a>
+
+        <p class="footer">Ce lien expire dans 1 heure.</p>
+
+        <p class="footer">CinéCourts</p>
+    </div>
+</body>
+</html>

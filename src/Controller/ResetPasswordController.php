@@ -146,12 +146,6 @@ class ResetPasswordController extends AbstractController
         
         try {
             $resetToken = $this->resetPasswordHelper->generateResetToken($user);
-            $selector = $resetToken->getToken();
-            $hashedToken = $resetToken->getToken();
-            $resetPasswordRequest = ResetPasswordRequest::createWithTimezone($user, $selector, $hashedToken, 'Europe/Paris');
-            
-            $this->entityManager->persist($resetPasswordRequest);
-            $this->entityManager->flush();
         } catch (ResetPasswordExceptionInterface $e) {
             // If you want to tell the user why a reset email was not sent, uncomment
             // the lines below and change the redirect to 'app_forgot_password_request'.

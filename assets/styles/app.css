@@ -24,10 +24,10 @@
   height: 2055px;
 }
 
-footer {
+/* footer {
   top: 100%;
   position: sticky;
-}
+} */ 
 
 .imgAff{
   width: 50%;
@@ -38,4 +38,40 @@ footer {
 .btnSearch {
   border-radius: 50px;
   background-color: #c0a57d;
+}
+
+/*classe pour centrer le logo dans le footer */
+.centered-div {
+  display: flex;
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+  text-align: center; /* Centre le texte à l'intérieur de la div*/
+}
+
+/*classe pour l'icone d'utilisateur déconnecté*/
+.userIcon {
+  width: 53px;
+  height: 54px;
+  border-radius: 50%;
+}
+
+/*pour ajuster la taille de la navbar*/
+.navbarCustom {
+  height: 100px;
+}
+
+.linkCustom {
+  font-size: 30px;
+  margin-left: 42px;
+}
+
+/* pour ajuster la taille du footer
+.footerCustom {
+  height: 565px;
+} */
+
+/*pour ajuster la taille du logo dans le header*/
+.logoNavCustom {
+  height: 50px;
+  width: 188px;
 }

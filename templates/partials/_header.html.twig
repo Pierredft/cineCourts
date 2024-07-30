@@ -1,47 +1,43 @@
-<nav class="navbar navbar-expand-lg bg-black b-bottom">
+<nav class="navbar navbar-expand-lg bg-black b-bottom navbarCustom">
   <div class="d-flex align-items-center container-fluid navbar-dark bg-black">
     <div class="d-flex align-items-center">
-      <p class="navbar-brand font-weight-bold mb-0" href="{{path("app_home")}}">LOGO</p>
+      <a class="navbar-brand font-weight-bold mb-0" href="{{ path('app_home') }}">
+        <img class="logoNavCustom" src="{{ asset('images/miseEnPage/logoCineCourts.png') }}" alt="LOGO" />
+      </a>
     </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{path("app_home")}}">Accueil</a>
+        <li class="nav-item linkCustom">
+          <a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item linkCustom">
           <a class="nav-link active" href="#">Catalogue</a>
-        </li>
-          
         </li>
       </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Recherche ..." aria-label="Search">
         <button class="btnSearch" type="submit"><i class="fa-solid fa-magnifying-glass white"></i></button>
       </form>
-      
       <div class="test">
-      <li class="nav-item dropdown white ms-5 me-5">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="fa-regular fa-user"></i>
+        <li class="nav-item dropdown white ms-5 me-5">
+          <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{{ asset('images/miseEnPage/user.png') }}" alt="User Icon" class="userIcon">
           </a>
           <ul class="dropdown-menu dropdown-menu-lg-end">
-          {% if app.user %}
-        <li><a href="{{path('app_profil')}}" class="dropdown-item">Mon compte</a></li>
-        <li><a href="{{path("app_logout")}}" class="dropdown-item">Déconnexion</a></li>
-        {# {% if is_granted('ROLE_ADMIN') %} #}
-        <li><a href="{{path('admin')}}" class="dropdown-item">Panel Admin</a></li>
-        {# {% endif %} #}
-        {% else %}
-        <li><button class="dropdown-item" id="modalTest">S'inscrire</button></li>      
-        <li><a class="dropdown-item" id="modalTest3" href="login">Se connecter</a></li>
-        {% endif %}
+            {% if app.user %}
+              <li><a href="{{ path('app_profil') }}" class="dropdown-item">Mon compte</a></li>
+              <li><a href="{{ path('app_logout') }}" class="dropdown-item">Déconnexion</a></li>
+              <li><a href="{{ path('admin') }}" class="dropdown-item">Panel Admin</a></li>
+            {% else %}
+              <li><button class="dropdown-item" id="modalTest">S'inscrire</button></li>
+              <li><a class="dropdown-item" id="modalTest3" href="login">Se connecter</a></li>
+            {% endif %}
           </ul>
         </li>
-        </div>
+      </div>
     </div>
   </div>
-</nav>
 </nav>
