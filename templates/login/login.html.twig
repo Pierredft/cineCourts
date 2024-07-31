@@ -8,7 +8,7 @@
 		<div id="modalTest4">
 			<div class="flex">
 				<div class="form">
-					<h2 class="mt-4">Se connecter</h2>
+					<h2 class="mt-4">Connectez-vous</h2>
 					{% for message in app.flashes('success') %}
 						<div class="alert alert-success mt-4">
 							{{ message }}
@@ -22,21 +22,24 @@
 					<div class="mt">
 						{{ form_start(loginForm, {'attr': {'class': 'mt-4'}}) }}
 
-						{{ form_widget(loginForm._username, {'attr': {'class':'champs','placeholder': 'Email'}}) }}
+						{{ form_widget(loginForm._username, {'attr': {'class':'champs','placeholder': 'Votre adresse electronique'}}) }}
 						<hr>
-						{{ form_widget(loginForm._password, {'attr': {'class':'champs','placeholder': 'Mot de passe'}}) }}
+						{{ form_widget(loginForm._password, {'attr': {'class':'champs','placeholder': 'Votre mot de passe'}}) }}
 						<img src="../images/miseEnPage/eye.png" id="eye" onclick="changer()">
 						<hr>
+                        <a href="{{ path('app_forgot_password_request') }}" class="white">Vous avez oublié votre mot de passe ?</a>
 					</div>
 					<button type="submit" class="btnReg">Se connecter</button>
 
                     <div class="mt-16 grid space-y-4">
-            <a href="{{path('auth_oauth_connect', {service: 'google'})}}"class="group relative flex h-11 items-center px-6 before:absolute before:inset-0 before:rounded-full before:bg-white dark:before:bg-gray-700 dark:before:border-gray-600 before:border before:border-gray-200 before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 disabled:before:bg-gray-300 disabled:before:scale-100">
-            <span class="w-full relative flex justify-center items-center gap-3 text-base font-medium text-gray-600 dark:text-gray-200">
-                <img src="" class="absolute left-0 w-5" alt="" />
-            <span>Continue with Google</span>
+            <button class="btnReg">
+            <a href="{{path('auth_oauth_connect', {service: 'google'})}}">
+            <span class="">
+                <img src="{{ asset('images/miseEnPage/googleIcon.png') }}" class="" alt="" />
+            <span>Connectez-vous avec Google</span>
             </span>
             </a>
+            </button>
         </div>
 				<script>
 						e = true;
