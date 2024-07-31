@@ -1,3 +1,4 @@
+{# templates/profil/index.html.twig #}
 {% extends 'base.html.twig' %}
 
 {% block title %}Profil{% endblock %}
@@ -5,11 +6,27 @@
 {% block body %}
 <h1>Profil de {{ app.user.prenom }} {{ app.user.nom }}</h1>
 
-    <p>Email : {{ app.user.email }}</p>
-    <p>Nom : {{ app.user.nom }}</p>
-    <p>Prénom :{{ app.user.prenom }}</p>
-    {{ form_start(form) }}
+<div>
+    {% if app.user.profilPicture %}
+        <img src="{{ asset('uploads/profile_images/' ~ app.user.profilPicture) }}" alt="Image de profil" style="width: 150px; height: auto;">
+    {% else %}
+        <p>Aucune image de profil</p>
+    {% endif %}
+</div>
+
+<p>Email : {{ app.user.email }}</p>
+<p>Nom : {{ app.user.nom }}</p>
+<p>Prénom : {{ app.user.prenom }}</p>
+
+{{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+    <div>
+        {{ form_label(form.profilPicture) }}
+        {{ form_widget(form.profilPicture) }}
+    </div>
+    <div>
         {{ form_widget(form) }}
-        <button type="submit">Sauvegarder</button>
-    {{ form_end(form) }}
+    </div>
+    <button type="submit">Sauvegarder</button>
+{{ form_end(form) }}
 {% endblock %}
+
