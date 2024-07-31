@@ -1,58 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Login{% endblock %}
-
+{% block title %}Login
+{% endblock %}
 
 {% block body %}
-{# <div id="modalTest4"> #}
-    <div class="container">
-        <h2 class="mt-4">Se connecter</h2>
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-success mt-4">
-                {{ message }}
-            </div>
-        {% endfor %}
-        {% if error %}
-            <div class="alert alert-dismissible alert-danger">
-                {{ error.messageKey|trans(error.messageData, 'security') }}
-            </div>
-        {% endif %}
+	<div class="center">
+		<div id="modalTest4">
+			<div class="flex">
+				<div class="form">
+					<h2 class="mt-4">Se connecter</h2>
+					{% for message in app.flashes('success') %}
+						<div class="alert alert-success mt-4">
+							{{ message }}
+						{% endfor %}
+						{% if error %}
+							<div class="alert alert-dismissible alert-danger">
+								{{ error.messageKey|trans(error.messageData, 'security') }}
+							</div>
+						</div>
+					{% endif %}
+					<div class="mt">
+						{{ form_start(loginForm, {'attr': {'class': 'mt-4'}}) }}
 
-        <form action="{{ path('app_login') }}" method="post" class="mt-4">
+						{{ form_widget(loginForm._username, {'attr': {'class':'champs','placeholder': 'Email'}}) }}
+						<hr>
+						{{ form_widget(loginForm._password, {'attr': {'class':'champs','placeholder': 'Mot de passe'}}) }}
+						<img src="../images/miseEnPage/eye.png" id="eye" onclick="changer()">
+						<hr>
+					</div>
+					<button type="submit" class="btnReg">Se connecter</button>
 
-            {% if error %}
-                <div class="alert alert-dismissible alert-danger">
-                    {{ error.messageKey|trans(error.messageData, 'security') }}
-                </div>
-            {% endif %}
-
-            <form action="{{ path('app_login') }}" method="post" class="mt-4">
-                <div>
-                    <div>
-                        <label for="username" class="form-label">Email : </label>
-                    </div>
-                    <div>
-                        <input class="form-control" type="text" id="username" name="_username" value="{{ lastUsername }}">
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <label for="password" class="form-label">Mot de passe : </label>
-                    </div>
-                    <div>
-                        <input class="form-control" type="password" id="password" name="_password">
-                    </div>
-                </div>
-
-                <button type="submit" class="btn btn-primary mt-4">Se connecter</button>
-            </form>
-
-            <div class="mt-2">
-                <a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié ?</a>
-            </div>
-
-
-        <div class="mt-16 grid space-y-4">
+                    <div class="mt-16 grid space-y-4">
             <a href="{{path('auth_oauth_connect', {service: 'google'})}}"class="group relative flex h-11 items-center px-6 before:absolute before:inset-0 before:rounded-full before:bg-white dark:before:bg-gray-700 dark:before:border-gray-600 before:border before:border-gray-200 before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 disabled:before:bg-gray-300 disabled:before:scale-100">
             <span class="w-full relative flex justify-center items-center gap-3 text-base font-medium text-gray-600 dark:text-gray-200">
                 <img src="" class="absolute left-0 w-5" alt="" />
@@ -60,6 +38,33 @@
             </span>
             </a>
         </div>
-    </div>
-{# </div> #}
+				<script>
+						e = true;
+function changer() {
+if (e) {
+document.getElementById("login_form__password").setAttribute("type", "text");
+document.getElementById("eye").src = "../images/miseEnPage/eye-off.png";
+e = false;
+} else {
+document.getElementById("login_form__password").setAttribute("type", "password");
+document.getElementById("eye").src = "../images/miseEnPage/eye.png";
+e = true;
+}
+}
+				</script>
+                </div>
+
+                <div class="decoration">
+					<img src="../images/miseEnPage/decorRegister.jpg" class="decoration" alt="">
+					<img src="../images/miseEnPage/closeButton.png" class="close-button" onclick="closeModal()">
+				<script>
+        function closeModal() {
+            document.getElementById("modalTest4").style.display = "none";
+        }
+                </script>
+				</div>
+				{{ form_end(loginForm) }}
+			</div>
+		</div>
+	</div>
 {% endblock %}
