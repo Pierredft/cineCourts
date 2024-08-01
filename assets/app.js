@@ -12,5 +12,6 @@ import './styles/app.css';
 import './styles/register.css';
 import './styles/login.css';
 import './styles/modalBigMovie.css';
+import './styles/profil.css'
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');

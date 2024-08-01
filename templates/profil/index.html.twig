@@ -1,32 +1,67 @@
-{# templates/profil/index.html.twig #}
 {% extends 'base.html.twig' %}
 
-{% block title %}Profil{% endblock %}
-
-{% block body %}
-<h1>Profil de {{ app.user.prenom }} {{ app.user.nom }}</h1>
-
-<div>
-    {% if app.user.profilPicture %}
-        <img src="{{ asset('uploads/profile_images/' ~ app.user.profilPicture) }}" alt="Image de profil" style="width: 150px; height: auto;">
-    {% else %}
-        <p>Aucune image de profil</p>
-    {% endif %}
-</div>
-
-<p>Email : {{ app.user.email }}</p>
-<p>Nom : {{ app.user.nom }}</p>
-<p>Prénom : {{ app.user.prenom }}</p>
-
-{{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
-    <div>
-        {{ form_label(form.profilPicture) }}
-        {{ form_widget(form.profilPicture) }}
-    </div>
-    <div>
-        {{ form_widget(form) }}
-    </div>
-    <button type="submit">Sauvegarder</button>
-{{ form_end(form) }}
+{% block title %}Profil
 {% endblock %}
 
+{% block body %}
+	<div class="center">
+		<div class="cadre">
+			<div class="flex">
+				<div class="">
+					<h1 class="mt-4">Profil de
+						{{ app.user.prenom }}
+						{{ app.user.nom }}</h1>
+					<div class="justAr m20">
+						<div>
+							<p>Email :
+								{{ app.user.email }}</p>
+							<p>Nom :
+								{{ app.user.nom }}</p>
+							<p>Prénom :
+								{{ app.user.prenom }}</p>
+						</div>
+						<div class="">
+							{% if app.user.profilPicture %}
+								<img src="{{ asset('uploads/profile_images/' ~ app.user.profilPicture) }}" alt="Image de profil" style="width: 150px; height: auto;">
+								<form action="{{ path('app_profil_remove_image') }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette image ?');">
+									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ app.user.id) }}">
+									<button type="submit" class="btn btn-danger">Supprimer l'image</button>
+								</form>
+							{% else %}
+								<div class="center">
+									<img src="../images/miseEnPage/user.png" alt="">
+								</div>
+								<p>Aucune image</p>
+							{% endif %}
+						</div>
+					</div>
+					{# form #}
+					<div class="modif" id="modif" style="display: none;">
+						{{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+						<div>
+							{{ form_row(form.profilPicture) }}
+						</div>
+						<div>
+							{{ form_widget(form) }}
+						</div>
+						<button type="submit" id="saveBtn" class="btn btn-primary">Sauvegarder</button>
+						{{ form_end(form) }}
+					</div>
+					<button id="editBtn" class="btn btn-primary">Modifier</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		document.getElementById('editBtn').addEventListener('click', function () {
+document.getElementById('modif').style.display = 'block';
+this.style.display = 'none';
+});
+
+document.getElementById('saveBtn').addEventListener('click', function () {
+document.getElementById('modif').style.display = 'none';
+document.getElementById('editBtn').style.display = 'block';
+});
+	</script>
+{% endblock %}

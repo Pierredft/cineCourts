@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 use App\Form\ProfilFormType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class ProfilController extends AbstractController
 {
@@ -43,7 +44,7 @@ class ProfilController extends AbstractController
                         $newFilename
                     );
                 } catch (FileException $e) {
-                    // handle exception if something happens during file upload
+                    
                     $this->addFlash('error', 'Une erreur est survenue lors du téléchargement de l\'image.');
                     return $this->redirectToRoute('app_profil');
                 }
@@ -63,5 +64,22 @@ class ProfilController extends AbstractController
             'form' => $form->createView(),
             'user' => $user,
         ]);
+    }
+    #[Route('/profil/remove-image', name: 'app_profil_remove_image', methods: ['POST'])]
+    public function removeImage(Request $request, UserRepository $userRepository, UserInterface $user): RedirectResponse
+    {
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
+            $user = $userRepository->find($user->getId());
+            $user->setProfilPicture(null);
+
+            $this->entityManager->persist($user);
+            $this->entityManager->flush();
+
+            $this->addFlash('success', 'Image de profil supprimée avec succès!');
+        } else {
+            $this->addFlash('error', 'Échec de la suppression de l\'image de profil.');
+        }
+
+        return $this->redirectToRoute('app_profil');
     }
 }

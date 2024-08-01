@@ -1,0 +1,21 @@
+.cadre {
+  color: white;
+  border-radius: 50px 50px 50px 50px;
+  background: #212121;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  width: 1055px;
+  height: 950px;
+  margin-top: 20px;
+  position: relative;
+}
+.justAr {
+  display: flex;
+  justify-content: space-between;
+}
+.m20 {
+  margin: 20px;
+}
+
+.modif {
+  display: none;
+}
