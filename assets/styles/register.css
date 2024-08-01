@@ -32,7 +32,8 @@
   height: 60px;
   border-radius: 50px;
   background-color: white;
-  margin-top: 15px;
+  margin-top: 30px;
+  font-weight: 500;
 }
 .form{
   width: 500px;
@@ -52,18 +53,22 @@
 #eye{
   cursor: pointer;
   vertical-align: middle;
-  
+  width: 28px;
+  height: 28px;
 }
 
 .mt {
   margin-top: 90px;
 }
+
 .close-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 40px; /* Ajustez cette valeur pour décaler vers le bas */
+  right: 40px; /* Ajustez cette valeur pour décaler vers la gauche */
   background: transparent;
   color: white;
   border: none;
   cursor: pointer;
+  height: 60px;
+  width: 60px;
 }

@@ -24,8 +24,16 @@
       <div class="test">
         <li class="nav-item dropdown white ms-5 me-5">
           <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="{{ asset('images/miseEnPage/user.png') }}" alt="User Icon" class="userIcon">
-          </a>
+      {% if app.user %}
+        {% if app.user.profilPicture %}
+          <img src="{{ asset('uploads/profile_images/' ~ app.user.profilPicture) }}" alt="User Icon" class="userIcon">
+        {% else %}
+          <img src="{{ asset('images/miseEnPage/user.png') }}" alt="User Icon" class="userIcon">
+        {% endif %}
+      {% else %}
+        <img src="{{ asset('images/miseEnPage/user.png') }}" alt="User Icon" class="userIcon">
+      {% endif %}
+      </a>
           <ul class="dropdown-menu dropdown-menu-lg-end">
             {% if app.user %}
               <li><a href="{{ path('app_profil') }}" class="dropdown-item">Mon compte</a></li>
