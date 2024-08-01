@@ -6,7 +6,7 @@
 {% block body %}
 	<div class="center">
 		<div class="cadre">
-			<div class="flex">
+			<div class="m20">
 				<div class="">
 					<h1 class="mt-4">Profil de
 						{{ app.user.prenom }}
@@ -35,18 +35,32 @@
 							{% endif %}
 						</div>
 					</div>
-					{# form #}
+
 					<div class="modif" id="modif" style="display: none;">
 						{{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
 						<div>
-							{{ form_row(form.profilPicture) }}
+							->
+							<label for="profilPictureInput" class="custom-file-upload">
+								Choisir un fichier
+							</label>
+
+							{{ form_widget(form.profilPicture, { 'id': 'profilPictureInput', 'attr': { 'class': 'custom-file-input' } }) }}
+							<hr>
 						</div>
 						<div>
-							{{ form_widget(form) }}
+							{{ form_widget(form.email,{'attr': {'class':'champs','placeholder': 'Email'}}) }}
+							<hr>
+							{{ form_widget(form.nom,{'attr': {'class':'champs','placeholder': 'Nom'}}) }}
+							<hr>
+							{{ form_widget(form.prenom,{'attr': {'class':'champs','placeholder': 'Prénom'}}) }}
+							<hr>
+							{{ form_widget(form.telephone,{'attr': {'class':'champs','placeholder': 'Téléphone'}}) }}
+							<hr>
 						</div>
 						<button type="submit" id="saveBtn" class="btn btn-primary">Sauvegarder</button>
 						{{ form_end(form) }}
 					</div>
+
 					<button id="editBtn" class="btn btn-primary">Modifier</button>
 				</div>
 			</div>
@@ -56,7 +70,7 @@
 	<script>
 		document.getElementById('editBtn').addEventListener('click', function () {
 document.getElementById('modif').style.display = 'block';
-this.style.display = 'none';
+this.style.display = 'none'; //
 });
 
 document.getElementById('saveBtn').addEventListener('click', function () {
