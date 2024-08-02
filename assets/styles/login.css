@@ -1,12 +1,124 @@
-#modalTest4 {
-    /* display: none; */
-    color: white;
-    border-radius: 50px 50px 50px 50px;
-    background: #212121;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    width: 1055px;
-    height: 950px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    position: relative;
+.modalLogin .modal-dialog {
+    max-width: 1055px;
+    border-radius: 50px !important;
+}
+
+.modalLogin .modal-content {
+    background: #000000 !important;
+    color: white !important;
+    border-radius: 50px !important;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) !important;
+}
+
+.passwordSee {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+.passPosition {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.colorGradient {
+    position: relative !important;
+    overflow: hidden !important;
+    border-radius: 0px 50px 50px 0px !important;
+}
+
+.colorGradient::before {
+    content: '';
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(250deg, rgba(0, 0, 0, 0.00) 0%, #000 100%) !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+}
+
+.imgPosition {
+    width: 100% !important;
+    object-fit: cover !important;
+    object-position: top !important;
+}
+
+.logoWhite {
+    margin-top: 54px !important;
+    margin-left: 15px !important;
+    width: 311px !important;
+    height: 115px !important;
+}
+
+.logTitle {
+    font-weight: 800 !important;
+    font-size: 36px !important;
+    margin-left: 19px !important;
+    margin-top: 70px !important;
+}
+
+.questionLog {
+    display: flex !important;
+    margin-left: 26px !important;
+    margin-top: 10px !important;
+    font-weight: 500 !important;
+    font-size: 12px !important;
+}
+
+.questionLog2 {
+    margin-left: 65px !important;
+}
+
+.ml-45 {
+    margin-left: 45px !important;
+}
+
+hr {
+    width: 369px !important;
+    margin-bottom: 20px !important;
+}
+
+.inputLog {
+    font-weight: 500 !important;
+    font-size: 12px !important;
+}
+
+.forgotPass {
+    font-weight: 500 !important;
+    font-size: 12px !important;
+}
+
+.noLink {
+    text-decoration: none !important;
+    color: black !important;
+}
+
+.noLink:hover {
+    text-decoration: none !important;
+    color: white !important;
+}
+
+.justC {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.googleIcon {
+    margin-right: 10px !important;
+}
+
+.btnReg {
+    margin-top: 20px !important;
+}
+
+.btn:hover {
+    background: #c0a57d !important;
+    color: white !important;
+}
+
+.btn-close {
+    z-index: 1001 !important;
 }

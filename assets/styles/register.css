@@ -1,5 +1,5 @@
-#modalTest2 {
-  display: none;
+.modal-content {
+  
   color: white;
   border-radius: 50px 50px 50px 50px;
   background: #212121;
@@ -15,7 +15,6 @@
   display: flex;
   
 }
-
 .center {
   display: flex;
   justify-content: center;
@@ -55,15 +54,13 @@
   vertical-align: middle;
   
 }
-
 .mt {
   margin-top: 90px;
 }
-.close-button {
+.btnmod {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: transparent;
   color: white;
   border: none;
   cursor: pointer;

@@ -41,10 +41,10 @@
 							</li>
 						{% else %}
 							<li>
-								<button class="dropdown-item" id="modalTest">S'inscrire</button>
+								<button type="button" class="dropdown-item btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">S'inscrire</button>
 							</li>
 							<li>
-								<a class="dropdown-item" id="modalTest3" href="login">Se connecter</a>
+								<button type="button" class="dropdown-item btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">Se connecter</button>
 							</li>
 						{% endif %}
 					</ul>
@@ -53,3 +53,48 @@
 		</div>
 	</div>
 </nav>
+
+
+
+
+<!-- Modal login-->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5 m20" id="exampleModalLabel">Se connecter</h1>
+				<button type="button" class="btn-close btnmod" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form action="{{ path('app_login') }}" method="post" class="mt-4">
+					<div>
+						<input placeholder="Votre adresse électronique" class="inputLog" type="text" id="_username" name="_username" >
+					</div>
+					<div class="passPosition">
+						<div class="passwordSee">
+							<div>
+								<input placeholder="Votre mot de passe" class="eyePosition inputLog " type="password" id="_password" name="_password">
+							</div>
+							<img class="eyeImg" src="../images/miseEnPage/eye.png" id="eye" onclick="changer()">
+						</div>
+					</div>
+					<div class="mt-2">
+						<a class="forgotPass white" href="{{ path('app_forgot_password_request') }}">Vous avez oublié votre mot de passe ?</a>
+					</div>
+
+					<button type="submit" class="btnReg">Connectez-vous</button>
+					<div class="btnReg justC">
+						<a href="{{path('auth_oauth_connect', {service: 'google'})}}" class="noLink ">
+							<img src="{{ asset('images/miseEnPage/googleIcon.png') }}" class="googleIcon" alt=""/>
+							<span>Connectez-vous avec Google</span>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
