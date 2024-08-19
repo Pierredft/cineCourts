@@ -40,7 +40,7 @@
 
 					</div>
 
-					<div class="modif " id="modif" style="display: none;">
+					<div class="modif center " id="modif" style="display: none;">
 						{{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
 						<div >
 							{{ form_widget(form.profilPicture, { 'id': 'profilPictureInput', 'attr': { 'class': 'custom-file-input' } }) }}
@@ -71,7 +71,7 @@
 
 	<script>
 		document.getElementById('editBtn').addEventListener('click', function () {
-document.getElementById('modif').style.display = 'block';
+document.getElementById('modif').style.display = 'flex';
 this.style.display = 'none'; //
 });
 
