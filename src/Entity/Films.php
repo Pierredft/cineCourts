@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\FilmsRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -30,27 +28,6 @@ class Films
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $videoFilm = null;
-
-    #[ORM\ManyToOne(inversedBy: 'films')]
-    private ?Arcom $arcom = null;
-
-    /**
-     * @var Collection<int, Acteurs>
-     */
-    #[ORM\ManyToMany(targetEntity: Acteurs::class, inversedBy: 'films')]
-    private Collection $acteurs;
-
-    /**
-     * @var Collection<int, Realisateur>
-     */
-    #[ORM\ManyToMany(targetEntity: Realisateur::class, inversedBy: 'films')]
-    private Collection $realisateurs;
-
-    public function __construct()
-    {
-        $this->acteurs = new ArrayCollection();
-        $this->realisateurs = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -113,66 +90,6 @@ class Films
     public function setVideoFilm(?string $videoFilm): static
     {
         $this->videoFilm = $videoFilm;
-
-        return $this;
-    }
-
-    public function getArcom(): ?Arcom
-    {
-        return $this->arcom;
-    }
-
-    public function setArcom(?Arcom $arcom): static
-    {
-        $this->arcom = $arcom;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Acteurs>
-     */
-    public function getActeurs(): Collection
-    {
-        return $this->acteurs;
-    }
-
-    public function addActeur(Acteurs $acteur): static
-    {
-        if (!$this->acteurs->contains($acteur)) {
-            $this->acteurs->add($acteur);
-        }
-
-        return $this;
-    }
-
-    public function removeActeur(Acteurs $acteur): static
-    {
-        $this->acteurs->removeElement($acteur);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Realisateur>
-     */
-    public function getRealisateurs(): Collection
-    {
-        return $this->realisateurs;
-    }
-
-    public function addRealisateur(Realisateur $realisateur): static
-    {
-        if (!$this->realisateurs->contains($realisateur)) {
-            $this->realisateurs->add($realisateur);
-        }
-
-        return $this;
-    }
-
-    public function removeRealisateur(Realisateur $realisateur): static
-    {
-        $this->realisateurs->removeElement($realisateur);
 
         return $this;
     }
