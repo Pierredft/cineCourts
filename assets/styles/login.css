@@ -7,6 +7,7 @@
     border: none !important;
     margin-top: 70px;
     margin-bottom: 80px;
+    font-family: 'Popins', sans-serif;
 }
 
 .modalLogin .modal-content {
@@ -91,10 +92,12 @@
     margin-left: 48px !important;
     font-weight: 500 !important;
     font-size: 12px !important;
+    font-family: 'Poppins', sans-serif;
 }
 
 .questionLog2 {
     margin-left: 65px !important;
+    font-family: 'Poppins', sans-serif;
 }
 
 .ml-45 {
@@ -110,11 +113,13 @@ hr {
     font-weight: 500 !important;
     font-size: 12px !important;
     width: 350px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .forgotPass {
     font-weight: 500 !important;
     font-size: 12px !important;
+    font-family: 'Poppins', sans-serif;
 }
 
 .noLink {
@@ -139,6 +144,7 @@ hr {
 
 .btnReg {
     margin-top: 30px !important;
+    font-family: 'Poppins', sans-serif;
 }
 
 .btn:hover {
