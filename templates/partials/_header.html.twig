@@ -87,104 +87,132 @@
   Launch demo modal
 </button> #}
 
-<!-------------------- MODAL DU LOGIN  -->
-	<div id="modalLogin" class="modal fade modalLogin" tabindex="-1" aria-labelledby="modalLoginLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body p-0">
-                <div class="d-flex">
-                    <div class="form">
-                        <div class="logoPosition">
-                            <img class="logoWhite" src="{{ asset('images/miseEnPage/logoCineCourts.png') }}" alt=""/>
-                        </div>
-                        <h2 class="logTitle">Connectez-vous</h2>
-                        <div class="questionLog">
-                            <div class="mt-2">
-                                <p>Vous n'avez pas encore de<br>compte ?</p>
-                            </div>
-                            <div class="questionLog2">
-							<button id="openRegisterModal" class="btn white buttonRedirect">Créez un<br>compte</button>
+<!-- MODAL DU LOGIN  -->
+<div id="modalLogin" class="modal fade modalLogin" tabindex="-1" aria-labelledby="modalLoginLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-body p-0">
+				<div class="d-flex">
+					<div class="form">
+						<div class="logoPosition">
+							<img class="logoWhite" src="{{ asset('images/miseEnPage/logoCineCourts.png') }}" alt=""/>
+						</div>
+						<h2 class="logTitle">Connectez-vous</h2>
+						<div class="questionLog">
+							<div class="mt-2">
+								<p>Vous n'avez pas encore de<br>compte ?</p>
+							</div>
+							<div class="questionLog2">
+								<button id="openRegisterModal" class="btn white buttonRedirect">Créez un<br>compte</button>
 							</button>
-                            </div>
-                        </div>
-                        {% for message in app.flashes('success') %}
-                            <div class="alert alert-success mt-4">
-                                {{ message }}
-                            </div>
-                        {% endfor %}
-                        <div class="ml-45">
-                            <form action="{{ path('app_login') }}" method="post" class="mt-4">
-                                <div class="form-group">
-                                    <input placeholder="Votre adresse électronique" class=" champs inputLog" type="text" id="_username" name="_username">
-                                </div>
-                                <hr>
-                                <div class="form-group passPosition">
-                                    <div class="passwordSee">
-                                        <div>
-                                            <input placeholder="Votre mot de passe" class=" champs eyePosition inputLog" type="password" id="_password" name="_password">
-                                        </div>
-                                        <img class="eyeImg" src="../images/miseEnPage/eye.png" id="eye" onclick="changer()">
-                                    </div>
-                                    <hr>
-                                </div>
-                                <div class="mt-2">
-                                    <a class="forgotPass white" href="{{ path('app_forgot_password_request') }}">Vous avez oublié votre mot de passe ?</a>
-                                </div>
-                                <button type="submit" class="btn btnReg">Connectez-vous</button>
-                                <div class="btn btnReg justC mt-2">
-                                    <a href="{{path('auth_oauth_connect', {service: 'google'})}}" class="noLink">
-                                        <img src="{{ asset('images/miseEnPage/googleIcon.png') }}" class="googleIcon" alt=""/>
-                                        <span class="">Connectez-vous avec Google</span>
-                                    </a>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class=" colorGradient">
-                        <img src="../images/miseEnPage/decorRegister.jpg" class=" imgPosition" alt="">
-                        <img class="close-button" data-bs-dismiss="modal" src="../images/miseEnPage/closeButton.png">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Script pour le bouton de l'oeil -->
-<script>
+						</div>
+					</div>
+					{% for message in app.flashes('success') %}
+						<div class="alert alert-success mt-4">
+							{{ message }}
+						</div>
+					{% endfor %}
+					<div class="ml-45">
+						<form action="{{ path('app_login') }}" method="post" class="mt-4">
+							<div class="form-group">
+								<input placeholder="Votre adresse électronique" class=" champs inputLog" type="text" id="_username" name="_username">
+							</div>
+							<hr>
+							<div class="form-group passPosition">
+								<div class="passwordSee">
+									<div>
+										<input placeholder="Votre mot de passe" class=" champs eyePosition inputLog" type="password" id="_password" name="_password">
+									</div>
+									<img class="eyeImg" src="../images/miseEnPage/eye.png" id="eye" onclick="changer()">
+								</div>
+								<hr>
+							</div>
+							<div class="mt-2">
+								<a class="forgotPass white" href="{{ path('app_forgot_password_request') }}">Vous avez oublié votre mot de passe ?</a>
+							</div>
+							<button type="submit" class="btn btnReg">Connectez-vous</button>
+							<div class="btn btnReg justC mt-2">
+								<a href="{{path('auth_oauth_connect', {service: 'google'})}}" class="noLink">
+									<img src="{{ asset('images/miseEnPage/googleIcon.png') }}" class="googleIcon" alt=""/>
+									<span class="">Connectez-vous avec Google</span>
+								</a>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class=" colorGradient">
+					<img src="../images/miseEnPage/decorRegister.jpg" class=" imgPosition" alt="">
+					<img class="close-button" data-bs-dismiss="modal" src="../images/miseEnPage/closeButton.png">
+				</div>
+			</div>
+		</div>
+	</div>
+</div></div><!-- Script pour le bouton de l'oeil --><script>
 let e = true;
 function changer() {
-    const passwordField = document.getElementById("_password");
-    const eyeIcon = document.getElementById("eye");
-    if (e) {
-        passwordField.setAttribute("type", "text");
-        eyeIcon.src = "../images/miseEnPage/eye-off.png";
-    } else {
-        passwordField.setAttribute("type", "password");
-        eyeIcon.src = "../images/miseEnPage/eye.png";
-    }
-    e = !e;
-}
-</script>
+const passwordField = document.getElementById("_password");
+const eyeIcon = document.getElementById("eye");
+if (e) {
+passwordField.setAttribute("type", "text");
+eyeIcon.src = "../images/miseEnPage/eye-off.png";
+} else {
+passwordField.setAttribute("type", "password");
+eyeIcon.src = "../images/miseEnPage/eye.png";
+} e = ! e;
+}</script><!-- Script pour le bouton de l'inscription via le login --><script>
+document.addEventListener('DOMContentLoaded', function () { // Récupérez les éléments des modals
+const loginModal = new bootstrap.Modal(document.getElementById('modalLogin'));
+const registerModal = new bootstrap.Modal(document.getElementById('registerModal'));
 
-<!-- Script pour le bouton de l'inscription via le login -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Récupérez les éléments des modals
-    const loginModal = new bootstrap.Modal(document.getElementById('modalLogin'));
-    const registerModal = new bootstrap.Modal(document.getElementById('registerModal'));
+// Ajout d'un écouteur d'événements pour le bouton "Créer un compte"
+document.getElementById('openRegisterModal').addEventListener('click', function () { // Ferme la modal de connexion
+loginModal.hide();
 
-    // Ajout d'un écouteur d'événements pour le bouton "Créer un compte"
-    document.getElementById('openRegisterModal').addEventListener('click', function() {
-        // Ferme la modal de connexion
-        loginModal.hide();
-
-        // Ouvre la modal d'inscription
-        registerModal.show();
-    });
+// Ouvre la modal d'inscription
+registerModal.show();
 });
-</script>
+});</script><!-- Modal register--><div id="registerModal" class="modal fade modalLogin" tabindex="-1" aria-labelledby="modalLoginLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg modal-dialog-centered">
+	<div class="modal-content">
+		<div class="modal-body p-0">
+			<div class="d-flex">
+				<div class="form">
+					<div class="logoPosition">
+						<img class="logoWhite" src="{{ asset('images/miseEnPage/logoCineCourts.png') }}" alt=""/>
+					</div>
+					<h2 class="logTitle">S'inscrire</h2>
+					<div class="ml-45">
+						<form action="{{ path('app_register') }}" method="POST">
+							<div>
+								<input class="champs" type="email" id="registration_form_email" name="registration_form[email]" required="required" placeholder="Email"/>
+								<hr>
+							</div>
+							<div>
+								<input class="champs" type="text" id="registration_form_nom" name="registration_form[nom]" required="required" placeholder="Nom"/>
+								<hr>
+							</div>
+							<div>
+								<input class="champs" type="text" id="registration_form_prenom" name="registration_form[prenom]" required="required" placeholder="Prénom"/>
+								<hr>
+							</div>
+							<div>
+								<input class="champs" type="tel" id="registration_form_telephone" name="registration_form[telephone]" required="required" placeholder="Téléphone"/>
+								<hr>
+							</div>
+							<div>
+								<input class="champs" type="password" id="registration_form_plainPassword" name="registration_form[plainPassword]" required="required" minlength="6" placeholder="Mot de passe"/>
+								<hr>
+							</div>
+						<button type="submit" class="btn btnReg ">S'inscrire</button>
+						</div>
 
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class=" colorGradient">
+			<img src="../images/miseEnPage/decorRegister.jpg" class=" imgPosition" alt="">
+			<img class="close-button" data-bs-dismiss="modal" src="../images/miseEnPage/closeButton.png">
 <!-- Script pour rendre la nav interactive -->
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -237,4 +265,4 @@ document.addEventListener('DOMContentLoaded', (event) => {
             </div>
 		</div>
 	</div>
-</div>
+</div></div>

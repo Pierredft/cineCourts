@@ -8,7 +8,24 @@
 		<div class="cadre">
 			<div class="m20">
 				<div class="">
-					<h1 class="mt-4">Profil de
+					<div>
+						{% if app.user.profilPicture %}
+							<div class="center">
+								<img src="{{ asset('uploads/profile_images/' ~ app.user.profilPicture) }}" alt="Image de profil" style="width: 53px; height: 54px; border-radius: 50%; align-items: center;">
+							</div>
+							<div class="center">
+								<form action="{{ path('app_profil_remove_image') }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette image ?');">
+									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ app.user.id) }}">
+									<button type="submit" class="btn btnReg">Supprimer l'image</button>
+								</form>
+							</div>
+						{% else %}
+							<div class="center">
+								<img src="../images/miseEnPage/user.png" alt="">
+							</div>
+						{% endif %}
+					</div>
+					<h1 class="mt-4">Bienvenue,
 						{{ app.user.prenom }}
 						{{ app.user.nom }}</h1>
 					<div class="justAr m20">
@@ -20,34 +37,16 @@
 							<p>Prénom :
 								{{ app.user.prenom }}</p>
 						</div>
-						<div class="">
-							{% if app.user.profilPicture %}
-								<img src="{{ asset('uploads/profile_images/' ~ app.user.profilPicture) }}" alt="Image de profil" style="width: 150px; height: auto;">
-								<form action="{{ path('app_profil_remove_image') }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette image ?');">
-									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ app.user.id) }}">
-									<button type="submit" class="btn btn-danger">Supprimer l'image</button>
-								</form>
-							{% else %}
-								<div class="center">
-									<img src="../images/miseEnPage/user.png" alt="">
-								</div>
-								<p>Aucune image</p>
-							{% endif %}
-						</div>
+
 					</div>
 
-					<div class="modif" id="modif" style="display: none;">
+					<div class="modif center " id="modif" style="display: none;">
 						{{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
-						<div>
-							->
-							<label for="profilPictureInput" class="custom-file-upload">
-								Choisir un fichier
-							</label>
-
+						<div >
 							{{ form_widget(form.profilPicture, { 'id': 'profilPictureInput', 'attr': { 'class': 'custom-file-input' } }) }}
 							<hr>
 						</div>
-						<div>
+						<div >
 							{{ form_widget(form.email,{'attr': {'class':'champs','placeholder': 'Email'}}) }}
 							<hr>
 							{{ form_widget(form.nom,{'attr': {'class':'champs','placeholder': 'Nom'}}) }}
@@ -57,11 +56,14 @@
 							{{ form_widget(form.telephone,{'attr': {'class':'champs','placeholder': 'Téléphone'}}) }}
 							<hr>
 						</div>
-						<button type="submit" id="saveBtn" class="btn btn-primary">Sauvegarder</button>
+						<div>
+						<button type="submit" id="saveBtn" class="btn btnReg">Sauvegarder</button>
+						</div>
 						{{ form_end(form) }}
 					</div>
-
-					<button id="editBtn" class="btn btn-primary">Modifier</button>
+						<div class="center">
+					<button id="editBtn" class="btn btnReg">Modifier</button>
+						</div>
 				</div>
 			</div>
 		</div>
@@ -69,7 +71,7 @@
 
 	<script>
 		document.getElementById('editBtn').addEventListener('click', function () {
-document.getElementById('modif').style.display = 'block';
+document.getElementById('modif').style.display = 'flex';
 this.style.display = 'none'; //
 });
 
