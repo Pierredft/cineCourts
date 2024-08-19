@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Films;
 use App\Form\FilmsType;
-use App\Repository\ActeursRepository;
 use App\Repository\FilmsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,13 +15,11 @@ use Symfony\Component\Routing\Attribute\Route;
 class FilmsController extends AbstractController
 {
     #[Route('', name: 'app_films_index', methods: ['GET'])]
-    public function index(FilmsRepository $filmsRepository, ActeursRepository $acteursRepository): Response
+    public function index(FilmsRepository $filmsRepository,): Response
     {
         $films = $filmsRepository->findAll();
-        $acteurs = $acteursRepository->findAll();
         return $this->render('films/films.html.twig', [
-            'films'=>$films,
-            'acteurs'=>$acteurs
+            'films'=>$films
         ]);
     }
 

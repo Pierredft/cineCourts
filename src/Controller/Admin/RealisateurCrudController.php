@@ -15,12 +15,14 @@ class RealisateurCrudController extends AbstractCrudController
         return Realisateur::class;
     }
 
+    /*
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id')->hideOnForm(),
-            TextField::new('nom'),
-            TextField::new('prenom'),
+            IdField::new('id'),
+            TextField::new('title'),
+            TextEditorField::new('description'),
         ];
     }
+    */
 }

@@ -1,5 +1,5 @@
-.modal-content {
-  
+#modalTest2 {
+  display: none;
   color: white;
   border-radius: 50px 50px 50px 50px;
   background: #212121;
@@ -7,7 +7,6 @@
   width: 1055px;
   height: 950px;
   margin-top: 20px;
-  margin-bottom: 20px;
   position: relative;
 }
 
@@ -15,6 +14,7 @@
   display: flex;
   
 }
+
 .center {
   display: flex;
   justify-content: center;
@@ -57,22 +57,16 @@
   width: 28px;
   height: 28px;
 }
+
 .mt {
   margin-top: 90px;
 }
-<<<<<<< HEAD
-.btnmod {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-=======
 
 .close-button {
   position: absolute;
   top: 40px; /* Ajustez cette valeur pour décaler vers le bas */
   right: 40px; /* Ajustez cette valeur pour décaler vers la gauche */
   background: transparent;
->>>>>>> a4477d7aa5014c06301b8c426eae4f248125285d
   color: white;
   border: none;
   cursor: pointer;

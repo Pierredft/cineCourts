@@ -18,10 +18,10 @@ class ProfilFormType extends AbstractType
             ->add('prenom')
             ->add('telephone')
             ->add('profilPicture', FileType::class, [
-                'label' => 'Photo de profil (JPG, PNG)',
+                'label' => 'Image de Profil (JPG, PNG)',
                 'required' => false,
-                'mapped' => false,
-                'attr' => ['accept' => 'image/*', 'class' => 'custom-file-input'],
+                'mapped' => false, 
+                'attr' => ['accept' => 'image/*'], 
             ]);
     }
 
