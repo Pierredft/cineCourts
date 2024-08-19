@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
             var video = modal.querySelector('video');
             if (video) {
                 video.muted = false;
+                video.autoplay = true; // Ajouter cette ligne
                 video.play();
             }
         });

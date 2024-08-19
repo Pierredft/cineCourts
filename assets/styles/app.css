@@ -49,7 +49,8 @@
 
 /*pour ajuster la taille de la navbar*/
 .navbarCustom {
-  height: 100px;
+  height: 78px;
+  background-color: #1E1E1E;
 }
 
 .linkCustom {
@@ -64,8 +65,8 @@
 
 /*pour ajuster la taille du logo dans le header*/
 .logoNavCustom {
-  height: 50px;
-  width: 188px;
+  height: 81px;
+  width: 219px;
 }
 
 .mt {
