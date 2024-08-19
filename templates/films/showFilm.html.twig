@@ -5,6 +5,10 @@
 {% block body %}
     <!-- Button trigger modal -->
     {% for films in films %}
+
+        <img class="img-fluid imgSize imgFilm" src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt=""></a>
+    {% endfor %}
+
         <img src="{{ asset ('/images/affiches/' ~ films.affiche)}}" class="imgAff imgOff" alt="" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ loop.index }}">
     
 
@@ -33,4 +37,5 @@
             </div>
         </div>
     </div>
+
 {% endblock %}
