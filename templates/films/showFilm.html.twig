@@ -3,7 +3,39 @@
 {% block title %}Films show{% endblock %}
 
 {% block body %}
+    <!-- Button trigger modal -->
     {% for films in films %}
+
         <img class="img-fluid imgSize imgFilm" src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt=""></a>
     {% endfor %}
+
+        <img src="{{ asset ('/images/affiches/' ~ films.affiche)}}" class="imgAff imgOff" alt="" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ loop.index }}">
+    
+
+    <!-- Modal -->
+    <div class="modal fade modalSize" id="exampleModal-{{ loop.index }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close btnClose" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <a href="{{ path('app_home') }}" class="btn btn-primary btnLecture"><i class="fa-solid fa-play" style="color: #ffffff;"></i> LECTURE</a>
+
+                    <video id="video-{{ loop.index }}" class="video-background">
+                        <source src="../video/films/Save_Ralph.mp4" type="video/mp4">
+                        Votre navigateur ne supporte pas la balise vidéo.
+                    </video>
+                </div>
+                <div class="modal-body">
+                    <h5>{{ films.duree|date('H') }}h {{ films.duree|date('i') }} min</h5>
+                    <p>{{films.synopsis}}</p>
+                    <h4>À propos de {{films.name}}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

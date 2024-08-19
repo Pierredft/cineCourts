@@ -3,7 +3,9 @@
 {% block title %}Films index{% endblock %}
 
 {% block body %}
+    <h1>Films index</h1>
         {% for films in films %}
+
         <img class="img-fluid imgSize imgFilm openModal mb-5" src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt=""></a>
         
         <div class="borderLittleModal littleModal">
@@ -28,5 +30,8 @@
                         <h5>{{ films.duree|date('H') }}h {{ films.duree|date('i') }} min</h5>
                 </div>
         </div>
+
+        <a href="{{path('app_films_show', {'id' : films.id})}}"><img src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt=""></a>
+
         {% endfor %}
 {% endblock %}

@@ -45,20 +45,3 @@
     object-fit: fill;
     z-index: 1;
 }
-
-.picto{
-    width: 30px;
-    height: auto;
-}
-
-.acteur{
-        display: flex;
-        flex-direction: row;
-}
-
-/* .test{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-} */
