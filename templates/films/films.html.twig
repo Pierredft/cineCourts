@@ -4,7 +4,7 @@
 
 {% block body %}
         {% for films in films %}
-        <img class="img-fluid imgSize imgFilm openModal" src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt=""></a>
+        <img class="img-fluid imgSize imgFilm openModal mb-5" src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt=""></a>
         
         <div class="borderLittleModal littleModal">
                 <div class="modal-header">
@@ -13,26 +13,20 @@
                                 <button class="mute-button stylebtn" data-video-id="video-{{ films.id }}" style="display: none;"><i class="fa-solid fa-volume-high colorbtn"></i></button>
                         </div>
                         <video class="video-background videoBorder" id="video-{{ films.id }}" autoplay muted>
-                                <source src="{{ asset ('/video/films/Save_Ralph.mp4') }}" type="video/mp4">
+                                <source src="{{ asset ('/video/films/Vader.mp4') }}" type="video/mp4">
                                 Votre navigateur ne supporte pas la balise vidéo.
                         </video>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body mb-3">
                         <div class="btnPos">
-                                <button class="stylebtn ms-2"><i class="fa-solid fa-play colorbtn"></i></fa-regular></button>
+                                <a class="stylebtn ms-2" href="{{path('app_films_view', {'id' : films.id})}}"><i class="fa-solid fa-play colorbtn"></i></fa-regular></a>
+                                <a class="stylebtn ms-2" href="{{path('app_films_show', {'id' : films.id})}}"><i class="fa-solid fa-info colorbtn"></i></fa-regular></fa-regular></a>
                         </div>
-                        <img src="{{ asset ('/images/pegi/' ~ films.arcom.picto)}}" alt="" class="picto">
+                        {% if films.arcom.picto is defined %}
+                                <img src="{{ asset ('/images/pegi/' ~ films.arcom.picto)}}" alt="" class="picto">
+                        {% endif %}
                         <h5>{{ films.duree|date('H') }}h {{ films.duree|date('i') }} min</h5>
                 </div>
-                <div class="textMovie">
-                                <h2>{{ films.name }}</h2>
-                                <p>{{ films.synopsis }}</p>
-                                {% for acteurs in acteurs %}
-                                        <div class="">
-                                                <p class="d-flex flex-row">{{acteurs.prenom}} {{acteurs.nom}}, </p>   
-                                        </div> 
-                                {% endfor %}
-                        </div>
         </div>
         {% endfor %}
 {% endblock %}

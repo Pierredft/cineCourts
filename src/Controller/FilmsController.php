@@ -34,4 +34,13 @@ class FilmsController extends AbstractController
             'films' => $films,
         ]);
     }
+
+    #[Route('/{id}/view', name: 'app_films_view', methods: ['GET'])]
+    public function view(FilmsRepository $filmsRepository): Response
+    {
+        $films = $filmsRepository->findAll();
+        return $this->render('films/viewFilm.html.twig', [
+            'films' => $films,
+        ]);
+    }
 }

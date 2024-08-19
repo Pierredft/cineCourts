@@ -5,15 +5,5 @@
 {% block body %}
     {% for films in films %}
         <img class="img-fluid imgSize imgFilm" src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt=""></a>
-        <div class="modal-header">
-                        <div class="sonBtn">
-                                <button class="unmute-button stylebtn" data-video-id="video-{{ films.id }}"><i class="fa-solid fa-volume-xmark colorbtn" ></i></button>
-                                <button class="mute-button stylebtn" data-video-id="video-{{ films.id }}" style="display: none;"><i class="fa-solid fa-volume-high colorbtn"></i></button>
-                        </div>
-                        <video class="video-background videoBorder" id="video-{{ films.id }}" autoplay muted>
-                                <source src="{{ asset ('/video/films/Save_Ralph.mp4') }}" type="video/mp4">
-                                Votre navigateur ne supporte pas la balise vidéo.
-                        </video>
-                </div>
     {% endfor %}
 {% endblock %}
