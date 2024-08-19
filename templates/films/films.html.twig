@@ -3,8 +3,36 @@
 {% block title %}Films index{% endblock %}
 
 {% block body %}
-    <h1>Films index</h1>
         {% for films in films %}
-        <a href="{{path('app_films_show', {'id' : films.id})}}"><img src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt=""></a>
+        <img class="img-fluid imgSize imgFilm openModal" src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt=""></a>
+        
+        <div class="borderLittleModal littleModal">
+                <div class="modal-header">
+                        <div class="sonBtn">
+                                <button class="unmute-button stylebtn" data-video-id="video-{{ films.id }}"><i class="fa-solid fa-volume-xmark colorbtn" ></i></button>
+                                <button class="mute-button stylebtn" data-video-id="video-{{ films.id }}" style="display: none;"><i class="fa-solid fa-volume-high colorbtn"></i></button>
+                        </div>
+                        <video class="video-background videoBorder" id="video-{{ films.id }}" autoplay muted>
+                                <source src="{{ asset ('/video/films/Save_Ralph.mp4') }}" type="video/mp4">
+                                Votre navigateur ne supporte pas la balise vidéo.
+                        </video>
+                </div>
+                <div class="modal-body">
+                        <div class="btnPos">
+                                <button class="stylebtn ms-2"><i class="fa-solid fa-play colorbtn"></i></fa-regular></button>
+                        </div>
+                        <img src="{{ asset ('/images/pegi/' ~ films.arcom.picto)}}" alt="" class="picto">
+                        <h5>{{ films.duree|date('H') }}h {{ films.duree|date('i') }} min</h5>
+                </div>
+                <div class="textMovie">
+                                <h2>{{ films.name }}</h2>
+                                <p>{{ films.synopsis }}</p>
+                                {% for acteurs in acteurs %}
+                                        <div class="">
+                                                <p class="d-flex flex-row">{{acteurs.prenom}} {{acteurs.nom}}, </p>   
+                                        </div> 
+                                {% endfor %}
+                        </div>
+        </div>
         {% endfor %}
 {% endblock %}
