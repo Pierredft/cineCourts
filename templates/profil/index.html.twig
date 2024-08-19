@@ -40,18 +40,13 @@
 
 					</div>
 
-					<div class="modif" id="modif" style="display: none;">
+					<div class="modif " id="modif" style="display: none;">
 						{{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
-						<div>
-							->
-							<label for="profilPictureInput" class="custom-file-upload">
-								Choisir un fichier
-							</label>
-
+						<div >
 							{{ form_widget(form.profilPicture, { 'id': 'profilPictureInput', 'attr': { 'class': 'custom-file-input' } }) }}
 							<hr>
 						</div>
-						<div>
+						<div >
 							{{ form_widget(form.email,{'attr': {'class':'champs','placeholder': 'Email'}}) }}
 							<hr>
 							{{ form_widget(form.nom,{'attr': {'class':'champs','placeholder': 'Nom'}}) }}
@@ -61,11 +56,14 @@
 							{{ form_widget(form.telephone,{'attr': {'class':'champs','placeholder': 'Téléphone'}}) }}
 							<hr>
 						</div>
+						<div>
 						<button type="submit" id="saveBtn" class="btn btnReg">Sauvegarder</button>
+						</div>
 						{{ form_end(form) }}
 					</div>
-
+						<div class="center">
 					<button id="editBtn" class="btn btnReg">Modifier</button>
+						</div>
 				</div>
 			</div>
 		</div>
