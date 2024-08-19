@@ -1,68 +1,87 @@
-<nav class="navbar navbar-expand-lg b-bottom navbarCustom">
-	<div class="d-flex align-items-center container-fluid navbar-dark navbarCustom">
-		<div class="d-flex align-items-center">
-			<a class="navbar-brand font-weight-bold mb-0" href="{{ path('app_home') }}">
-				<img class="logoNavCustom" src="{{ asset('images/miseEnPage/logoCineCourts.png') }}" alt="LOGO"/>
-			</a>
-		</div>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<li class="nav-item linkCustom">
-					<a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
-				</li>
-				<li class="nav-item linkCustom">
-					<a class="nav-link active" href="#">Catalogue</a>
-				</li>
-			</ul>
-			<form class="d-flex" role="search">
-				<input class="form-control me-2" type="search" placeholder="Recherche ..." aria-label="Search">
-				<button class="btnSearch" type="submit">
-					<i class="fa-solid fa-magnifying-glass white"></i>
-				</button>
-			</form>
-			<div class="test">
-				<li class="nav-item dropdown white ms-5 me-5">
-					<a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						{% if app.user %}
-							{% if app.user.profilPicture %}
-								<img src="{{ asset('uploads/profile_images/' ~ app.user.profilPicture) }}" alt="User Icon" class="userIcon">
-							{% else %}
-								<img src="{{ asset('images/miseEnPage/user.png') }}" alt="User Icon" class="userIcon">
-							{% endif %}
-						{% else %}
-							<img src="{{ asset('images/miseEnPage/user.png') }}" alt="User Icon" class="userIcon">
-						{% endif %}
-					</a>
-					<ul class="dropdown-menu dropdown-menu-lg-end">
-						{% if app.user %}
-							<li>
-								<a href="{{ path('app_profil') }}" class="dropdown-item">Mon compte</a>
-							</li>
-							<li>
-								<a href="{{ path('app_logout') }}" class="dropdown-item">Déconnexion</a>
-							</li>
-							<li>
-								<a href="{{ path('admin') }}" class="dropdown-item">Panel Admin</a>
-							</li>
-						{% else %}
-							<li>
-                                <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#registerModal">S'inscrire</button>
-                            </li>
-							<li>
-    							<button class="dropdown-item" id="loginButton" data-bs-toggle="modal" data-bs-target="#modalLogin">Se connecter</button>
-							</li>
-
-						{% endif %}
-					</ul>
-				</li>
-			</div>
-		</div>
-	</div>
+<nav class="navbar navbar-expand-lg navbarCustom goldLine">
+    <div class="container-fluid navbar-dark navbarCustom d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+            <a class="navbar-brand font-weight-bold mb-0" href="{{ path('app_home') }}">
+                <img class="logoNavCustom" src="{{ asset('images/miseEnPage/logoCineCourts.png') }}" alt="LOGO"/>
+            </a>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="d-flex mx-auto" role="search">
+                <div class="dropdown">
+                    <button class="btn btnCatDrop dropdown-toggle fontOutfit white" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Catégorie
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
+                <div class="searchContainer">
+                    <input class="me-2 searchInput" type="search" placeholder="Rechercher ..." aria-label="Search">
+                    <button class="loupe" type="submit">
+                        <i class="fa-solid fa-magnifying-glass white"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="d-flex align-items-center">
+            <li class="nav-item dropdown white ms-5 me-5 fontOutfit">
+                <a class="" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {% if app.user %}
+                        {% if app.user.profilPicture %}
+                            <img src="{{ asset('uploads/profile_images/' ~ app.user.profilPicture) }}" alt="User Icon" class="userIconConnect">
+                        {% else %}
+                            <img src="{{ asset('images/miseEnPage/user.png') }}" alt="User Icon" class="userIcon">
+                        {% endif %}
+                    {% else %}
+                        <img src="{{ asset('images/miseEnPage/user.png') }}" alt="User Icon" class="userIcon">
+                    {% endif %}
+                </a>
+                <ul class="dropdown-menu dropdown-menu-lg-end">
+                    {% if app.user %}
+                        <li>
+                            <a href="{{ path('app_profil') }}" class="dropdown-item">Mon compte</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('app_logout') }}" class="dropdown-item">Déconnexion</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin') }}" class="dropdown-item">Panel Admin</a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#registerModal">S'inscrire</button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item" id="loginButton" data-bs-toggle="modal" data-bs-target="#modalLogin">Se connecter</button>
+                        </li>
+                    {% endif %}
+                </ul>
+            </li>
+        </div>
+    </div>
 </nav>
-
+<nav class="navbar navbar-expand-lg navbarCustom b-top">
+    <div class="d-flex align-items-center container-fluid navbar-dark navbarCustom" id="secondNav">
+        <div class="collapse navbar-collapse justC" id="">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item linkCustom space">
+                    <a class="nav-link {% if app.request.attributes.get('_route') == 'app_home' %}active{% endif %}" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
+                </li>
+                <li class="nav-item linkCustom space">
+                    <a class="nav-link" href="#1">Catalogue</a>
+                </li>
+                <li class="nav-item linkCustom">
+                    <a class="nav-link" href="#2">Abonnement</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 {# <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Launch demo modal
@@ -162,6 +181,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Ouvre la modal d'inscription
         registerModal.show();
+    });
+});
+</script>
+
+<!-- Script pour rendre la nav interactive -->
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            navLinks.forEach(link => link.classList.remove('active'));
+            this.classList.add('active');
+        });
     });
 });
 </script>
