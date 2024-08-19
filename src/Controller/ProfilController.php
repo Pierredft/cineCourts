@@ -2,15 +2,15 @@
 
 namespace App\Controller;
 
+use App\Form\ProfilFormType;
 use App\Repository\UserRepository;
-use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
-use App\Form\ProfilFormType;
-use Doctrine\ORM\EntityManagerInterface;
 
 class ProfilController extends AbstractController
 {
@@ -39,11 +39,10 @@ class ProfilController extends AbstractController
 
                 try {
                     $profileImage->move(
-                        $this->getParameter('profil_images_directory'),
+                        $this->getParameter('profile_images_directory'),
                         $newFilename
                     );
                 } catch (FileException $e) {
-                    // handle exception if something happens during file upload
                     $this->addFlash('error', 'Une erreur est survenue lors du téléchargement de l\'image.');
                     return $this->redirectToRoute('app_profil');
                 }
@@ -62,6 +61,21 @@ class ProfilController extends AbstractController
         return $this->render('profil/index.html.twig', [
             'form' => $form->createView(),
             'user' => $user,
+            
         ]);
+    }
+
+    #[Route('/profil/remove-image', name: 'app_profil_remove_image')]
+    public function removeImage(UserInterface $user, UserRepository $userRepository): Response
+    {
+        $user = $userRepository->find($user->getId());
+        $user->setProfilPicture(null);
+
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
+
+        $this->addFlash('success', 'Image de profil supprimée avec succès!');
+
+        return $this->redirectToRoute('app_profil');
     }
 }
