@@ -1,9 +1,9 @@
-* {
+/* * {
   font-family: "Poppins";
-}
+} */
 
-.b-bottom {
-  border-bottom: solid 5px #c0a57d;
+.b-top {
+  border-top: solid 3px rgba(192, 165, 125, .3)
 }
 
 .white {
@@ -50,20 +50,44 @@
 
 /*classe pour l'icone d'utilisateur déconnecté*/
 .userIcon {
-  width: 53px;
-  height: 54px;
+  width: 20px;
+  height: 20px;
+}
+
+.userIconConnect {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
+  
 }
 
 /*pour ajuster la taille de la navbar*/
 .navbarCustom {
   height: 78px;
   background-color: #1E1E1E;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .linkCustom {
-  font-size: 30px;
-  margin-left: 42px;
+  font-size: 14px;
+  font-family: 'Outfit', sans-serif;
+  font-style: normal;
+}
+
+.active {
+  font-weight: 700;
+  border-top: solid 3px #ffffff;
+  width: 100%;
+  border-top-width: 0;
+  transition: border-top-width 0.1s ease-in-out;
+}
+
+.space {
+  display: flex; /* Assurez-vous que le conteneur est un conteneur flex */
+  padding-right: 90px;
+  width: 100%; /* Assurez-vous que le conteneur prend toute la largeur disponible */
+  list-style: none; /* Supprime les puces des éléments de liste */
 }
 
 /* pour ajuster la taille du footer
@@ -75,4 +99,109 @@
 .logoNavCustom {
   height: 81px;
   width: 219px;
+}
+
+.navbar-nav {
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+}
+
+
+/*positionnement du border top des liens de nav*/
+.navbar-nav .nav-item {
+  height: 78px; /* Adapte cette hauteur à celle de la navbar si nécessaire */
+}
+
+.navbar-nav .nav-link {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-nav .nav-link.active {
+  font-weight: 700;
+  border-top: solid 3px #ffffff;
+}
+
+/***/
+
+.fontOutfit {
+  font-family: 'Outfit', sans-serif;
+}
+
+
+.btnCatDrop {
+  border-radius: 8px 0px 0px 8px;
+  background: #2D2D2D;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  width: 100px;
+  height: 38px;
+}
+
+.searchInput {
+  border-radius: 0px;
+  background-color: #292929;
+  width: 400px;
+  height: 38px;
+  color: #696969;
+  border: none;
+  margin: 0px;
+}
+
+input:focus {
+  outline:  none;
+}
+
+.loupe {
+  height: 38px;
+  border: none;
+  background-color: #292929; /* Assure la continuité visuelle */
+  border-radius: 0px 8px 8px 0px; /* Arrondir le coin droit du bouton */
+  padding: 0 10px; /* Ajuste le padding si nécessaire pour centrer l'icône */
+  margin: -10px; /* Supprime complètement l'espace résiduel */
+  cursor: pointer;
+}
+
+.loupe i {
+  color: white; /* Assurez-vous que l'icône est bien visible */
+}
+
+/* Nouveau conteneur flex pour la barre de recherche et le bouton loupe */
+.searchContainer {
+  display: flex;
+  align-items: center;
+}
+
+#secondNav {
+  display: flex;
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+  height: 78px; /* Adapte cette hauteur à celle de la navbar si nécessaire */
+  list-style-type: none; /* Supprime les puces des éléments de liste */
+  padding-left: 0;
+  margin-left: 0;
+}
+
+#secondNav .nav-item {
+  display: flex;
+  align-items: center;
+  margin: 0 10px; /* Ajoute un espace entre les éléments de la liste */
+}
+
+#secondNav .nav-link {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+#navbarSupportedContent {
+  margin-right: 130px;
 }
