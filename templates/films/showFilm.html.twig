@@ -2,40 +2,87 @@
 
 {% block title %}Films show{% endblock %}
 
-{% block body %}
-    <!-- Button trigger modal -->
-    {% for films in films %}
-
-        <img class="img-fluid imgSize imgFilm" src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt=""></a>
-    {% endfor %}
-
-        <img src="{{ asset ('/images/affiches/' ~ films.affiche)}}" class="imgAff imgOff" alt="" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ loop.index }}">
-    
-
-    <!-- Modal -->
-    <div class="modal fade modalSize" id="exampleModal-{{ loop.index }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close btnClose" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <a href="{{ path('app_home') }}" class="btn btn-primary btnLecture"><i class="fa-solid fa-play" style="color: #ffffff;"></i> LECTURE</a>
-
-                    <video id="video-{{ loop.index }}" class="video-background">
-                        <source src="../video/films/Save_Ralph.mp4" type="video/mp4">
-                        Votre navigateur ne supporte pas la balise vidéo.
-                    </video>
+{% block body %} 
+        <div class="imgFilmShow">
+            <img class="img-fluid imgSizeShow mt-3 mb-3" src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt=""></a>
+        </div>
+        <h1  class="text-center">{{films.name}}</h1>
+        <p class="text-center me-5 ms-5">{{films.synopsis}}</p>
+        <h4 class="text-center">{{ films.duree|date('H') }}h {{ films.duree|date('i') }} min</h4>
+        {% for genre in films.genre %}
+            <h5 class="text-center">{{genre.nom}}</h5>
+        {% endfor %}
+        {# <div class="row">
+            {% for acteurs in films.acteurs %}
+            <div class="col">
+                <div class="posActeur">
+                <h6 class="me-1">{{ acteurs.prenom }}</h6>
+                <h6 class="">{{ acteurs.nom }},</h6>
                 </div>
-                <div class="modal-body">
-                    <h5>{{ films.duree|date('H') }}h {{ films.duree|date('i') }} min</h5>
-                    <p>{{films.synopsis}}</p>
-                    <h4>À propos de {{films.name}}</h4>
+            </div>
+            {% endfor %}
+        </div> #}
+
+        {# !!!!!!! MODAL POUR LA DISTRIBUTION !!!!!!!! #}
+        <!-- Button trigger modal -->
+        <div class="btnDistribution mb-3">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Distribution
+            </button>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header btnPad">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body2">
+                    {% for acteurs in films.acteurs %}
+                        <h6 class="me-1 text-center">{{ acteurs.prenom }} {{ acteurs.nom }}</h6>
+                        {# <h6 class="">{{ acteurs.nom }},</h6> #}
+                    {% endfor %}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-                {% endfor %}
+        {# !!!!!!! MODAL POUR LA DISTRIBUTION !!!!!!!! #}
+
+        {# !!!!!!! MODAL POUR LA REALISATION #}
+            <!-- Button trigger modal -->
+        <div class="btnDistribution">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Réalisation
+            </button>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header btnPad">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body2">
+                    {% for realisateur in films.realisateur %}
+                        <h6 class="me-1 text-center">{{ realisateur.prenom }} {{ realisateur.nom }}</h6>
+                        {# <h6 class="">{{ acteurs.nom }},</h6> #}
+                    {% endfor %}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+        {# !!!!!!! MODAL POUR LA REALISATION #}
+            {% for video in videos %}
+                <a class="btn btn-success" href="{{ path('app_films_view', {'id' : video.films.id}) }}">Voir le film</a>
+                <a class="btn btn-danger" href="{{ path('app_films_index') }}">Retour au catalogue</a>
 
+            {% endfor %}
 {% endblock %}

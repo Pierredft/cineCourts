@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\FilmsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -28,6 +30,38 @@ class Films
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $videoFilm = null;
+
+    /**
+     * @var Collection<int, Video>
+     */
+    #[ORM\OneToMany(targetEntity: Video::class, mappedBy: 'films')]
+    private Collection $videos;
+
+    /**
+     * @var Collection<int, Genre>
+     */
+    #[ORM\OneToMany(targetEntity: Genre::class, mappedBy: 'films')]
+    private Collection $genre;
+
+    /**
+     * @var Collection<int, Acteurs>
+     */
+    #[ORM\ManyToMany(targetEntity: Acteurs::class, inversedBy: 'films')]
+    private Collection $acteurs;
+
+    /**
+     * @var Collection<int, Realisateur>
+     */
+    #[ORM\ManyToMany(targetEntity: Realisateur::class, inversedBy: 'films')]
+    private Collection $realisateur;
+
+    public function __construct()
+    {
+        $this->videos = new ArrayCollection();
+        $this->genre = new ArrayCollection();
+        $this->acteurs = new ArrayCollection();
+        $this->realisateur = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -90,6 +124,119 @@ class Films
     public function setVideoFilm(?string $videoFilm): static
     {
         $this->videoFilm = $videoFilm;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Video>
+     */
+    public function getVideos(): Collection
+    {
+        return $this->videos;
+    }
+
+    public function addVideo(Video $video): static
+    {
+        if (!$this->videos->contains($video)) {
+            $this->videos->add($video);
+            $video->setFilms($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVideo(Video $video): static
+    {
+        if ($this->videos->removeElement($video)) {
+            // set the owning side to null (unless already changed)
+            if ($video->getFilms() === $this) {
+                $video->setFilms(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return Collection<int, Genre>
+     */
+    public function getGenre(): Collection
+    {
+        return $this->genre;
+    }
+
+    public function addGenre(Genre $genre): static
+    {
+        if (!$this->genre->contains($genre)) {
+            $this->genre->add($genre);
+            $genre->setFilms($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGenre(Genre $genre): static
+    {
+        if ($this->genre->removeElement($genre)) {
+            // set the owning side to null (unless already changed)
+            if ($genre->getFilms() === $this) {
+                $genre->setFilms(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Acteurs>
+     */
+    public function getActeurs(): Collection
+    {
+        return $this->acteurs;
+    }
+
+    public function addActeur(Acteurs $acteur): static
+    {
+        if (!$this->acteurs->contains($acteur)) {
+            $this->acteurs->add($acteur);
+        }
+
+        return $this;
+    }
+
+    public function removeActeur(Acteurs $acteur): static
+    {
+        $this->acteurs->removeElement($acteur);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Realisateur>
+     */
+    public function getRealisateur(): Collection
+    {
+        return $this->realisateur;
+    }
+
+    public function addRealisateur(Realisateur $realisateur): static
+    {
+        if (!$this->realisateur->contains($realisateur)) {
+            $this->realisateur->add($realisateur);
+        }
+
+        return $this;
+    }
+
+    public function removeRealisateur(Realisateur $realisateur): static
+    {
+        $this->realisateur->removeElement($realisateur);
 
         return $this;
     }

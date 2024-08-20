@@ -14,6 +14,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use PHPUnit\TextUI\XmlConfiguration\File;
 use App\Form\FilmType;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -37,6 +38,10 @@ class FilmsCrudController extends AbstractCrudController
                 ->setUploadDir('public/images/affiches')
                 ->setRequired($pageName === Crud::PAGE_EDIT)
                 ->setFormTypeOptions($pageName === Crud::PAGE_EDIT ? ['allow_delete' => false] : []),
+            
+            AssociationField::new('genre'),
+            AssociationField::new('acteurs'),
+            AssociationField::new('realisateur'),
         ];
     }
 }
