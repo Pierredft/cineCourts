@@ -3,9 +3,10 @@
 {% block title %}Films index{% endblock %}
 
 {% block body %}
-    {% for film in films %}
+    {% for videos in videos %}
+        <a class="ms-2" href="{{ path('app_films_show', {'id' : videos.films.id}) }}"><i class="fa-solid fa-arrow-left colorbtn"></i></fa-regular></fa-regular></a>
         <video controls>
-            <source src="{{ asset ('/video/films/Vader.mp4') }}" type="video/mp4">
+            <source src="{{ asset ('/uploads/videos/' ~ videos.filename) }}" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     {% endfor %}
