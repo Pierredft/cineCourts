@@ -3,6 +3,13 @@
 {% block body %}
 
     <p>Vous êtes sur la page d'accueil.</p> <br>
-    <img src="https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" alt="">
-
+    <h1>Top 10 du mois</h1>
+    <swiper-container class="mySwiper mb-5" watch-slides-progress="true" slides-per-view="5">
+        {% for films in films %}
+            <swiper-slide class="ms-5"><img class="imgSizeSwipper img-fluid" src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt="" style="margin-right: 50%;"></swiper-slide>
+        {% endfor %}
+        <swiper-slide></swiper-slide>
+        <swiper-slide></swiper-slide>
+    </swiper-container>
+    
 {% endblock %}
