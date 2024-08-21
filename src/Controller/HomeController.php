@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Repository\FilmsRepository;
+use App\Repository\GenreRepository;
 use App\Repository\VideoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,14 +19,16 @@ class HomeController extends AbstractController
 {
     //////////// ACCUEIL //////////////////////////////////////////////
     #[Route('', name: 'app_home')]
-    public function index(FilmsRepository $filmsRepository, VideoRepository $videoRepository): Response
+    public function index(FilmsRepository $filmsRepository, VideoRepository $videoRepository, GenreRepository $genreRepository): Response
     {
         $films = $filmsRepository->findAll();
         $videos = $videoRepository->findAll();
+        $genres = $genreRepository->findAll();
         return $this->render('home.html.twig', [
             'controller_name' => 'HomeController',
             'films' => $films,
-            'videos' => $videos
+            'videos' => $videos,
+            'genres' => $genres
         ]);
     }
 
