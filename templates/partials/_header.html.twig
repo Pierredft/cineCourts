@@ -73,7 +73,7 @@
                     <a class="nav-link {% if app.request.attributes.get('_route') == 'app_home' %}active{% endif %}" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
                 </li>
                 <li class="nav-item linkCustom space">
-                    <a class="nav-link" href="#1">Catalogue</a>
+                    <a class="nav-link" href="{{path('app_films_index')}}">Catalogue</a>
                 </li>
                 <li class="nav-item linkCustom">
                     <a class="nav-link" href="#2">Abonnement</a>
@@ -147,7 +147,9 @@
 			</div>
 		</div>
 	</div>
-</div></div><!-- Script pour le bouton de l'oeil --><script>
+</div>
+
+<!-- Script pour le bouton de l'oeil --><script>
 let e = true;
 function changer() {
 const passwordField = document.getElementById("_password");
@@ -171,48 +173,53 @@ loginModal.hide();
 // Ouvre la modal d'inscription
 registerModal.show();
 });
-});</script><!-- Modal register--><div id="registerModal" class="modal fade modalLogin" tabindex="-1" aria-labelledby="modalLoginLabel" aria-hidden="true">
-<div class="modal-dialog modal-lg modal-dialog-centered">
-	<div class="modal-content">
-		<div class="modal-body p-0">
-			<div class="d-flex">
-				<div class="form">
-					<div class="logoPosition">
-						<img class="logoWhite" src="{{ asset('images/miseEnPage/logoCineCourts.png') }}" alt=""/>
-					</div>
-					<h2 class="logTitle">S'inscrire</h2>
-					<div class="ml-45">
-						<form action="{{ path('app_register') }}" method="POST">
-							<div>
-								<input class="champs" type="email" id="registration_form_email" name="registration_form[email]" required="required" placeholder="Email"/>
-								<hr>
-							</div>
-							<div>
-								<input class="champs" type="text" id="registration_form_nom" name="registration_form[nom]" required="required" placeholder="Nom"/>
-								<hr>
-							</div>
-							<div>
-								<input class="champs" type="text" id="registration_form_prenom" name="registration_form[prenom]" required="required" placeholder="Prénom"/>
-								<hr>
-							</div>
-							<div>
-								<input class="champs" type="tel" id="registration_form_telephone" name="registration_form[telephone]" required="required" placeholder="Téléphone"/>
-								<hr>
-							</div>
-							<div>
-								<input class="champs" type="password" id="registration_form_plainPassword" name="registration_form[plainPassword]" required="required" minlength="6" placeholder="Mot de passe"/>
-								<hr>
-							</div>
-						<button type="submit" class="btn btnReg ">S'inscrire</button>
-						</div>
+});</script><!-- Modal register-->
 
-					</form>
-				</div>
-			</div>
-		</div>
-		<div class=" colorGradient">
-			<img src="../images/miseEnPage/decorRegister.jpg" class=" imgPosition" alt="">
-			<img class="close-button" data-bs-dismiss="modal" src="../images/miseEnPage/closeButton.png">
+<div id="registerModal" class="modal fade modalLogin" tabindex="-1" aria-labelledby="modalLoginLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+	    <div class="modal-content">
+		    <div class="modal-body p-0">
+			    <div class="d-flex">
+				    <div class="form">
+					    <div class="logoPosition">
+						    <img class="logoWhite" src="{{ asset('images/miseEnPage/logoCineCourts.png') }}" alt=""/>
+					    </div>
+					    <h2 class="logTitle">S'inscrire</h2>
+					    <div class="ml-45">
+						    <form action="{{ path('app_register') }}" method="POST">
+							    <div>
+								    <input class="champs" type="email" id="registration_form_email" name="registration_form[email]" required="required" placeholder="Email"/>
+								    <hr>
+							    </div>
+							    <div>
+								    <input class="champs" type="text" id="registration_form_nom" name="registration_form[nom]" required="required" placeholder="Nom"/>
+								    <hr>
+							    </div>
+							    <div>
+                                    <input class="champs" type="text" id="registration_form_prenom" name="registration_form[prenom]" required="required" placeholder="Prénom"/>
+                                    <hr>
+							    </div>
+                                <div>
+                                    <input class="champs" type="tel" id="registration_form_telephone" name="registration_form[telephone]" required="required" placeholder="Téléphone"/>
+                                    <hr>
+                                </div>
+                                <div>
+                                    <input class="champs" type="password" id="registration_form_plainPassword" name="registration_form[plainPassword]" required="required" minlength="6" placeholder="Mot de passe"/>
+                                    <hr>
+                                </div>
+						        <button type="submit" class="btn btnReg ">S'inscrire</button>
+					        </form>
+                        </div>
+				    </div>
+			    </div>
+		    </div>
+            <div class=" colorGradient">
+                <img src="../images/miseEnPage/decorRegister.jpg" class=" imgPosition" alt="">
+                <img class="close-button" data-bs-dismiss="modal" src="../images/miseEnPage/closeButton.png">
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Script pour rendre la nav interactive -->
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -236,7 +243,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 <button type="button" class="btn-close btnmod" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
                 <form action="{{ path('app_register') }}" method="POST">
                     <div>
                         <input class="champs" type="email" id="registration_form_email" name="registration_form[email]" required="required" placeholder="Email"/>
@@ -258,11 +264,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
                         <input class="champs" type="password" id="registration_form_plainPassword" name="registration_form[plainPassword]" required="required" minlength="6" placeholder="Mot de passe"/>
                         <hr>
                     </div>
-
                     <button type="submit" class="btn">S'inscrire</button>
-
                 </form>
             </div>
 		</div>
 	</div>
-</div></div>
+</div>
+</div>
+<!-- Modal login-->
