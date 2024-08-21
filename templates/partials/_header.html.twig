@@ -1,3 +1,6 @@
+
+<!-------------------------------------------------------- HEADER ------------------------------>
+
 <nav class="navbar navbar-expand-lg navbarCustom goldLine">
     <div class="container-fluid navbar-dark navbarCustom d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center">
@@ -73,7 +76,7 @@
                     <a class="nav-link {% if app.request.attributes.get('_route') == 'app_home' %}active{% endif %}" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
                 </li>
                 <li class="nav-item linkCustom space">
-                    <a class="nav-link" href="{{path('app_films_index')}}">Catalogue</a>
+                    <a class="nav-link {% if app.request.attributes.get('_route') == 'app_films_index' %}active{% endif %}" aria-current="page" href="{{path('app_films_index')}}">Catalogue</a>
                 </li>
                 <li class="nav-item linkCustom">
                     <a class="nav-link" href="#2">Abonnement</a>
@@ -82,12 +85,10 @@
         </div>
     </div>
 </nav>
-{# <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button> #}
 
-<!-- MODAL DU LOGIN  -->
+
+<!--------------------------------------------------- MODAL DU LOGIN  ---------------------------------->
+
 <div id="modalLogin" class="modal fade modalLogin" tabindex="-1" aria-labelledby="modalLoginLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg modal-dialog-centered">
 		<div class="modal-content">
@@ -120,7 +121,7 @@
 							<hr>
 							<div class="form-group passPosition">
 								<div class="passwordSee">
-									<div>
+                                    <div>
 										<input placeholder="Votre mot de passe" class=" champs eyePosition inputLog" type="password" id="_password" name="_password">
 									</div>
 									<img class="eyeImg" src="../images/miseEnPage/eye.png" id="eye" onclick="changer()">
@@ -148,32 +149,9 @@
 		</div>
 	</div>
 </div>
+</div>
 
-<!-- Script pour le bouton de l'oeil --><script>
-let e = true;
-function changer() {
-const passwordField = document.getElementById("_password");
-const eyeIcon = document.getElementById("eye");
-if (e) {
-passwordField.setAttribute("type", "text");
-eyeIcon.src = "../images/miseEnPage/eye-off.png";
-} else {
-passwordField.setAttribute("type", "password");
-eyeIcon.src = "../images/miseEnPage/eye.png";
-} e = ! e;
-}</script><!-- Script pour le bouton de l'inscription via le login --><script>
-document.addEventListener('DOMContentLoaded', function () { // Récupérez les éléments des modals
-const loginModal = new bootstrap.Modal(document.getElementById('modalLogin'));
-const registerModal = new bootstrap.Modal(document.getElementById('registerModal'));
-
-// Ajout d'un écouteur d'événements pour le bouton "Créer un compte"
-document.getElementById('openRegisterModal').addEventListener('click', function () { // Ferme la modal de connexion
-loginModal.hide();
-
-// Ouvre la modal d'inscription
-registerModal.show();
-});
-});</script><!-- Modal register-->
+<!------------------------------------------------------- MODAL DU REGISTER ---------------------->
 
 <div id="registerModal" class="modal fade modalLogin" tabindex="-1" aria-labelledby="modalLoginLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -220,6 +198,9 @@ registerModal.show();
         </div>
     </div>
 </div>
+
+<!------------------------------------------------ TOUT LES SCRIPTS ------------------------------>
+
 <!-- Script pour rendre la nav interactive -->
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -234,41 +215,33 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 </script>
 
-<!-- Modal register-->
-<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5 m20" id="registerModalLabel">S'inscrire</h1>
-                <button type="button" class="btn-close btnmod" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ path('app_register') }}" method="POST">
-                    <div>
-                        <input class="champs" type="email" id="registration_form_email" name="registration_form[email]" required="required" placeholder="Email"/>
-                        <hr>
-                    </div>
-                    <div>
-                        <input class="champs" type="text" id="registration_form_nom" name="registration_form[nom]" required="required" placeholder="Nom"/>
-                        <hr>
-                    </div>
-                    <div>
-                        <input class="champs" type="text" id="registration_form_prenom" name="registration_form[prenom]" required="required" placeholder="Prénom"/>
-                        <hr>
-                    </div>
-                    <div>
-                        <input class="champs" type="tel" id="registration_form_telephone" name="registration_form[telephone]" required="required" placeholder="Téléphone"/>
-                        <hr>
-                    </div>
-                    <div>
-                        <input class="champs" type="password" id="registration_form_plainPassword" name="registration_form[plainPassword]" required="required" minlength="6" placeholder="Mot de passe"/>
-                        <hr>
-                    </div>
-                    <button type="submit" class="btn">S'inscrire</button>
-                </form>
-            </div>
-		</div>
-	</div>
-</div>
-</div>
-<!-- Modal login-->
+<!-- Script pour le bouton de l'oeil -->
+<script>
+let e = true;
+function changer() {
+const passwordField = document.getElementById("_password");
+const eyeIcon = document.getElementById("eye");
+if (e) {
+passwordField.setAttribute("type", "text");
+eyeIcon.src = "../images/miseEnPage/eye-off.png";
+} else {
+passwordField.setAttribute("type", "password");
+eyeIcon.src = "../images/miseEnPage/eye.png";
+} e = ! e;
+}</script>
+
+<!-- Script pour le bouton de l'inscription via le login -->
+<script>
+document.addEventListener('DOMContentLoaded', function () { // Récupérez les éléments des modals
+const loginModal = new bootstrap.Modal(document.getElementById('modalLogin'));
+const registerModal = new bootstrap.Modal(document.getElementById('registerModal'));
+
+                // Ajout d'un écouteur d'événements pour le bouton "Créer un compte"
+document.getElementById('openRegisterModal').addEventListener('click', function () { // Ferme la modal de connexion
+loginModal.hide();
+
+                // Ouvre la modal d'inscription
+registerModal.show();
+});
+});
+</script>
