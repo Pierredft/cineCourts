@@ -3,9 +3,9 @@
 {% block title %}New Video{% endblock %}
 
 {% block body %}
-    <h1>Create new Video</h1>
+    <a href="{{ path('app_video_index') }}">Retour à la liste des vidéos</a>
+    <h1>Ajouter une vidéo</h1>
 
     {{ include('video/_form.html.twig') }}
 
-    <a href="{{ path('app_video_index') }}">back to list</a>
 {% endblock %}
