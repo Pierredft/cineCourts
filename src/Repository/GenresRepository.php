@@ -2,22 +2,22 @@
 
 namespace App\Repository;
 
-use App\Entity\Genre;
+use App\Entity\Genres;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Genre>
+ * @extends ServiceEntityRepository<Genres>
  */
-class GenreRepository extends ServiceEntityRepository
+class GenresRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Genre::class);
+        parent::__construct($registry, Genres::class);
     }
 
     //    /**
-    //     * @return Genre[] Returns an array of Genre objects
+    //     * @return Genres[] Returns an array of Genres objects
     //     */
     //    public function findByExampleField($value): array
     //    {
@@ -31,7 +31,7 @@ class GenreRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Genre
+    //    public function findOneBySomeField($value): ?Genres
     //    {
     //        return $this->createQueryBuilder('g')
     //            ->andWhere('g.exampleField = :val')

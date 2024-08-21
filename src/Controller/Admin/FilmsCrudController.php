@@ -39,7 +39,7 @@ class FilmsCrudController extends AbstractCrudController
                 ->setRequired($pageName === Crud::PAGE_EDIT)
                 ->setFormTypeOptions($pageName === Crud::PAGE_EDIT ? ['allow_delete' => false] : []),
             
-            AssociationField::new('genre'),
+            AssociationField::new('genres'),
             AssociationField::new('acteurs'),
             AssociationField::new('realisateur'),
         ];

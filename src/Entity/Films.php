@@ -38,12 +38,6 @@ class Films
     private Collection $videos;
 
     /**
-     * @var Collection<int, Genre>
-     */
-    #[ORM\OneToMany(targetEntity: Genre::class, mappedBy: 'films')]
-    private Collection $genre;
-
-    /**
      * @var Collection<int, Acteurs>
      */
     #[ORM\ManyToMany(targetEntity: Acteurs::class, inversedBy: 'films')]
@@ -55,12 +49,19 @@ class Films
     #[ORM\ManyToMany(targetEntity: Realisateur::class, inversedBy: 'films')]
     private Collection $realisateur;
 
+    /**
+     * @var Collection<int, Genres>
+     */
+    #[ORM\ManyToMany(targetEntity: Genres::class, inversedBy: 'films')]
+    private Collection $genres;
+
+
     public function __construct()
     {
         $this->videos = new ArrayCollection();
-        $this->genre = new ArrayCollection();
         $this->acteurs = new ArrayCollection();
         $this->realisateur = new ArrayCollection();
+        $this->genres = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -164,36 +165,6 @@ class Films
     }
 
     /**
-     * @return Collection<int, Genre>
-     */
-    public function getGenre(): Collection
-    {
-        return $this->genre;
-    }
-
-    public function addGenre(Genre $genre): static
-    {
-        if (!$this->genre->contains($genre)) {
-            $this->genre->add($genre);
-            $genre->setFilms($this);
-        }
-
-        return $this;
-    }
-
-    public function removeGenre(Genre $genre): static
-    {
-        if ($this->genre->removeElement($genre)) {
-            // set the owning side to null (unless already changed)
-            if ($genre->getFilms() === $this) {
-                $genre->setFilms(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Acteurs>
      */
     public function getActeurs(): Collection
@@ -237,6 +208,30 @@ class Films
     public function removeRealisateur(Realisateur $realisateur): static
     {
         $this->realisateur->removeElement($realisateur);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Genres>
+     */
+    public function getGenres(): Collection
+    {
+        return $this->genres;
+    }
+
+    public function addGenre(Genres $genre): static
+    {
+        if (!$this->genres->contains($genre)) {
+            $this->genres->add($genre);
+        }
+
+        return $this;
+    }
+
+    public function removeGenre(Genres $genre): static
+    {
+        $this->genres->removeElement($genre);
 
         return $this;
     }
