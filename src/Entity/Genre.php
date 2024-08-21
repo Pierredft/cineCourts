@@ -19,6 +19,9 @@ class Genre
     #[ORM\ManyToOne(inversedBy: 'genre')]
     private ?Films $films = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -51,5 +54,17 @@ class Genre
     public function __toString(): string
     {
         return $this->nom;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
+
+        return $this;
     }
 }
