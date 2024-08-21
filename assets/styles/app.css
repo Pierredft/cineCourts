@@ -2,6 +2,10 @@
   font-family: "Poppins";
 } */
 
+body{
+  background: linear-gradient(171deg, #C0A57D -10.69%, #000 45.26%, #C0A57D 126.26%);
+}
+
 .b-top {
   border-top: solid 3px rgba(192, 165, 125, .3)
 }
