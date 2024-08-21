@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Video index{% endblock %}
+{% block title %}Accueil vidéos{% endblock %}
 
 {% block body %}
     <h1>Video index</h1>
@@ -9,8 +9,8 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Filename</th>
-                <th>actions</th>
+                <th>Nom du fichier</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -19,17 +19,17 @@
                 <td>{{ video.id }}</td>
                 <td>{{ video.filename }}</td>
                 <td>
-                    <a href="{{ path('app_video_show', {'id': video.id}) }}">show</a>
-                    <a href="{{ path('app_video_edit', {'id': video.id}) }}">edit</a>
+                    <a href="{{ path('app_video_show', {'id': video.id}) }}">Voir</a>
+                    <a href="{{ path('app_video_edit', {'id': video.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">Aucune vidéo trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_video_new') }}">Create new</a>
+    <a href="{{ path('app_video_new') }}" class="btn btnReg">Ajouter une vidéo</a>
 {% endblock %}

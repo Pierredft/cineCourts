@@ -16,7 +16,7 @@ class VideoType extends AbstractType
     {
         $builder
             ->add('file', FileType::class, [
-                'label' => 'Video (MP4 file)',
+                'label' => 'Vidéo (MP4)',
                 'mapped' => false,
                 'required' => false,
             ])
