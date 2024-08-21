@@ -2,11 +2,10 @@
 {% block title %}Accueil {% endblock %}
 {% block body %}
 
-    <p class="white">Vous êtes sur la page d'accueil.</p> <br>
         <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 {% for films in films %}
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="{{ loop.index0 }}" {% if loop.first %}class="active" {% endif %}aria-label="Slide {{ loop.index }}" style="background-color: rgba(255, 255, 255);"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="{{ loop.index0 }}" {% if loop.first %}class="active" {% endif %}aria-label="Slide {{ loop.index }}" style="background-color: rgba(255, 255, 255, 1);"></button>
                 {% endfor %}
             </div>
             <div class="carousel-inner">
@@ -14,34 +13,29 @@
                     <div class="carousel-item {% if loop.first %}active{% endif %}" data-bs-interval="5000">
                         <img src="{{ asset ('/images/affiches/' ~ films.affiche)}}" class="imgSizeCarousel" alt="...">
                         {% for video in videos %}
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5 class="white">{{films.name}}</h5>
-                            
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5 class="white">{{films.name}}</h5>
                                 <a href="{{ path('app_films_show', {'id' : video.films.id}) }}" class="btn btnReg">Voir</a>
-                            
-                        </div>
+                            </div>
                         {% endfor %}
                     </div>
                 {% endfor %}
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev" style="background-color: rgba(255, 255, 255);">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next" style="background-color: rgba(255, 255, 255);">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
+                <span class="visually-hidden" >Next</span>
             </button>
         </div>
 
 
 
 
-    <h1 class="white">Recommandé</h1>
-    <p class="rectangle"></p>
-
-
-
+    <h1 class="white mt-5 ms-5">Recommandé</h1>
+    <p class="rectangle ms-5"></p>
     <swiper-container class="mySwiper mb-5" watch-slides-progress="true" slides-per-view="5">
         {% for films in films %}
             <swiper-slide class="ms-5"><img class="imgSizeSwipper img-fluid" src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt="" style="margin-right: 50%;"></swiper-slide>
@@ -49,12 +43,65 @@
         <swiper-slide></swiper-slide>
         <swiper-slide></swiper-slide>
     </swiper-container>
-    <h1 class="white">Les courts métrages d'action</h1>
-    <p class="rectangle"></p>
-    <h1 class="white">Les réalisateurs</h1>
-    <p class="rectangle"></p>
-    <h1 class="white">Les courts-métrage comédies</h1>
-    <p class="rectangle"></p>
-    <h1 class="white">Les courts métrage horreur</h1>
-    <p class="rectangle"></p>
+
+
+    <h1 class="white ms-5">Les courts métrages d'action</h1>
+    <p class="rectangle ms-5"></p>
+    <swiper-container class="mySwiper mb-5" watch-slides-progress="true" slides-per-view="5">
+        {% for films in films %}
+            <swiper-slide class="ms-5"><img class="imgSizeSwipper img-fluid" src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt="" style="margin-right: 50%;"></swiper-slide>
+        {% endfor %}
+        <swiper-slide></swiper-slide>
+        <swiper-slide></swiper-slide>
+    </swiper-container>
+
+    <h1 class="white ms-5">Les réalisateurs</h1>
+    <p class="rectangle ms-5"></p>
+    <swiper-container class="mySwiper mb-5" watch-slides-progress="true" slides-per-view="5">
+        {% for films in films %}
+            <swiper-slide class="ms-5"><img class="imgSizeSwipper img-fluid" src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt="" style="margin-right: 50%;"></swiper-slide>
+        {% endfor %}
+        <swiper-slide></swiper-slide>
+        <swiper-slide></swiper-slide>
+    </swiper-container>
+
+    <h1 class="white ms-5">Les courts-métrage comédies</h1>
+    <p class="rectangle ms-5"></p>
+    <swiper-container class="mySwiper mb-5" watch-slides-progress="true" slides-per-view="5">
+        {% for films in films %}
+            <swiper-slide class="ms-5"><img class="imgSizeSwipper img-fluid" src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt="" style="margin-right: 50%;"></swiper-slide>
+        {% endfor %}
+        <swiper-slide></swiper-slide>
+        <swiper-slide></swiper-slide>
+    </swiper-container>
+
+    <h1 class="white ms-5">Les courts métrage horreur</h1>
+    <p class="rectangle ms-5"></p>
+    <swiper-container class="mySwiper mb-5" watch-slides-progress="true" slides-per-view="5">
+        {% for films in films %}
+            <swiper-slide class="ms-5"><img class="imgSizeSwipper img-fluid" src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt="" style="margin-right: 50%;"></swiper-slide>
+        {% endfor %}
+        <swiper-slide></swiper-slide>
+        <swiper-slide></swiper-slide>
+    </swiper-container>
+
+<div class="container">
+    {% for genre in genres %}
+        {% if loop.index0 % 4 == 0 %}
+            <div class="row justify-content-evenly">
+        {% endif %}
+        
+        <div class="col">
+            <div class="posElipse">
+                <img class="imgCatalogue img-fluid" src="{{ asset('/images/genre/' ~ genre.image) }}" alt="">
+                <h4 class="white mt-2 mb-5">{{ genre.nom }}</h4>
+            </div>
+        </div>
+        
+        {% if loop.index0 % 4 == 3 or loop.last %}
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+
 {% endblock %}
