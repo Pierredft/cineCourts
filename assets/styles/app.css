@@ -196,4 +196,38 @@ footer {
   font-family: 'Poppins', sans-serif;
   background: rgb(18,20,16);
   background: linear-gradient(58deg, rgba(18,20,16,1) 71%, rgba(0,9,33,1) 85%, rgba(18,20,16,1) 100%);
+  padding-bottom: 50px;
+  
 }
+
+.introFooter {
+  color: #A1A1AA;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.btn-svg {
+  margin: 0px;
+  border: none;
+  background-color: rgb(18,20,16);
+}
+
+.titleFooter {
+  color: #A1A1AA;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 3px;
+}
+
+.footerText {
+  font-size: 16px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  line-height: 35px;
+}
+
