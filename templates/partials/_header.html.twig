@@ -13,14 +13,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <form class="d-flex mx-auto" role="search">
                 <div class="dropdown">
-                    <button class="btn btnCatDrop dropdown-toggle fontOutfit white" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        Catégorie
+                    <button class=" btnCatDrop dropdown-toggle fontOutfit white" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Catégories
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    					{% for genre in genres %}
+        					<li><a class="dropdown-item genre-link" href="{{ path('app_home', {'genre': genre.id}) }}" data-genre-id="{{ genre.id }}">{{ genre.nom }}</a></li>
+    					{% endfor %}
+					</ul>
                 </div>
                 <div class="searchContainer">
                     <input class="me-2 searchInput" type="search" placeholder="Rechercher ..." aria-label="Search">
@@ -263,4 +263,18 @@ loginModal.hide();
 registerModal.show();
 });
 });
+</script>
+
+<!-- Script pour rediriger l'utilisateur sur le genre sélectionné -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const genreLinks = document.querySelectorAll('.genre-link');
+        genreLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const genreId = this.getAttribute('data-genre-id');
+                window.location.href = `/films/genre/${genreId}`;
+            });
+        });
+    });
 </script>

@@ -128,6 +128,23 @@ body{
   font-weight: 400;
   width: 100px;
   height: 38px;
+  border: none;
+  font-family: 'Outfit', sans-serif;
+}
+
+.btnCatDrop:hover {
+  background: #C0A57D;
+  transition: 0.3s ease-in-out;
+}
+.dropdown-item:hover {
+  background-color: #C0A57D;
+  color: #FFFFFF; 
+  font-size: 17px;
+}
+
+.dropdown-item {
+  font-family: 'Outfit', sans-serif;
+  font-size: 15px;
 }
 
 .searchInput {
