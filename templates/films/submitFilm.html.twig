@@ -1,0 +1,16 @@
+{# templates/court_metrage/soumettre.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Soumettre un court métrage{% endblock %}
+
+{% block body %}
+    <h1>Soumettre un court métrage</h1>
+
+    {{ form_start(formulaire) }}
+        {{ form_row(formulaire.titre) }}
+        {{ form_row(formulaire.description) }}
+        {{ form_row(formulaire.email) }}
+        {{ form_row(formulaire.nomFichierVideo) }}
+        <button type="submit" class="btn">{{ form_widget(formulaire.sauvegarder) }}</button>
+    {{ form_end(formulaire) }}
+{% endblock %}
