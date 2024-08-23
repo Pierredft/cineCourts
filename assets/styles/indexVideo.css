@@ -14,3 +14,30 @@
     margin: 10px 0;
     width: 100%;
 }
+
+.btnRegDanger{
+    background-color: rgb(255, 0, 0);
+    color: white;
+    font-size: 2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+    width: 100%;
+}
+
+.imgSize2{
+    width: 80%;
+    height: auto;
+}
+
+.posBtn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputSize{
+    width: 80%;
+}
