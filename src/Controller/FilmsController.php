@@ -46,4 +46,15 @@ class FilmsController extends AbstractController
             'videos' => $videos,
         ]);
     }
+
+
+    #[Route("/films/genre/{id}", name:"films_par_genre")]
+    public function filmsParGenre(int $id, FilmsRepository $filmRepository): Response
+    {
+        $films = $filmRepository->findByGenre($id);
+
+        return $this->render('films/films_par_genre.html.twig', [
+            'films' => $films,
+        ]);
+    }
 }

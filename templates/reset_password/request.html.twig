@@ -2,21 +2,33 @@
 
 {% block title %}Reset your password{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/password.css') }}">
+{% endblock %}
+
 {% block body %}
     {% for flash_error in app.flashes('reset_password_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
-    <h1>Reset your password</h1>
+    <div class="divPass">
+        <div class="form-container">
+        <img class="pswdImg" src="{{ asset('images/miseEnPage/logoCineCourts.png') }}" alt="logo CineCourts" class="img-fluid">
+            <h1 class="pswdTitle">Reinitialiser votre mot de passe</h1>
 
-    {{ form_start(requestForm) }}
-        {{ form_row(requestForm.email) }}
-        <div>
-            <small>
-                Enter your email address, and we will send you a
-                link to reset your password.
-            </small>
+            <div class="msgPswd">
+                <small>
+                    Entrez votre adresse mail et vous recevrez un mail avec un lien pour reinitialiser votre mot de passe.
+                </small>
+            </div>
+            {{ form_start(requestForm) }}
+            {{ form_row(requestForm.email, {'label': false, 'attr': {'class': 'inputLog champs','placeholder': 'Votre adresse électronique'}}) }}
+            <hr>
+            <button class="btn btnReg">Envoyer le lien par mail</button>
+            {{ form_end(requestForm) }}
         </div>
-
-        <button class="btn btn-primary">Send password reset email</button>
-    {{ form_end(requestForm) }}
+        <div class="image-container">
+            <img class="" src="{{ asset('images/miseEnPage/decorRegister.jpg') }}" alt="illustration" class="img-fluid">
+        </div>
+    </div>
 {% endblock %}
