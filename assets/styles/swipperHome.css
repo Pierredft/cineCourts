@@ -5,6 +5,13 @@
     border-radius: 1.5625rem;
 }
 
+/* .imgSizeSwipper:hover {
+    width: 450px;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 1.5625rem;
+} */
+
 swiper-container {
     width: 100%;
     margin-right: 5%;
