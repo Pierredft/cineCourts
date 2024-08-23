@@ -3,31 +3,43 @@
 {% block title %}Nouvelle vidéo{% endblock %}
 
 {% block body %}
-    {# <a href="{{ path('app_video_index') }}">Retour à la liste des vidéos</a>
-    <h1>Ajouter une vidéo</h1>
+    <div class="posBtn">
+        <a class="btn btnReg2" style="width: 80%;" href="{{ path('app_video_index') }}">Retour à la liste des vidéos</a>
+    </div>
+    <h1 class="text-center white fs-1 mb-5">Ajouter une vidéo</h1>
 
-    {{ include('video/_form.html.twig') }} #}
+    {# {{ include('video/_form.html.twig') }} #}
 
+    <div class="cadre d-flex center">
     {{ form_start(form) }}
-        <div class="form-group white">
-            {{ form_label(form.file, 'Vidéo (MP4)', {'label_attr': {'class': 'custom-label'}}) }}
-            {{ form_widget(form.file, {'attr': {'class': 'custom-file'}}) }}
-            {{ form_errors(form.file) }}
+        <div class="form-group white d-flex justify-content-center" style="flex-direction: column;">
+            <div class="posBtn">
+                {{ form_label(form.file, 'Vidéo format (MP4)', {'label_attr': {'class': 'fs-1 text-center'}}) }}
+                {{ form_widget(form.file, {'attr': {'class': 'btn btnReg2 '}}) }}
+                {{ form_errors(form.file) }}
+            </div>
         </div>
 
-        <div class="form-group white">
-            {{ form_label(form.name, null, {'label_attr': {'class': 'custom-label'}}) }}
-            {{ form_widget(form.name, {'attr': {'class': 'custom-name'}}) }}
-            {{ form_errors(form.name) }}
+        <div class="form-group white d-flex justify-content-center" style="flex-direction: column;">
+            <div class="posBtn">
+                {{ form_label(form.name, null, {'label_attr': {'class': 'fs-1 text-center'}}) }}
+                {{ form_widget(form.name, {'attr': {'class': 'form-control inputSize'}}) }}
+                {{ form_errors(form.name) }}
+            </div>
         </div>
 
-        <div class="form-group white">
-            {{ form_label(form.films, null, {'label_attr': {'class': 'custom-label'}}) }}
-            {{ form_widget(form.films, {'attr': {'class': 'custom-films'}}) }}
-            {{ form_errors(form.films) }}
+        <div class="form-group white d-flex justify-content-center" style="flex-direction: column;">
+            <div class="posBtn">
+                {{ form_label(form.films, null, {'label_attr': {'class': 'fs-1 text-center'}}) }}
+                {{ form_widget(form.films, {'attr': {'class': 'form-select inputSize'}}) }}
+                {{ form_errors(form.films, {'attr': {'class': 'floatingInputInvalid '}}) }}
+            </div>
         </div>
 
-        <button type="submit" class="btn btnReg">Enregistrer</button>
+        <div class="posBtn">
+            <button type="submit" class="btn btnReg2 mb-5" style="width: 40%;">Enregistrer</button>
+        </div>
     {{ form_end(form) }}
+    </div>
 
 {% endblock %}
