@@ -3,7 +3,7 @@
 {% block title %}Films par Genre{% endblock %}
 
 {% block body %}
-    <h1>Films par Genre</h1>
+    <h1>Films de la catégorie {{ genre.nom}} </h1>
     <div class="films">
         {% for film in films %}
             <div class="film">
