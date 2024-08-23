@@ -8,3 +8,7 @@ films_par_genre:
     path: /films/genre/{id}
     controller: App\Controller\FilmsController::filmsByGenre
     methods: GET
+
+search:
+    path: /search
+    controller: App\Controller\SearchController::search

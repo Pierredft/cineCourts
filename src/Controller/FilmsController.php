@@ -20,10 +20,10 @@ class FilmsController extends AbstractController
     #[Route('', name: 'app_films_index', methods: ['GET'])]
     public function index(FilmsRepository $filmsRepository, VideoRepository $videoRepository): Response
     {
-        // $films = $filmsRepository->findAll();
+        $films = $filmsRepository->findAll();
         $video = $videoRepository->findAll();
         return $this->render('films/films.html.twig', [
-            // 'films'=>$films,
+            'films'=>$films,
             'videos'=>$video,
         ]);
     }

@@ -25,6 +25,15 @@ class FilmsRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+    
+    public function findBySearchQuery(string $query)
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.name LIKE :query')
+            ->setParameter('query', '%' . $query . '%')
+            ->getQuery()
+            ->getResult();
+    }
     //    /**
     //     * @return Films[] Returns an array of Films objects
     //     */
@@ -49,4 +58,5 @@ class FilmsRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+    
 }

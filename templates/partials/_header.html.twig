@@ -11,25 +11,25 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form class="d-flex mx-auto" role="search">
-                <div class="dropdown">
-                    <button class=" btnCatDrop dropdown-toggle fontOutfit white" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        Catégories
-                    </button>
-					<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-						<li><a class="dropdown-item" href="{{ path('app_films_index') }}">Tous les genres</a></li>
-    					{% for genre in genres %}
-    	    				<li><a class="dropdown-item genre-link" href="{{ path('films_by_genre', {'id': genre.id}) }}" data-genre-id="{{ genre.id }}">{{ genre.nom }}</a></li>
-    					{% endfor %}
-					</ul>
-                </div>
-                <div class="searchContainer">
-                    <input class="me-2 searchInput" type="search" placeholder="Rechercher ..." aria-label="Search">
-                    <button class="loupe" type="submit">
-                        <i class="fa-solid fa-magnifying-glass white"></i>
-                    </button>
-                </div>
-            </form>
+<form class="d-flex mx-auto" role="search" method="get" action="{{ path('search') }}">
+    <div class="dropdown">
+        <button class=" btnCatDrop dropdown-toggle fontOutfit white" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Catégories
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="{{ path('app_films_index') }}">Tous les genres</a></li>
+            {% for genre in genres %}
+                <li><a class="dropdown-item genre-link" href="{{ path('films_by_genre', {'id': genre.id}) }}" data-genre-id="{{ genre.id }}">{{ genre.nom }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="searchContainer">
+        <input class="me-2 searchInput" type="search" name="query" placeholder="Rechercher un film ..." aria-label="Search">
+        <button class="loupe" type="submit">
+            <i class="fa-solid fa-magnifying-glass white"></i>
+        </button>
+    </div>
+</form>
         </div>
         <div class="d-flex align-items-center">
             <li class="nav-item dropdown white ms-5 me-5 fontOutfit">

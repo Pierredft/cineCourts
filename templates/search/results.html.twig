@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<h1 class="catTitle white">Résultat(s) de la recherche pour "{{ app.request.query.get('query') }}"</h1>:
+	<div class="container-xxl">
+		<div class="row d-flex justify-content-around flex-wrap">
+			{% if films is empty %}
+				<p class="white catPol">Aucun résultat trouvé pour "{{ app.request.query.get('query') }}".</p>
+			{% else %}
+				{% for film in films %}
+					<div class="col-lg-3 mb-4 d-flex flex-column align-items-center">
+						<div class="">
+							<div class="card-body">
+								<div class="affiche">
+									<img src="{{ asset('images/affiches/' ~ film.affiche) }}" class="img-fluid imgSizeCat" alt="Affiche de {{ film.name }}">
+									<h5 class="card-title white catPol">{{ film.name }}</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}
