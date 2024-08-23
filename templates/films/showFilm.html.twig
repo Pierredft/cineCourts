@@ -6,29 +6,21 @@
         <div class="imgFilmShow">
             <img class="img-fluid imgSizeShow mt-3 mb-3" src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt=""></a>
         </div>
-        <h1  class="text-center">{{films.name}}</h1>
-        <p class="text-center me-5 ms-5">{{films.synopsis}}</p>
-        <h4 class="text-center">{{ films.duree|date('H') }}h {{ films.duree|date('i') }} min</h4>
-        {% for genre in films.genre %}
-            <h5 class="text-center">{{genre.nom}}</h5>
+        <h1  class="text-center white">{{films.name}}</h1>
+        <p class="text-center white me-5 ms-5">{{films.synopsis}}</p>
+        <h4 class="text-center white">{{ films.duree|date('H') }}h {{ films.duree|date('i') }} min</h4>
+        {% for genres in films.genres %}
+            <h5 class="text-center white">{{genres.nom}}</h5>
         {% endfor %}
-        {# <div class="row">
-            {% for acteurs in films.acteurs %}
-            <div class="col">
-                <div class="posActeur">
-                <h6 class="me-1">{{ acteurs.prenom }}</h6>
-                <h6 class="">{{ acteurs.nom }},</h6>
-                </div>
-            </div>
-            {% endfor %}
-        </div> #}
 
         {# !!!!!!! MODAL POUR LA DISTRIBUTION !!!!!!!! #}
         <!-- Button trigger modal -->
-        <div class="btnDistribution mb-3">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Distribution
-            </button>
+        <div class=" d-flex justify-content-center">
+            <div class="mb-3">
+                <button type="button" class="btn btnReg" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Distribution
+                </button>
+            </div>
         </div>
 
         <!-- Modal -->
@@ -54,10 +46,12 @@
 
         {# !!!!!!! MODAL POUR LA REALISATION #}
             <!-- Button trigger modal -->
-        <div class="btnDistribution">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Réalisation
-            </button>
+        <div class=" d-flex justify-content-center">
+            <div class="mb-3">
+                <button type="button" class="btn btnReg" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Réalisation
+                </button>
+            </div>
         </div>
 
         <!-- Modal -->
@@ -81,8 +75,11 @@
         </div>
         {# !!!!!!! MODAL POUR LA REALISATION #}
             {% for video in videos %}
-                <a class="btn btn-success" href="{{ path('app_films_view', {'id' : video.films.id}) }}">Voir le film</a>
-                <a class="btn btn-danger" href="{{ path('app_films_index') }}">Retour au catalogue</a>
-
+                <div class="d-flex justify-content-center">
+                    <a class="btn btnReg" href="{{ path('app_films_view', {'id' : video.films.id}) }}">Voir le film</a>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a class="btn btnReg" href="{{ path('app_films_index') }}">Retour au catalogue</a>
+                </div>
             {% endfor %}
 {% endblock %}

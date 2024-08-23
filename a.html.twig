@@ -1,0 +1,141 @@
+<h1 class="white ms-5">Les courts métrages d'action</h1>
+    <p class="rectangle ms-5"></p>
+    <swiper-container class="mySwiper mb-5" watch-slides-progress="true" slides-per-view="5">
+        {% for films in films %}
+            <swiper-slide class="ms-5"><img class="imgSizeSwipper img-fluid" src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt="" style="margin-right: 50%;"></swiper-slide>
+        {% endfor %}
+        <swiper-slide></swiper-slide>
+        <swiper-slide></swiper-slide>
+    </swiper-container>
+
+    <h1 class="white ms-5">Les courts-métrage science-fiction</h1>
+    <p class="rectangle ms-5"></p>
+    <swiper-container class="mySwiper mb-5" watch-slides-progress="true" slides-per-view="5">
+        {% for film in films %}
+            {% for genre in film.genres %}
+                {% if genre.nom == 'Science-fiction' %}
+                    <swiper-slide class="ms-5">
+                        <img class="imgSizeSwipper img-fluid" src="{{ asset('/images/affiches/' ~ film.affiche) }}" alt="" style="margin-right: 50%;">
+                    </swiper-slide>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        <swiper-slide></swiper-slide>
+        <swiper-slide></swiper-slide>
+    </swiper-container>
+
+    <h1 class="white ms-5">Les courts-métrage comédies</h1>
+    <p class="rectangle ms-5"></p>
+    <swiper-container class="mySwiper mb-5" watch-slides-progress="true" slides-per-view="5">
+        {% for film in films %}
+            {% for genre in film.genres %}
+                {% if genre.nom == 'comedie' %}
+                    <swiper-slide class="ms-5">
+                        <img class="imgSizeSwipper img-fluid" src="{{ asset('/images/affiches/' ~ film.affiche) }}" alt="" style="margin-right: 50%;">
+                    </swiper-slide>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        <swiper-slide></swiper-slide>
+        <swiper-slide></swiper-slide>
+    </swiper-container>
+
+        <h1 class="white ms-5">Les courts-métrage Horreur</h1>
+    <p class="rectangle ms-5"></p>
+    <swiper-container class="mySwiper mb-5" watch-slides-progress="true" slides-per-view="5">
+        {% for film in films %}
+            {% for genre in film.genres %}
+                {% if genre.nom == 'Horreur' %}
+                    <swiper-slide class="ms-5">
+                        <a href=""><img class="imgSizeSwipper img-fluid" src="{{ asset('/images/affiches/' ~ film.affiche) }}" alt="" style="margin-right: 50%;"></a>
+                    </swiper-slide>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        <swiper-slide></swiper-slide>
+        <swiper-slide></swiper-slide>
+    </swiper-container>
+
+    <h1 class="white ms-5">Les courts-métrage thriller</h1>
+    <p class="rectangle ms-5"></p>
+    <swiper-container class="mySwiper mb-5" watch-slides-progress="true" slides-per-view="5">
+        {% for film in films %}
+            {% for genre in film.genres %}
+                {% if genre.nom == 'Thriller' %}
+                    <swiper-slide class="ms-5">
+                        <a href=""><img class="imgSizeSwipper img-fluid" src="{{ asset('/images/affiches/' ~ film.affiche) }}" alt="" style="margin-right: 50%;"></a>
+                    </swiper-slide>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        <swiper-slide></swiper-slide>
+        <swiper-slide></swiper-slide>
+    </swiper-container>
+
+        <h1 class="white ms-5">Les courts-métrage thriller</h1>
+    <p class="rectangle ms-5"></p>
+    <swiper-container class="mySwiper mb-5" watch-slides-progress="true" slides-per-view="5">
+        {% for film in films %}
+            {% for genre in film.genres %}
+                {% if genre.nom == 'Thriller' %}
+                    <swiper-slide class="ms-5">
+                        <a href=""><img class="imgSizeSwipper img-fluid" src="{{ asset('/images/affiches/' ~ film.affiche) }}" alt="" style="margin-right: 50%;"></a>
+                    </swiper-slide>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        <swiper-slide></swiper-slide>
+        <swiper-slide></swiper-slide>
+    </swiper-container>
+
+
+{# <form method="get" action="{{ path('app_home') }}">
+    <select name="genre" onchange="this.form.submit()">
+        <option value="">Tous les genres</option>
+        {% for genre in genres %}
+            <option value="{{ genre.id }}" {% if genre.id == selectedGenre %}selected{% endif %}>{{ genre.nom }}</option>
+        {% endfor %}
+    </select>
+</form> #}
+
+{# <div class="films">
+    {% for film in filmsGenre %}
+        <div class="film">
+            <h2 class="white">{{ film.name }}</h2>
+            <p class="white">Genres :
+                {% for genre in film.genres %}
+                    {{ genre.nom }}{% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+        </div>
+    {% else %}
+        <p>Aucun film trouvé pour ce genre.</p>
+    {% endfor %}
+</div> #}
+    {# <p class="rectangle ms-5"></p>
+    <swiper-container class="mySwiper mb-5" watch-slides-progress="true" slides-per-view="5">
+        {% for film in filmsGenre %}
+            <swiper-slide class="ms-5"><img class="imgSizeSwipper img-fluid" src="{{ asset ('/images/affiches/' ~ film.affiche)}}" alt="" style="margin-right: 50%;"></swiper-slide>
+        {% endfor %}
+        <swiper-slide></swiper-slide>
+        <swiper-slide></swiper-slide>
+    </swiper-container> #}
+
+<div class="container">
+    {% for genres in genres %}
+        {% if loop.index0 % 4 == 0 %}
+            <div class="row justify-content-evenly">
+        {% endif %}
+        
+        <div class="col">
+            <div class="posElipse">
+                <a href="{{ path('app_films_index', {'genre': genres.id}) }}"><img class="imgCatalogue img-fluid" src="{{ asset('/images/genre/' ~ genres.image) }}" alt=""></a>
+                <h4 class="white mt-2 mb-5">{{ genres.nom }}</h4>
+            </div>
+        </div>
+        
+        {% if loop.index0 % 4 == 3 or loop.last %}
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>

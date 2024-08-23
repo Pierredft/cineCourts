@@ -5,34 +5,27 @@
 {% block body %}
         <h1>Films index</h1>
                 {% for video in videos %}
-                <div class="container">
-                        <div class="row">
-                                
-                                        <div class="posImg">
-                                                <img class="img-fluid imgSize openModal mb-5" src="{{ asset ('/images/affiches/' ~ video.films.affiche)}}" alt="">
-                                        </div>
-
-                                        <div class="borderLittleModal littleModal">
-                                                <div class="modal-header">
-                                                        <div class="sonBtn">
-                                                                <button class="unmute-button stylebtn" data-video-id="video-{{ video.films.id }}"><i class="fa-solid fa-volume-xmark colorbtn" ></i></button>
-                                                                <button class="mute-button stylebtn" data-video-id="video-{{ video.films.id }}" style="display: none;"><i class="fa-solid fa-volume-high colorbtn"></i></button>
-                                                        </div>
-                                                        <video class="video-background videoBorder" id="video-{{ video.films.id }}" autoplay muted>
-                                                                <source src="{{ asset ('/uploads/videos/' ~ video.filename) }}" type="video/mp4">
-                                                                        Votre navigateur ne supporte pas la balise vidéo.
-                                                        </video>
-                                                </div>
-                                                <div class="modal-body mb-3">
-                                                        <div class="btnPos">
-                                                                <a class="stylebtn ms-2" href="{{ path('app_films_view', {'id' : video.films.id}) }}"><i class="fa-solid fa-play colorbtn"></i></a>
-                                                                <a class="stylebtn ms-2" href="{{ path('app_films_show', {'id' : video.films.id}) }}"><i class="fa-solid fa-info colorbtn"></i></a>
-                                                        </div>
-                                                        <h5>{{ video.films.duree|date('H') }}h {{ video.films.duree|date('i') }} min</h5>
-                                                </div>
-                                        </div>
-                                
+                        <div class="posImg">
+                                <img class="img-fluid imgSize openModal mb-5" src="{{ asset ('/images/affiches/' ~ video.films.affiche)}}" alt="">
                         </div>
-                </div>
+
+                        <div class="borderLittleModal littleModal">
+                                <div class="modal-header">
+                                        <div class="sonBtn">
+                                                <button class="unmute-button stylebtn" data-video-id="video-{{ video.films.id }}"><i class="fa-solid fa-volume-xmark colorbtn" ></i></button>
+                                                <button class="mute-button stylebtn" data-video-id="video-{{ video.films.id }}" style="display: none;"><i class="fa-solid fa-volume-high colorbtn"></i></button>
+                                        </div>
+                                        <video class="video-background videoBorder" id="video-{{ video.films.id }}" autoplay muted>
+                                                <source src="{{ asset ('/uploads/videos/' ~ video.filename) }}" type="video/mp4">
+                                                        Votre navigateur ne supporte pas la balise vidéo.
+                                                </video>
+                                </div>
+                                <div class="modal-body mb-3">
+                                        <div class="btnPos">
+                                                <a class="stylebtn ms-2" href="{{ path('app_films_view', {'id' : video.films.id}) }}"><i class="fa-solid fa-play colorbtn"></i></a>
+                                                <a class="stylebtn ms-2" href="{{ path('app_films_show', {'id' : video.films.id}) }}"><i class="fa-solid fa-info colorbtn"></i></a>
+                                        </div>
+                                        <h5>{{ video.films.duree|date('H') }}h {{ video.films.duree|date('i') }} min</h5>
+                        </div>
                 {% endfor %}
 {% endblock %}

@@ -1,11 +1,11 @@
 import './bootstrap.js';
 import './modalLogin.js';
 import './modalRegister.js';
-import './modalBigMovie.js';
 import './jquery-3.5.1.min.js';
 import './swiper-bundle.min.js';
 import './swiper-element-bundle.min.js';
 import './swipper.js';
+import './modalMoviesHome.js';
 /*
  * Welcome to your app's main JavaScript file!
  *
