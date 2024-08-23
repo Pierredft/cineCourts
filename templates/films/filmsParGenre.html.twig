@@ -25,7 +25,7 @@
 											{% endfor %}
 										</p>
 										{% for video in film.videos %}
-											<a href="{{ path('app_films_view', {'id' : video.film.id}) }}" class="btn">
+											<a href="{{ path('app_films_view', {'id' : video.films.id}) }}" class="btn">
 												<i class="fa-solid fa-play white"></i>
 											</a>
 										{% endfor %}

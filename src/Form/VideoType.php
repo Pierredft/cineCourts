@@ -19,6 +19,10 @@ class VideoType extends AbstractType
                 'label' => 'Vidéo (MP4)',
                 'mapped' => false,
                 'required' => false,
+                'attr' => [
+                    'accept' => 'video/mp4',
+                    'maxSize' => '125000M',
+                ],
             ])
             ->add('name')
             ->add('films', EntityType::class, [

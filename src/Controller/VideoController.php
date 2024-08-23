@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Video;
 use App\Form\VideoType;
+use App\Repository\FilmsRepository;
 use App\Repository\VideoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,10 +16,12 @@ use Symfony\Component\Routing\Attribute\Route;
 class VideoController extends AbstractController
 {
     #[Route('/', name: 'app_video_index', methods: ['GET'])]
-    public function index(VideoRepository $videoRepository): Response
+    public function index(VideoRepository $videoRepository, FilmsRepository $filmsRepository): Response
     {
+        $films = $filmsRepository->findAll();
         return $this->render('video/index.html.twig', [
             'videos' => $videoRepository->findAll(),
+            'films' => $films
         ]);
     }
 

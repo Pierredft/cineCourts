@@ -24,6 +24,7 @@ import './styles/swiper.css';
 import './styles/swipper2.css';
 import './styles/swipperHome.css';
 import './styles/modalHomeVideo.css';
-
+import './styles/uploadVideo.css';
+import './styles/indexVideo.css';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
