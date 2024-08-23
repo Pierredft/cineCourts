@@ -6,5 +6,5 @@ controllers:
 
 films_par_genre:
     path: /films/genre/{id}
-    controller: App\Controller\FilmsController::filmsParGenre
+    controller: App\Controller\FilmsController::filmsByGenre
     methods: GET

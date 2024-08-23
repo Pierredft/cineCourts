@@ -17,8 +17,9 @@
                         Catégories
                     </button>
 					<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+						<li><a class="dropdown-item" href="{{ path('app_films_index') }}">Tous les genres</a></li>
     					{% for genre in genres %}
-        					<li><a class="dropdown-item genre-link" href="{{ path('app_home', {'genre': genre.id}) }}" data-genre-id="{{ genre.id }}">{{ genre.nom }}</a></li>
+    	    				<li><a class="dropdown-item genre-link" href="{{ path('films_by_genre', {'id': genre.id}) }}" data-genre-id="{{ genre.id }}">{{ genre.nom }}</a></li>
     					{% endfor %}
 					</ul>
                 </div>
@@ -267,14 +268,10 @@ registerModal.show();
 
 <!-- Script pour rediriger l'utilisateur sur le genre sélectionné -->
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const genreLinks = document.querySelectorAll('.genre-link');
-        genreLinks.forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                const genreId = this.getAttribute('data-genre-id');
-                window.location.href = `/films/genre/${genreId}`;
-            });
+        document.getElementById('genre-dropdown').addEventListener('change', function() {
+            var selectedValue = this.value;
+            if (selectedValue) {
+                window.location.href = selectedValue;
+            }
         });
-    });
 </script>

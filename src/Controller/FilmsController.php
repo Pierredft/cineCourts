@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Films;
+use App\Entity\Genres;
 use App\Entity\Video;
 use App\Form\FilmsType;
 use App\Repository\FilmsRepository;
@@ -48,12 +49,13 @@ class FilmsController extends AbstractController
     }
 
 
-    #[Route("/films/genre/{id}", name:"films_par_genre")]
-    public function filmsParGenre(int $id, FilmsRepository $filmRepository): Response
+    #[Route('/genres/{id}', name: 'films_by_genre')]
+    public function filmsByGenre(Genres $genre): Response
     {
-        $films = $filmRepository->findByGenre($id);
+        $films = $genre->getFilms();
 
-        return $this->render('films/films_par_genre.html.twig', [
+        return $this->render('films/filmsParGenre.html.twig', [
+            'genre' => $genre,
             'films' => $films,
         ]);
     }
