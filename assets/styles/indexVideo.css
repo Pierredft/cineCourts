@@ -1,0 +1,16 @@
+.cardSize{
+    width: 380px;
+    height: 800px;
+}
+
+
+.btnReg2{
+    background-color: #FFC107;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 10px 0;
+    width: 100%;
+}

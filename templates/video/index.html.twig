@@ -3,35 +3,23 @@
 {% block title %}Accueil vidéos{% endblock %}
 
 {% block body %}
-    <h1>Video index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom du fichier</th>
-                <th>Nom du film</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="row justify-content-center mt-5">
         {% for video in videos %}
-            <tr>
-                <td>{{ video.id }}</td>
-                <td>{{ video.filename }}</td>
-                <td>{{video.name}}</td>
-                <td>
-                    <a href="{{ path('app_video_show', {'id': video.id}) }}">Voir</a>
-                    <a href="{{ path('app_video_edit', {'id': video.id}) }}">Modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">Aucune vidéo trouvé</td>
-            </tr>
+            <div class="col-md-2 mb-5">
+                <div class="card cardSize">
+                    <img src="{{ asset('/images/affiches/' ~ video.films.affiche) }}" class="card-img-top cardImg" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{ video.name }}</h5>
+                        <h6 class="card-title text-center">{{ video.filename }}</h6>
+                        <a class="btn btnReg2" href="{{ path('app_video_show', {'id': video.id}) }}">Voir</a>
+                        <a class="btn btnReg2" href="{{ path('app_video_edit', {'id': video.id}) }}">Modifier</a>
+                    </div>
+                </div>
+            </div>
+            {% if loop.index % 4 == 0 %}
+                </div><div class="row justify-content-center">
+            {% endif %}
         {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_video_new') }}" class="btn btnReg">Ajouter une vidéo</a>
+    </div>
+    <a href="{{ path('app_video_new') }}" class="btn btnReg2">Ajouter une vidéo</a>
 {% endblock %}
