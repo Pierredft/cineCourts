@@ -6,6 +6,7 @@ import './swiper-bundle.min.js';
 import './swiper-element-bundle.min.js';
 import './swipper.js';
 import './modalMoviesHome.js';
+import './test.js';
 /*
  * Welcome to your app's main JavaScript file!
  *
@@ -22,6 +23,7 @@ import './styles/swiper-bundle.min.css';
 import './styles/swiper.css';
 import './styles/swipper2.css';
 import './styles/swipperHome.css';
+import './styles/modalHomeVideo.css';
 
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
