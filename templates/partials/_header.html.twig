@@ -17,6 +17,7 @@
                         Catégories
                     </button>
 					<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+						<li><a class="dropdown-item" href="{{ path('app_films_index') }}">Tous les genres</a></li>
     					{% for genre in genres %}
     	    				<li><a class="dropdown-item genre-link" href="{{ path('films_by_genre', {'id': genre.id}) }}" data-genre-id="{{ genre.id }}">{{ genre.nom }}</a></li>
     					{% endfor %}

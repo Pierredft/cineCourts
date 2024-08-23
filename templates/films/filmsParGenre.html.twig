@@ -3,19 +3,27 @@
 {% block title %}Films par Genre{% endblock %}
 
 {% block body %}
-    <h1>Films de la catégorie {{ genre.nom}} </h1>
-    <div class="films">
-        {% for film in films %}
-            <div class="film">
-                <h2>{{ film.name }}</h2>
-                <p>Genres :
-                    {% for genre in film.genres %}
-                        {{ genre.nom }}{% if not loop.last %}, {% endif %}
-                    {% endfor %}
-                </p>
-            </div>
-        {% else %}
-            <p>Aucun film trouvé pour ce genre.</p>
-        {% endfor %}
+    <h1 class="catTitle white">Films de la catégorie : {{ genre.nom }} </h1>
+    <div class="container-xxl">
+        <div class="row d-flex justify-content-around flex-wrap">
+            {% for film in films %}
+                <div class="col-lg-3 mb-4 d-flex flex-column align-items-center">
+                    <div class="">
+                        <div class="card-body">
+                            <div class="affiche">
+                                {% if film.affiche %}
+                                    <img src="{{ asset('images/affiches/' ~ film.affiche) }}" class="img-fluid imgSizeCat" alt="Affiche de {{ film.name }}">
+                                {% else %}
+                                    <p>Aucune affiche disponible.</p>
+                                {% endif %}
+                                <h5 class="card-title white catPol">{{ film.name }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <p class="white catPol">Aucun film trouvé pour ce genre.</p>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
