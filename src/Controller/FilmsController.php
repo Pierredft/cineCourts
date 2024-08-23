@@ -7,6 +7,7 @@ use App\Entity\Genres;
 use App\Entity\Video;
 use App\Form\FilmsType;
 use App\Repository\FilmsRepository;
+use App\Repository\GenresRepository;
 use App\Repository\VideoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,13 +19,16 @@ use Symfony\Component\Routing\Attribute\Route;
 class FilmsController extends AbstractController
 {
     #[Route('', name: 'app_films_index', methods: ['GET'])]
-    public function index(FilmsRepository $filmsRepository, VideoRepository $videoRepository): Response
+    public function index(FilmsRepository $filmsRepository, VideoRepository $videoRepository, GenresRepository $genresRepository): Response
     {
         $films = $filmsRepository->findAll();
-        $video = $videoRepository->findAll();
+        $videos = $videoRepository->findAll();
+        $genres = $genresRepository->findAll();
+
         return $this->render('films/films.html.twig', [
-            'films'=>$films,
-            'videos'=>$video,
+            'films' => $films,
+            'videos' => $videos,
+            'genres' => $genres,
         ]);
     }
 

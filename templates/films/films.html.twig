@@ -8,17 +8,37 @@
 	<div class="container">
 		<div class="row d-flex justify-content-around flex-wrap">
 			{% for film in films %}
-				<div class="col-lg-3 mb-4 d-flex flex-column align-items-center">
+				<div class="col-lg-3 mb-4 align-items-center">
 					<div class="">
 						<div class="card-body">
-							<div class="affiche">
+							<div class="affiche ">
 								{% if film.affiche %}
 									<img src="{{ asset('images/affiches/' ~ film.affiche) }}" class="img-fluid imgSizeCat" alt="Affiche de {{ film.name }}">
+									<div class="mb-1 hover-info text-center">
+										<h5 class="card-title">{{ film.name }}</h5>
+										<p>Durée :
+											{{ film.duree|date('H:i') }}</p>
+										<p>Genre :
+											{% for genre in film.genres %}
+												{{ genre.nom }}
+												{% if not loop.last %},
+												{% endif %}
+											{% endfor %}
+										</p>
+										{% for video in film.videos %}
+											<a href="{{ path('app_films_view', {'id' : video.film.id}) }}" class="btn">
+												<i class="fa-solid fa-play white"></i>
+											</a>
+										{% endfor %}
+										<a href="{{ path('app_films_show', {'id' : film.id}) }}" class="btn">
+											<i class="fa-solid fa-circle-info white"></i>
+										</a>
+									</div>
 								{% else %}
 									<p>Aucune affiche disponible.</p>
 								{% endif %}
-								<h5 class="card-title white catPol">{{ film.name }}</h5>
 							</div>
+									<h5 class="card-title white catPol">{{ film.name }}</h5>
 						</div>
 					</div>
 				</div>
