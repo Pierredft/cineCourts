@@ -33,47 +33,39 @@
 {# !!!!!! CAROUSEL DES NOUVEAUTÉ !!!!! #}
 
 
-
-
-    <h1 class="white mt-5 ms-5">Recommandé</h1>
-    <p class="rectangle ms-5"></p>
-    <swiper-container class="mySwiper mb-5" watch-slides-progress="true" slides-per-view="5">
-        {% for films in films %}
-            <swiper-slide class="ms-5">
-                <img src="{{ asset ('/images/affiches/' ~ films.affiche)}}" class="imgSizeSwipper img-fluid imghover openModal" alt="" data-bs-toggle="modal" data-bs-trigger="hover" data-bs-target="#exampleModal-{{ loop.index }}">
-            </swiper-slide>
-        {% endfor %}
-        <swiper-slide></swiper-slide>
-        <swiper-slide></swiper-slide>
-    </swiper-container>
-
-<!-- Modal -->
+{% for genre in genres  %}
+<h1 class="white ms-5">{{genre.nom}}</h1>
+<p class="rectangle ms-5"></p>
+<swiper-container class="mySwiper mb-5" watch-slides-progress="true" slides-per-view="5">
     {% for films in films %}
-    <div class="modal fade modalSize" id="exampleModal-{{ loop.index }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close btnClose" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <a href="{{ path('app_home') }}" class="btn btn-primary btnLecture"><i class="fa-solid fa-play" style="color: #ffffff;"></i> LECTURE</a>
-
-                    {% for video in videos %}
-                    <video class="video-background videoBorder" id="video-{{ video.films.id }}" autoplay muted>
-                                                <source src="{{ asset ('/uploads/videos/' ~ video.filename) }}" type="video/mp4">
-                                                        Votre navigateur ne supporte pas la balise vidéo.
-                                                </video>
-                    {% endfor %}
-                </div>
-                </div>
-                <div class="modal-body">
-                    <h5>{{ films.duree|date('H') }}h {{ films.duree|date('i') }} min</h5>
-                    <p>{{films.synopsis}}</p>
-                    <h4>À propos de {{films.name}}</h4>
-                </div>
-            </div>
-        </div>
-    </div>
+        {% for film_genre in films.genres %}
+            {% if film_genre.nom == genre.nom %}
+                <swiper-slide class="ms-5 film-slide">
+                    <img class="imgSizeSwipper img-fluid" src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt="" style="margin-right: 50%;">
+                    <div class="film-info">
+                        {% for video in videos %}
+                            {% if video.films.id == films.id %}
+                                <video class="video-background mt-2" id="video-{{ video.films.id }}" muted autoplay>
+                                    <source src="{{ asset('/uploads/videos/' ~ video.filename) }}" type="video/mp4">
+                                    Votre navigateur ne supporte pas la balise vidéo.
+                                </video>
+                            {% endif %}
+                        {% endfor %}
+                        <div class="film-details mb-2">
+                            <h3>{{ films.name }}</h3>
+                            <p>{{films.duree | date('H:i:s')}}</p>
+                            {% for video in films.videos %}
+                                    <a href="{{ path('app_films_view', {'id' : video.films.id}) }}" class="btn"><i class="fa-solid fa-play white"></i></a>
+                            {% endfor %}
+                            <a href="{{ path('app_films_show', {'id' : films.id}) }}" class="btn"><i class="fa-solid fa-circle-info white"></i></a>
+                        </div>
+                    </div>
+                </swiper-slide>
+            {% endif %}
+        {% endfor %}
     {% endfor %}
-    
-
-
+    <swiper-slide class="film-slide"></swiper-slide>
+    <swiper-slide class="film-slide"></swiper-slide>
+</swiper-container>
+{% endfor %}
 {% endblock %}

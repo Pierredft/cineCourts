@@ -2,7 +2,7 @@
     <p class="rectangle ms-5"></p>
     <swiper-container class="mySwiper mb-5" watch-slides-progress="true" slides-per-view="5">
         {% for films in films %}
-            <swiper-slide class="ms-5"><img class="imgSizeSwipper img-fluid" src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt="" style="margin-right: 50%;"></swiper-slide>
+            <swiper-slide class="ms-5 films-slide"><img class="imgSizeSwipper img-fluid" src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt="" style="margin-right: 50%;"></swiper-slide>
         {% endfor %}
         <swiper-slide></swiper-slide>
         <swiper-slide></swiper-slide>
@@ -14,7 +14,7 @@
         {% for film in films %}
             {% for genre in film.genres %}
                 {% if genre.nom == 'Science-fiction' %}
-                    <swiper-slide class="ms-5">
+                    <swiper-slide class="ms-5 films-slide">
                         <img class="imgSizeSwipper img-fluid" src="{{ asset('/images/affiches/' ~ film.affiche) }}" alt="" style="margin-right: 50%;">
                     </swiper-slide>
                 {% endif %}
