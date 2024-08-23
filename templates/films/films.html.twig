@@ -1,31 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Films index{% endblock %}
+{% block title %}Catalogue
+{% endblock %}
 
 {% block body %}
-        <h1>Films index</h1>
-                {% for video in videos %}
-                        <div class="posImg">
-                                <img class="img-fluid imgSize openModal mb-5" src="{{ asset ('/images/affiches/' ~ video.films.affiche)}}" alt="">
-                        </div>
-
-                        <div class="borderLittleModal littleModal">
-                                <div class="modal-header">
-                                        <div class="sonBtn">
-                                                <button class="unmute-button stylebtn" data-video-id="video-{{ video.films.id }}"><i class="fa-solid fa-volume-xmark colorbtn" ></i></button>
-                                                <button class="mute-button stylebtn" data-video-id="video-{{ video.films.id }}" style="display: none;"><i class="fa-solid fa-volume-high colorbtn"></i></button>
-                                        </div>
-                                        <video class="video-background videoBorder" id="video-{{ video.films.id }}" autoplay muted>
-                                                <source src="{{ asset ('/uploads/videos/' ~ video.filename) }}" type="video/mp4">
-                                                        Votre navigateur ne supporte pas la balise vidéo.
-                                                </video>
-                                </div>
-                                <div class="modal-body mb-3">
-                                        <div class="btnPos">
-                                                <a class="stylebtn ms-2" href="{{ path('app_films_view', {'id' : video.films.id}) }}"><i class="fa-solid fa-play colorbtn"></i></a>
-                                                <a class="stylebtn ms-2" href="{{ path('app_films_show', {'id' : video.films.id}) }}"><i class="fa-solid fa-info colorbtn"></i></a>
-                                        </div>
-                                        <h5>{{ video.films.duree|date('H') }}h {{ video.films.duree|date('i') }} min</h5>
-                        </div>
-                {% endfor %}
+	<h1 class="catTitle white">Catalogue</h1>
+	<div class="container">
+		<div class="row d-flex justify-content-around flex-wrap">
+			{% for film in films %}
+				<div class="col-lg-3 mb-4 d-flex flex-column align-items-center">
+					<div class="">
+						<div class="card-body">
+							<div class="affiche">
+								{% if film.affiche %}
+									<img src="{{ asset('images/affiches/' ~ film.affiche) }}" class="img-fluid imgSizeCat" alt="Affiche de {{ film.name }}">
+								{% else %}
+									<p>Aucune affiche disponible.</p>
+								{% endif %}
+								<h5 class="card-title white catPol">{{ film.name }}</h5>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% else %}
+				<p class="white catPol">Aucun film trouvé pour ce genre.</p>
+			{% endfor %}
+		</div>
+	</div>
 {% endblock %}

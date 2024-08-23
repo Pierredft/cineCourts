@@ -41,7 +41,7 @@
         {% for film_genre in films.genres %}
             {% if film_genre.nom == genre.nom %}
                 <swiper-slide class="ms-5 film-slide">
-                    <img class="imgSizeSwipper img-fluid" src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt="" style="margin-right: 50%;">
+                    <img class="imgSizeSwipper img-fluid" src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt="">
                     <div class="film-info">
                         {% for video in videos %}
                             {% if video.films.id == films.id %}
