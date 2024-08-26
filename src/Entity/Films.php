@@ -55,6 +55,9 @@ class Films
     #[ORM\ManyToMany(targetEntity: Genres::class, inversedBy: 'films')]
     private Collection $genres;
 
+    #[ORM\Column(length: 255)]
+    private ?string $ban = null;
+
 
     public function __construct()
     {
@@ -232,6 +235,18 @@ class Films
     public function removeGenre(Genres $genre): static
     {
         $this->genres->removeElement($genre);
+
+        return $this;
+    }
+
+    public function getBan(): ?string
+    {
+        return $this->ban;
+    }
+
+    public function setBan(string $ban): static
+    {
+        $this->ban = $ban;
 
         return $this;
     }
