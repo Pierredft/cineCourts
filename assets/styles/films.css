@@ -64,14 +64,18 @@
 /* showFilm */
 
 .imgSizeShow{
-    width: 600px;
-    height: auto;
+    width: auto;
+    height: 300px;
 
 }
 
 .imgFilmShow{
     display: flex;
-    justify-content: center;
+    margin-left: 15px;
+}
+.info{
+    margin-left: 15px;
+    width: 550px;
 }
 
 .btnPad{
