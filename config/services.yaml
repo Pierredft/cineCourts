@@ -32,3 +32,7 @@ services:
             $genresRepository: '@App\Repository\GenresRepository'
         tags:
             - { name: 'kernel.event_subscriber' }
+
+    App\Security\CustomAuthenticationEntryPoint:
+        arguments:
+            $router: '@router'

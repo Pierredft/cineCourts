@@ -14,6 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/films')]
 class FilmsController extends AbstractController
@@ -41,7 +42,7 @@ class FilmsController extends AbstractController
             'videos' => $video,
         ]);
     }
-
+    #[IsGranted("IS_AUTHENTICATED_FULLY")]
     #[Route('/{id}/view', name: 'app_films_view', methods: ['GET'])]
     public function view(Films $films, VideoRepository $videoRepository): Response
     {
