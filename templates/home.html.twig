@@ -33,39 +33,54 @@
 {# !!!!!! CAROUSEL DES NOUVEAUTÉ !!!!! #}
 
 
-{% for genre in genres  %}
-<h1 class="white ms-5">{{genre.nom}}</h1>
-<p class="rectangle ms-5"></p>
-<swiper-container class="mySwiper mb-5" watch-slides-progress="true" slides-per-view="5">
+{% for genre in genres %}
+    {% set hasVideos = false %}
     {% for films in films %}
         {% for film_genre in films.genres %}
             {% if film_genre.nom == genre.nom %}
-                <swiper-slide class="ms-5 film-slide">
-                    <img class="imgSizeSwipper img-fluid" src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt="">
-                    <div class="film-info">
-                        {% for video in videos %}
-                            {% if video.films.id == films.id %}
-                                <video class="video-background mt-2" id="video-{{ video.films.id }}" muted autoplay>
-                                    <source src="{{ asset('/uploads/videos/' ~ video.filename) }}" type="video/mp4">
-                                    Votre navigateur ne supporte pas la balise vidéo.
-                                </video>
-                            {% endif %}
-                        {% endfor %}
-                        <div class="film-details mb-2">
-                            <h5>{{ films.name }}</h5>
-                            <p>{{films.duree | date('H:i:s')}}</p>
-                            {% for video in films.videos %}
-                                    <a href="{{ path('app_films_view', {'id' : video.films.id}) }}" class="btn"><i class="fa-solid fa-play white"></i></a>
-                            {% endfor %}
-                            <a href="{{ path('app_films_show', {'id' : films.id}) }}" class="btn"><i class="fa-solid fa-circle-info white"></i></a>
-                        </div>
-                    </div>
-                </swiper-slide>
+                {% for video in videos %}
+                    {% if video.films.id == films.id %}
+                        {% set hasVideos = true %}
+                    {% endif %}
+                {% endfor %}
             {% endif %}
         {% endfor %}
     {% endfor %}
-    <swiper-slide class="film-slide"></swiper-slide>
-    <swiper-slide class="film-slide"></swiper-slide>
-</swiper-container>
+    
+    {% if hasVideos %}
+        <h1 class="white ms-5">{{genre.nom}}</h1>
+        <p class="rectangle ms-5"></p>
+        <swiper-container class="mySwiper mb-5" watch-slides-progress="true" slides-per-view="5">
+            {% for films in films %}
+                {% for film_genre in films.genres %}
+                    {% if film_genre.nom == genre.nom %}
+                        <swiper-slide class="ms-5 film-slide">
+                            <img class="imgSizeSwipper img-fluid" src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt="">
+                            <div class="film-info">
+                                {% for video in videos %}
+                                    {% if video.films.id == films.id %}
+                                        <video class="video-background mt-2" id="video-{{ video.films.id }}" muted autoplay>
+                                            <source src="{{ asset('/uploads/videos/' ~ video.filename) }}" type="video/mp4">
+                                            Votre navigateur ne supporte pas la balise vidéo.
+                                        </video>
+                                    {% endif %}
+                                {% endfor %}
+                                <div class="film-details mb-2">
+                                    <h5>{{ films.name }}</h5>
+                                    <p>{{films.duree | date('H:i:s')}}</p>
+                                    {% for video in films.videos %}
+                                        <a href="{{ path('app_films_view', {'id' : video.films.id}) }}" class="btn"><i class="fa-solid fa-play white"></i></a>
+                                    {% endfor %}
+                                    <a href="{{ path('app_films_show', {'id' : films.id}) }}" class="btn"><i class="fa-solid fa-circle-info white"></i></a>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+            <swiper-slide class="film-slide"></swiper-slide>
+            <swiper-slide class="film-slide"></swiper-slide>
+        </swiper-container>
+    {% endif %}
 {% endfor %}
 {% endblock %}
