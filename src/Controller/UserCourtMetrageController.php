@@ -45,7 +45,7 @@ class UserCourtMetrageController extends AbstractController
             $em->persist($courtMetrage);
             $em->flush();
 
-            return $this->redirectToRoute('film_succes');
+            return $this->redirectToRoute('app_profil');
         }
 
         return $this->render('films/submitFilm.html.twig', [

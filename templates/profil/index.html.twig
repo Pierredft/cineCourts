@@ -7,7 +7,7 @@
 	<div class="center">
 		<div class="cadre">
 			<div class="m20">
-				<div class="">
+				<div>
 					<div>
 						{% if app.user.profilPicture %}
 							<div class="center">
@@ -42,11 +42,11 @@
 
 					<div class="modif center " id="modif" style="display: none;">
 						{{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
-						<div >
+						<div>
 							{{ form_widget(form.profilPicture, { 'id': 'profilPictureInput', 'attr': { 'class': 'custom-file-input' } }) }}
 							<hr>
 						</div>
-						<div >
+						<div>
 							{{ form_widget(form.email,{'attr': {'class':'champs','placeholder': 'Email'}}) }}
 							<hr>
 							{{ form_widget(form.nom,{'attr': {'class':'champs','placeholder': 'Nom'}}) }}
@@ -57,13 +57,22 @@
 							<hr>
 						</div>
 						<div>
-						<button type="submit" id="saveBtn" class="btn btnReg">Sauvegarder</button>
+							<button type="submit" id="saveBtn" class="btn btnReg">Sauvegarder</button>
 						</div>
 						{{ form_end(form) }}
 					</div>
+					<div class="center">
+						<button id="editBtn" class="btn btnReg">Modifier</button>
+					</div>
+					{# form soumettre un court metrage #}
+					<div class="mt-4">
+						<h5>Vous souhaitez soumettre un court métrage ?</h5>
 						<div class="center">
-					<button id="editBtn" class="btn btnReg">Modifier</button>
+							<button type="button" class="btn btnReg" onclick="window.location.href='/soumettre-film';">
+								Soumettre court metrage
+							</button>
 						</div>
+					</div>
 				</div>
 			</div>
 		</div>

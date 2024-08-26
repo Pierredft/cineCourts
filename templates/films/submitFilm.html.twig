@@ -1,16 +1,28 @@
-{# templates/court_metrage/soumettre.html.twig #}
 {% extends 'base.html.twig' %}
 
-{% block title %}Soumettre un court métrage{% endblock %}
+{% block title %}Soumettre un court métrage
+{% endblock %}
 
 {% block body %}
-    <h1>Soumettre un court métrage</h1>
-
-    {{ form_start(formulaire) }}
-        {{ form_row(formulaire.titre) }}
-        {{ form_row(formulaire.description) }}
-        {{ form_row(formulaire.email) }}
-        {{ form_row(formulaire.nomFichierVideo) }}
-        <button type="submit" class="btn">{{ form_widget(formulaire.sauvegarder) }}</button>
-    {{ form_end(formulaire) }}
+	<div class="center">
+		<div class="cadre ">
+			<div class="m-20">
+				<div class="center d-block">
+					<h1>Soumettre un court métrage</h1>
+					{{ form_start(formulaire)  }}
+					{{ form_widget(formulaire.titre, {'attr': {'class':'champs','placeholder': 'Titre'}}) }}
+					<hr>
+					{{ form_widget(formulaire.description, {'attr': {'class':'champs','placeholder': 'Description'}}) }}
+					<hr>
+					{{ form_widget(formulaire.email, {'attr': {'class':'champs','placeholder': 'Email'}}) }}
+					<hr>
+					{{ form_widget(formulaire.nomFichierVideo,{'attr': {'class':'champs'}}) }}
+                    <div class="center">
+					{{ form_widget(formulaire.sauvegarder,{'attr': {'class':'btn btnReg'}}) }}
+                    </div>
+					{{ form_end(formulaire) }}
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}
