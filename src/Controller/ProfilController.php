@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\UserCourtMetrage;
 use App\Form\ProfilFormType;
 use App\Repository\UserRepository;
+use App\Repository\UserCourtMetrageRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -15,10 +17,12 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class ProfilController extends AbstractController
 {
     private $entityManager;
+    private $userCourtMetrageRepository;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager, UserCourtMetrageRepository $userCourtMetrageRepository)
     {
         $this->entityManager = $entityManager;
+        $this->userCourtMetrageRepository = $userCourtMetrageRepository;
     }
 
     #[Route('/profil', name: 'app_profil')]
@@ -27,6 +31,10 @@ class ProfilController extends AbstractController
         // Récupérer l'utilisateur connecté
         $user = $userRepository->find($user->getId());
 
+        // Récupérer les courts-métrages associés à l'utilisateur
+        $userCourtMetrages = $user->getUserCourtMetrages();
+
+        // Créer le formulaire
         $form = $this->createForm(ProfilFormType::class, $user);
         $form->handleRequest($request);
 
@@ -61,7 +69,7 @@ class ProfilController extends AbstractController
         return $this->render('profil/index.html.twig', [
             'form' => $form->createView(),
             'user' => $user,
-            
+            'userCourtMetrages' => $userCourtMetrages,
         ]);
     }
 

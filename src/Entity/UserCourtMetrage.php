@@ -17,7 +17,7 @@ class UserCourtMetrage
     #[ORM\Column(length: 255)]
     private ?string $titre = null;
 
-    #[ORM\Column(length: 500)]
+    #[ORM\Column(length: 1000000)]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
@@ -93,4 +93,19 @@ class UserCourtMetrage
 
         return $this;
     }
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'userCourtMetrages')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+}
 }

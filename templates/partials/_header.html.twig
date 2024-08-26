@@ -16,12 +16,20 @@
         <button class=" btnCatDrop dropdown-toggle fontOutfit white" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
             Catégories
         </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="{{ path('app_films_index') }}">Tous les genres</a></li>
-            {% for genre in genres %}
-                <li><a class="dropdown-item genre-link" href="{{ path('films_by_genre', {'id': genre.id}) }}" data-genre-id="{{ genre.id }}">{{ genre.nom }}</a></li>
-            {% endfor %}
-        </ul>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="{{ path('app_films_index') }}">Tous les genres</a></li>
+                        {% for genre in genres %}
+                            {% set hasVideos = false %}
+                            {% for film in genre.films %}
+                                {% if film.videos|length > 0 %}
+                                    {% set hasVideos = true %}
+                                {% endif %}
+                            {% endfor %}
+                            {% if hasVideos %}
+                                <li><a class="dropdown-item genre-link" href="{{ path('films_by_genre', {'id': genre.id}) }}" data-genre-id="{{ genre.id }}">{{ genre.nom }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
     </div>
     <div class="searchContainer">
         <input class="me-2 searchInput" type="search" name="query" placeholder="Rechercher un film ..." aria-label="Search">
