@@ -48,7 +48,7 @@ class FilmsController extends AbstractController
     public function view(Films $films, VideoRepository $videoRepository, SubtitleRepository $subtitleRepository): Response
     {
         $videos = $videoRepository->findBy(['films' => $films->getId()]);
-        $subtitles = $subtitleRepository->findAll();
+        $subtitles = $subtitleRepository->findBy(['films' => $films->getId()]);
         return $this->render('films/viewFilm.html.twig', [
             'films' => $films,
             'videos' => $videos,
