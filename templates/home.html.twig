@@ -43,19 +43,22 @@
                 <swiper-slide class="ms-5 film-slide">
                     <img class="imgSizeSwipper img-fluid" src="{{ asset ('/images/affiches/' ~ films.affiche)}}" alt="">
                     <div class="film-info">
-                        {% for video in videos %}
-                            {% if video.films.id == films.id %}
-                                <video class="video-background mt-2" id="video-{{ video.films.id }}" muted autoplay>
-                                    <source src="{{ asset('/uploads/videos/' ~ video.filename) }}" type="video/mp4">
-                                    Votre navigateur ne supporte pas la balise vidéo.
-                                </video>
-                            {% endif %}
-                        {% endfor %}
+                        {% if app.user %}
+                            {% for video in videos %}
+                                {% if video.films.id == films.id %}
+                                    <video class="video-background mt-2" id="video-{{ video.films.id }}" muted autoplay>
+                                        <source src="{{ asset('/uploads/videos/' ~ video.filename) }}" type="video/mp4">
+                                        Votre navigateur ne supporte pas la balise vidéo.
+                                    </video>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                        {% endif %}
                         <div class="film-details mb-2">
                             <h5>{{ films.name }}</h5>
                             <p>{{films.duree | date('H:i:s')}}</p>
                             {% for video in films.videos %}
-                                    <a href="{{ path('app_films_view', {'id' : video.films.id}) }}" class="btn"><i class="fa-solid fa-play white"></i></a>
+                                <a href="{{ path('app_films_view', {'id' : video.films.id}) }}" class="btn play-button" data-id="{{ video.films.id }}"><i class="fa-solid fa-play white"></i></a>
                             {% endfor %}
                             <a href="{{ path('app_films_show', {'id' : films.id}) }}" class="btn"><i class="fa-solid fa-circle-info white"></i></a>
                         </div>
@@ -68,4 +71,169 @@
     <swiper-slide class="film-slide"></swiper-slide>
 </swiper-container>
 {% endfor %}
+
+{# <!--------------------------------------------------- MODAL DU LOGIN  ----------------------------------> #}
+
+<div id="modalLogin" class="modal fade modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLoginLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-body p-0">
+				<div class="d-flex">
+					<div class="form">
+						<div class="logoPosition">
+							<img class="logoWhite" src="{{ asset('images/miseEnPage/logoCineCourts.png') }}" alt=""/>
+						</div>
+						<h2 class="logTitle">Connectez-vous</h2>
+						<div class="questionLog">
+							<div class="mt-2">
+								<p>Vous n'avez pas encore de<br>compte ?</p>
+							</div>
+							<div class="questionLog2">
+								<button id="openRegisterModal" class="btn white buttonRedirect">Créez un<br>compte</button>
+							</button>
+						</div>
+					</div>
+					{% for message in app.flashes('success') %}
+						<div class="alert alert-success mt-4">
+							{{ message }}
+						</div>
+					{% endfor %}
+					<div class="ml-45">
+						<form action="{{ path('app_login') }}" method="post" class="mt-4">
+							<div class="form-group">
+								<input placeholder="Votre adresse électronique" class=" champs inputLog" type="text" id="_username" name="_username">
+							</div>
+							<hr>
+							<div class="form-group passPosition">
+								<div class="passwordSee">
+									<div>
+										<input placeholder="Votre mot de passe" class=" champs eyePosition inputLog" type="password" id="_password" name="_password">
+									</div>
+									<img class="eyeImg" src="../images/miseEnPage/eye.png" id="eyeLog" onclick="changerLog()">
+								</div>
+								<hr>
+							</div>
+							<div class="mt-2">
+								<a class="forgotPass white" href="{{ path('app_forgot_password_request') }}">Vous avez oublié votre mot de passe ?</a>
+							</div>
+							<button type="submit" class="btn btnReg">Connectez-vous</button>
+							<div class="btn btnReg justC mt-2">
+								<a href="{{path('auth_oauth_connect', {service: 'google'})}}" class="noLink">
+									<img src="{{ asset('images/miseEnPage/googleIcon.png') }}" class="googleIcon" alt=""/>
+									<span class="">Connectez-vous avec Google</span>
+								</a>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class=" colorGradient">
+					<img src="../images/miseEnPage/decorRegister.jpg" class=" imgPosition" alt="">
+					<img aria-label="Close" class="close-button close" data-bs-dismiss="modal" src="../images/miseEnPage/closeButton.png">
+				</div>
+			</div>
+		</div>
+	</div>
+</div></div>
+
+{# <!------------------------------------------------------- MODAL DU REGISTER ----------------------> #}
+<div id="registerModal" class="modal fade modalLogin" tabindex="-1" aria-labelledby="modalLoginLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg modal-dialog-centered">
+	<div class="modal-content">
+		<div class="modal-body p-0 d-flex align-items-start">
+			<div class="">
+				<div class="form">
+					<div class="logoPosition">
+						<img class="logoWhite" src="{{ asset('images/miseEnPage/logoCineCourts.png') }}" alt=""/>
+					</div>
+					<h2 class="logTitle">S'inscrire</h2>
+					<div class="ml-45">
+						<form action="{{ path('app_register') }}" method="POST">
+							<div>
+								<input class="champs inputLog" type="email" id="registration_form_email" name="registration_form[email]" required="required" placeholder="Email"/>
+								<hr>
+							</div>
+							<div>
+								<input class="champs inputLog" type="text" id="registration_form_nom" name="registration_form[nom]" required="required" placeholder="Nom"/>
+								<hr>
+							</div>
+							<div>
+								<input class="champs inputLog" type="text" id="registration_form_prenom" name="registration_form[prenom]" required="required" placeholder="Prénom"/>
+								<hr>
+							</div>
+							<div>
+								<input class="champs inputLog" type="tel" id="registration_form_telephone" name="registration_form[telephone]" required="required" placeholder="Téléphone"/>
+								<hr>
+							</div>
+							<div>
+								<input class="champs inputLog" type="password" id="registration_form_plainPassword" name="registration_form[plainPassword]" required="required" minlength="6" placeholder="Mot de passe"/>
+								<img class="eyeImg" src="../images/miseEnPage/eye.png" id="eyeReg" onclick="changerReg()">
+								<hr>
+							</div>
+							<button type="submit" class="btn btnReg">S'inscrire</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class=" colorGradient">
+			<img src="../images/miseEnPage/decorRegister.jpg" class=" imgPosition" alt="">
+			<img aria-label="Close" class="close-button close" data-bs-dismiss="modal" src="../images/miseEnPage/closeButton.png">
+		</div>
+	</div>
+</div></div>
+
+<!-- SCRIPT POUR CONTROLER L'ACCES AU LECTEUR VIDEO SI L'UTILISATEUR N'EST PAS CONNECTÉ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fonction pour afficher la modal de connexion
+            function showModal() {
+                var modal = new bootstrap.Modal(document.getElementById('modalLogin'));
+                modal.show();
+            }
+
+            // Vérifier si le paramètre de requête 'showLoginModal' est présent
+            var urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('showLoginModal')) {
+                showModal();
+            }
+
+            // Fermer la modal quand l'utilisateur clique sur le bouton de fermeture
+            var closeBtns = document.querySelectorAll('.modal .close');
+            closeBtns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var modal = btn.closest('.modal');
+                    modal.style.display = 'none';
+                });
+            });
+
+            // Fermer la modal quand l'utilisateur clique en dehors de la modal
+            window.addEventListener('click', function(event) {
+                var loginModal = document.getElementById('modalLogin');
+                var registerModal = document.getElementById('registerModal');
+                if (event.target == loginModal) {
+                    loginModal.style.display = 'none';
+                }
+                if (event.target == registerModal) {
+                    registerModal.style.display = 'none';
+                }
+            });
+
+            // Ajout d'un écouteur d'événements pour le bouton "Créez un compte"
+            document.getElementById('openRegisterModal').addEventListener('click', function () {
+                // Ferme la modal de connexion
+                var loginModal = document.getElementById('modalLogin');
+                loginModal.style.display = 'none';
+
+                // Ouvre la modal d'inscription
+                var registerModal = document.getElementById('registerModal');
+                registerModal.style.display = 'block';
+
+                // Mettre à jour l'URL pour supprimer le paramètre 'showLoginModal'
+                urlParams.delete('showLoginModal');
+                window.history.replaceState({}, '', `${window.location.pathname}?${urlParams}`);
+            });
+        });
+    </script>
+
+    
 {% endblock %}
