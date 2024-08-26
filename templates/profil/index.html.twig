@@ -1,92 +1,105 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Profil
-{% endblock %}
+{% block title %}Profil{% endblock %}
 
 {% block body %}
-	<div class="center">
-		<div class="cadre">
-			<div class="m20">
-				<div>
-					<div>
-						{% if app.user.profilPicture %}
-							<div class="center">
-								<img src="{{ asset('uploads/profile_images/' ~ app.user.profilPicture) }}" alt="Image de profil" style="width: 53px; height: 54px; border-radius: 50%; align-items: center;">
-							</div>
-							<div class="center">
-								<form action="{{ path('app_profil_remove_image') }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette image ?');">
-									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ app.user.id) }}">
-									<button type="submit" class="btn btnReg">Supprimer l'image</button>
-								</form>
-							</div>
-						{% else %}
-							<div class="center">
-								<img src="../images/miseEnPage/user.png" alt="">
-							</div>
-						{% endif %}
-					</div>
-					<h1 class="mt-4">Bienvenue,
-						{{ app.user.prenom }}
-						{{ app.user.nom }}</h1>
-					<div class="justAr m20">
-						<div>
-							<p>Email :
-								{{ app.user.email }}</p>
-							<p>Nom :
-								{{ app.user.nom }}</p>
-							<p>Prénom :
-								{{ app.user.prenom }}</p>
-						</div>
+    <div class="center">
+        <div class="cadre">
+            <div class="m20">
+                <div>
+                    <div>
+                        {% if app.user.profilPicture %}
+                            <div class="center">
+                                <img src="{{ asset('uploads/profile_images/' ~ app.user.profilPicture) }}" alt="Image de profil" style="width: 53px; height: 54px; border-radius: 50%; align-items: center;">
+                            </div>
+                            <div class="center">
+                                <form action="{{ path('app_profil_remove_image') }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette image ?');">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ app.user.id) }}">
+                                    <button type="submit" class="btn btnReg">Supprimer l'image</button>
+                                </form>
+                            </div>
+                        {% else %}
+                            <div class="center">
+                                <img src="../images/miseEnPage/user.png" alt="">
+                            </div>
+                        {% endif %}
+                    </div>
+                    <h1 class="mt-4">Bienvenue, {{ app.user.prenom }} {{ app.user.nom }}</h1>
+                    <div class="justAr m20">
+                        <div>
+                            <p>Email : {{ app.user.email }}</p>
+                            <p>Nom : {{ app.user.nom }}</p>
+                            <p>Prénom : {{ app.user.prenom }}</p>
+                            <p>Téléphone : {{ app.user.telephone }}</p>
+                        </div>
+                    </div>
 
-					</div>
+                    <div class="modif center" id="modif" style="display: none;">
+                        {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+                        <div>
+                            {{ form_widget(form.profilPicture, { 'id': 'profilPictureInput', 'attr': { 'class': 'custom-file-input' } }) }}
+                            <hr>
+                        </div>
+                        <div>
+                            {{ form_widget(form.email, {'attr': {'class':'champs','placeholder': 'Email'}}) }}
+                            <hr>
+                            {{ form_widget(form.nom, {'attr': {'class':'champs','placeholder': 'Nom'}}) }}
+                            <hr>
+                            {{ form_widget(form.prenom, {'attr': {'class':'champs','placeholder': 'Prénom'}}) }}
+                            <hr>
+                            {{ form_widget(form.telephone, {'attr': {'class':'champs','placeholder': 'Téléphone'}}) }}
+                            <hr>
+                        </div>
+                        <div>
+                            <button type="submit" id="saveBtn" class="btn btnReg">Sauvegarder</button>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                    <div class="center">
+                        <button id="editBtn" class="btn btnReg">Modifier</button>
+                    </div>
 
-					<div class="modif center " id="modif" style="display: none;">
-						{{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
-						<div>
-							{{ form_widget(form.profilPicture, { 'id': 'profilPictureInput', 'attr': { 'class': 'custom-file-input' } }) }}
-							<hr>
-						</div>
-						<div>
-							{{ form_widget(form.email,{'attr': {'class':'champs','placeholder': 'Email'}}) }}
-							<hr>
-							{{ form_widget(form.nom,{'attr': {'class':'champs','placeholder': 'Nom'}}) }}
-							<hr>
-							{{ form_widget(form.prenom,{'attr': {'class':'champs','placeholder': 'Prénom'}}) }}
-							<hr>
-							{{ form_widget(form.telephone,{'attr': {'class':'champs','placeholder': 'Téléphone'}}) }}
-							<hr>
-						</div>
-						<div>
-							<button type="submit" id="saveBtn" class="btn btnReg">Sauvegarder</button>
-						</div>
-						{{ form_end(form) }}
-					</div>
-					<div class="center">
-						<button id="editBtn" class="btn btnReg">Modifier</button>
-					</div>
-					{# form soumettre un court metrage #}
-					<div class="mt-4">
-						<h5>Vous souhaitez soumettre un court métrage ?</h5>
-						<div class="center">
-							<button type="button" class="btn btnReg" onclick="window.location.href='/soumettre-film';">
-								Soumettre court metrage
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                    {# Formulaire pour soumettre un court métrage #}
+                    <div class="mt-4">
+                        <h5>Vous souhaitez soumettre un court métrage ?</h5>
+                        <div class="center">
+                            <button type="button" class="btn btnReg" onclick="window.location.href='/soumettre-film';">
+                                Soumettre court métrage
+                            </button>
+                        </div>
+                    </div>
 
-	<script>
-		document.getElementById('editBtn').addEventListener('click', function () {
-document.getElementById('modif').style.display = 'flex';
-this.style.display = 'none'; //
-});
+                    {# Liste des courts-métrages soumis #}
+                    <div class="mt-4">
+                        <h5>Courts-métrages soumis :</h5>
+                        <ul>
+                            {% for courtMetrage in userCourtMetrages %}
+                                <li>
+                                    <strong>{{ courtMetrage.titre }}</strong>: {{ courtMetrage.description }}
+                                    <br>
+                                    Date de création: {{ courtMetrage.dateCreation|date('d/m/Y H:i') }}
+                                    <br>
+                                </li>
+                            {% else %}
+                                <li>Aucun court-métrage soumis.</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
 
-document.getElementById('saveBtn').addEventListener('click', function () {
-document.getElementById('modif').style.display = 'none';
-document.getElementById('editBtn').style.display = 'block';
-});
-	</script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('editBtn').addEventListener('click', function () {
+            document.getElementById('modif').style.display = 'flex';
+            this.style.display = 'none';
+        });
+
+        document.getElementById('saveBtn').addEventListener('click', function () {
+            document.getElementById('modif').style.display = 'none';
+            document.getElementById('editBtn').style.display = 'block';
+        });
+    </script>
 {% endblock %}

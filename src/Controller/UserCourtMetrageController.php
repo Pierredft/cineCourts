@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Entity\UserCourtMetrage;
@@ -11,11 +12,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class UserCourtMetrageController extends AbstractController
 {
     #[Route('/soumettre-film', name: 'submitFilm')]
-    public function soumettre(Request $request, EntityManagerInterface $em, SluggerInterface $slugger, MailerInterface $mailer): Response
+    public function soumettre(Request $request, EntityManagerInterface $em, SluggerInterface $slugger, MailerInterface $mailer, UserInterface $user): Response
     {
         $courtMetrage = new UserCourtMetrage();
         $formulaire = $this->createForm(UserCourtMetrageFormType::class, $courtMetrage);
@@ -28,7 +30,7 @@ class UserCourtMetrageController extends AbstractController
             if ($fichierVideo) {
                 $nomOriginal = pathinfo($fichierVideo->getClientOriginalName(), PATHINFO_FILENAME);
                 $nomSecurise = $slugger->slug($nomOriginal);
-                $nouveauNom = $nomSecurise.'-'.uniqid().'.'.$fichierVideo->guessExtension();
+                $nouveauNom = $nomSecurise . '-' . uniqid() . '.' . $fichierVideo->guessExtension();
 
                 try {
                     $fichierVideo->move(
@@ -47,6 +49,7 @@ class UserCourtMetrageController extends AbstractController
             }
 
             $courtMetrage->setDateCreation(new \DateTime());
+            $courtMetrage->setUser($user); // Associer l'utilisateur connecté
 
             $em->persist($courtMetrage);
             $em->flush();
@@ -57,11 +60,11 @@ class UserCourtMetrageController extends AbstractController
                 ->to('hackathon.cinecourts@gmail.com') // Remplacez par l'adresse e-mail de l'administrateur
                 ->subject('Nouvelle soumission de court métrage')
                 ->text(
-                    "Un nouveau court métrage a été soumis.\n\n".
-                    "Titre: " . $courtMetrage->getTitre() . "\n".
-                    "Description: " . $courtMetrage->getDescription() . "\n".
-                    "Email: " . $courtMetrage->getEmail() . "\n".
-                    "Nom du fichier vidéo: " . $courtMetrage->getNomFichierVideo()
+                    "Un nouveau court métrage a été soumis.\n\n" .
+                        "Titre: " . $courtMetrage->getTitre() . "\n" .
+                        "Description: " . $courtMetrage->getDescription() . "\n" .
+                        "Email: " . $courtMetrage->getEmail() . "\n" .
+                        "Nom du fichier vidéo: " . $courtMetrage->getNomFichierVideo()
                 );
 
             $mailer->send($emailAdmin);
@@ -72,10 +75,10 @@ class UserCourtMetrageController extends AbstractController
                 ->to($courtMetrage->getEmail()) // L'adresse e-mail de l'utilisateur soumettant le formulaire
                 ->subject('Confirmation de soumission')
                 ->text(
-                    "Merci d'avoir soumis votre court métrage.\n\n".
-                    "Titre: " . $courtMetrage->getTitre() . "\n".
-                    "Description: " . $courtMetrage->getDescription() . "\n".
-                    "Nous reviendrons vers vous bientôt."
+                    "Merci d'avoir soumis votre court métrage.\n\n" .
+                        "Titre: " . $courtMetrage->getTitre() . "\n" .
+                        "Description: " . $courtMetrage->getDescription() . "\n" .
+                        "Nous reviendrons vers vous bientôt."
                 );
 
             $mailer->send($emailUser);
