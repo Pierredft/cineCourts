@@ -34,7 +34,7 @@ swiper-slide {
 
 .imgSizeCarousel{
     width: 100%;
-    height: 30.3125rem;
+    height: 100%;
     object-fit: cover;
 }
 
