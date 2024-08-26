@@ -68,6 +68,7 @@
                                 <div class="film-details mb-2">
                                     <h5>{{ films.name }}</h5>
                                     <p>{{films.duree | date('H:i:s')}}</p>
+                                    {# <img class="" src="{{ asset ('/images/arcom/' ~ films.arcom)}}" alt=""> #}
                                     {% for video in films.videos %}
                                         <a href="{{ path('app_films_view', {'id' : video.films.id}) }}" class="btn"><i class="fa-solid fa-play white"></i></a>
                                     {% endfor %}
@@ -193,6 +194,10 @@
 		</div>
 	</div>
 </div></div>
+
+{% for films in films %}
+    {# <img class="" src="{{ asset ('/images/arcom/' ~ films.arcom.picto)}}" alt=""> #}
+{% endfor %}
 
 <!-- SCRIPT POUR CONTROLER L'ACCES AU LECTEUR VIDEO SI L'UTILISATEUR N'EST PAS CONNECTÉ -->
     <script>

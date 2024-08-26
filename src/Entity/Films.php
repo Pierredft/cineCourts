@@ -58,6 +58,9 @@ class Films
     #[ORM\Column(length: 255)]
     private ?string $ban = null;
 
+    #[ORM\ManyToOne(inversedBy: 'films')]
+    private ?Arcom $arcom = null;
+
 
     public function __construct()
     {
@@ -247,6 +250,18 @@ class Films
     public function setBan(string $ban): static
     {
         $this->ban = $ban;
+
+        return $this;
+    }
+
+    public function getArcom(): ?Arcom
+    {
+        return $this->arcom;
+    }
+
+    public function setArcom(?Arcom $arcom): static
+    {
+        $this->arcom = $arcom;
 
         return $this;
     }
