@@ -8,6 +8,7 @@ use App\Entity\Video;
 use App\Form\FilmsType;
 use App\Repository\FilmsRepository;
 use App\Repository\GenresRepository;
+use App\Repository\SubtitleRepository;
 use App\Repository\VideoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -44,12 +45,14 @@ class FilmsController extends AbstractController
     }
     #[IsGranted("IS_AUTHENTICATED_FULLY")]
     #[Route('/{id}/view', name: 'app_films_view', methods: ['GET'])]
-    public function view(Films $films, VideoRepository $videoRepository): Response
+    public function view(Films $films, VideoRepository $videoRepository, SubtitleRepository $subtitleRepository): Response
     {
         $videos = $videoRepository->findBy(['films' => $films->getId()]);
+        $subtitles = $subtitleRepository->findAll();
         return $this->render('films/viewFilm.html.twig', [
             'films' => $films,
             'videos' => $videos,
+            'subtitles' => $subtitles,
         ]);
     }
 

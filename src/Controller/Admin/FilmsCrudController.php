@@ -48,6 +48,11 @@ class FilmsCrudController extends AbstractCrudController
             AssociationField::new('acteurs'),
             AssociationField::new('realisateur'),
             AssociationField::new('arcom'),
+            AssociationField::new('subtitle')
+                ->setLabel('Sous-titres')
+                ->setFormTypeOptions([
+                    'by_reference' => false,
+                ]),
         ];
     }
 }
