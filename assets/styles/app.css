@@ -308,3 +308,7 @@ border-radius: 5px;
 background: #C0A57D;
 margin-top: 10px;
 }
+
+.btnPlay {
+  background-color: white;
+}
