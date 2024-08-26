@@ -23,11 +23,6 @@ class GenresCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('nom'),
-            ImageField::new('image')
-            ->setBasePath('images/')
-            ->setUploadDir('public/images/genre')
-            ->setRequired($pageName === Crud::PAGE_EDIT)
-            ->setFormTypeOptions($pageName === Crud::PAGE_EDIT ? ['allow_delete' => false] : []),
         ];
     }
 }
