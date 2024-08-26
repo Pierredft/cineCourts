@@ -7,6 +7,8 @@
         <a class="ms-5 mt-3 mb-3" href="{{ path('app_films_show', {'id' : videos.films.id}) }}"><i class="fa-solid fa-arrow-left colorbtn fa-4x text-white "></i></fa-regular></fa-regular></a>
         <video controls class="mb-5">
             <source src="{{ asset ('/uploads/videos/' ~ videos.filename) }}" type="video/mp4">
+            <track src="{{ asset ('/sousTitre/EN_SaveRalph.vtt') }}" kind="subtitles" srclang="en" label="Anglais">
+            <track src="{{ asset ('/sousTitre/FR_SaveRalph.vtt') }}" kind="subtitles" srclang="fr" label="Français">
             Your browser does not support the video tag.
         </video>
     {% endfor %}

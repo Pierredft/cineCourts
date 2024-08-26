@@ -47,6 +47,7 @@ class FilmsCrudController extends AbstractCrudController
             AssociationField::new('genres'),
             AssociationField::new('acteurs'),
             AssociationField::new('realisateur'),
+            AssociationField::new('arcom'),
         ];
     }
 }
