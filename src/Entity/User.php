@@ -7,6 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
@@ -159,6 +161,43 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setResetToken(?string $resetToken): self
     {
         $this->resetToken = $resetToken;
+
+        return $this;
+    }
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserCourtMetrage::class)]
+    private Collection $userCourtMetrages;
+
+    public function __construct()
+    {
+        $this->userCourtMetrages = new ArrayCollection();
+    }
+
+    /**
+     * @return Collection<int, UserCourtMetrage>
+     */
+    public function getUserCourtMetrages(): Collection
+    {
+        return $this->userCourtMetrages;
+    }
+
+    public function addUserCourtMetrage(UserCourtMetrage $userCourtMetrage): static
+    {
+        if (!$this->userCourtMetrages->contains($userCourtMetrage)) {
+            $this->userCourtMetrages->add($userCourtMetrage);
+            $userCourtMetrage->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserCourtMetrage(UserCourtMetrage $userCourtMetrage): static
+    {
+        if ($this->userCourtMetrages->removeElement($userCourtMetrage)) {
+            // set the owning side to null (unless already changed)
+            if ($userCourtMetrage->getUser() === $this) {
+                $userCourtMetrage->setUser(null);
+            }
+        }
 
         return $this;
     }
