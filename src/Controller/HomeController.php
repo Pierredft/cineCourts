@@ -27,13 +27,37 @@ class HomeController extends AbstractController
         $videos = $videoRepository->findAll();
         $genres = $genresRepository->findAll();
 
+        // Filtrage des films par genre si un genre est sélectionné
         if ($selectedGenreId) {
             $filmsGenre = $filmsRepository->findByGenreId($selectedGenreId);
         } else {
             $filmsGenre = $filmsRepository->findAll();
         }
+
+        // Construction du tableau associatif films avec leurs images
+        $filmsWithImages = [];
+        $extensions = ['jpg', 'png', 'jpeg'];
+
+        foreach ($films as $film) {
+            $imagePath = null;
+
+            foreach ($extensions as $ext) {
+                $potentialPath = 'images/arcom/' . $film->getArcom() . '.' . $ext;
+                $fullPath = $this->getParameter('kernel.project_dir') . '/public/' . $potentialPath;
+                if (file_exists($fullPath)) {
+                    $imagePath = $potentialPath;
+                    break;
+                }
+            }
+
+            $filmsWithImages[] = [
+                'film' => $film,
+                'imagePath' => $imagePath,
+            ];
+        }
+
         return $this->render('home.html.twig', [
-            'controller_name' => 'HomeController',
+            'filmsWithImages' => $filmsWithImages,
             'films' => $films,
             'videos' => $videos,
             'genres' => $genres,
@@ -41,5 +65,4 @@ class HomeController extends AbstractController
             'filmsGenre' => $filmsGenre,
         ]);
     }
-
 }

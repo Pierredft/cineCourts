@@ -27,7 +27,30 @@ class FilmsController extends AbstractController
         $videos = $videoRepository->findAll();
         $genres = $genresRepository->findAll();
 
+        // Construction du tableau associatif films avec leurs images
+        $filmsWithImages = [];
+        $extensions = ['jpg', 'png', 'jpeg'];
+
+        foreach ($films as $film) {
+            $imagePath = null;
+
+            foreach ($extensions as $ext) {
+                $potentialPath = 'images/arcom/' . $film->getArcom() . '.' . $ext;
+                $fullPath = $this->getParameter('kernel.project_dir') . '/public/' . $potentialPath;
+                if (file_exists($fullPath)) {
+                    $imagePath = $potentialPath;
+                    break;
+                }
+            }
+
+            $filmsWithImages[] = [
+                'film' => $film,
+                'imagePath' => $imagePath,
+            ];
+        }
+
         return $this->render('films/films.html.twig', [
+            'filmsWithImages' => $filmsWithImages,
             'films' => $films,
             'videos' => $videos,
             'genres' => $genres,
@@ -62,7 +85,30 @@ class FilmsController extends AbstractController
     {
         $films = $genre->getFilms();
 
+        // Construction du tableau associatif films avec leurs images
+        $filmsWithImages = [];
+        $extensions = ['jpg', 'png', 'jpeg'];
+
+        foreach ($films as $film) {
+            $imagePath = null;
+
+            foreach ($extensions as $ext) {
+                $potentialPath = 'images/arcom/' . $film->getArcom() . '.' . $ext;
+                $fullPath = $this->getParameter('kernel.project_dir') . '/public/' . $potentialPath;
+                if (file_exists($fullPath)) {
+                    $imagePath = $potentialPath;
+                    break;
+                }
+            }
+
+            $filmsWithImages[] = [
+                'film' => $film,
+                'imagePath' => $imagePath,
+            ];
+        }
+
         return $this->render('films/filmsParGenre.html.twig', [
+            'filmsWithImages' => $filmsWithImages,
             'genre' => $genre,
             'films' => $films,
         ]);
