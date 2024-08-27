@@ -61,6 +61,10 @@ class Films
     #[ORM\ManyToOne(inversedBy: 'films')]
     private ?Arcom $arcom = null;
 
+
+    #[ORM\Column(type: 'boolean')]
+    private ?bool $nouveauté = null;
+
     /**
      * @var Collection<int, Subtitle>
      */
@@ -273,6 +277,16 @@ class Films
         return $this;
     }
 
+
+    public function getNouveauté(): ?bool
+    {
+        return $this->nouveauté;
+    }
+
+    public function setNouveauté(bool $nouveauté): static
+    {
+        $this->nouveauté = $nouveauté;
+
     /**
      * @return Collection<int, Subtitle>
      */
@@ -299,6 +313,7 @@ class Films
                 $subtitle->setFilms(null);
             }
         }
+
 
         return $this;
     }

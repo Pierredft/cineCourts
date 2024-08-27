@@ -20,26 +20,26 @@
 	{% endfor %}
 </div>
 <div class="info">
-	<p class=" white ">{{films.synopsis}}</p>
+	<p class="white justify">{{films.synopsis}}</p>
 	<h4 class=" white">{{ films.duree|date('H') }}h{{ films.duree|date('i') }}min</h4>
 	{% for genres in films.genres %}
 		<h5 class=" white">{{genres.nom}}</h5>
 	{% endfor %}
 	<div class="d-flex justify-content-around">
-    <div>
-		<p class="white">Acteurs :</p>
-		{% for acteurs in films.acteurs %}
-			<p class="white">{{ acteurs.prenom }}
-				{{ acteurs.nom }}</p>
-		{% endfor %}
-        </div>
-        <div >
-		<p class="white ">Réalisateur :</p>
-		{% for realisateur in films.realisateur %}
-			<p class="white">{{ realisateur.prenom }}
-				{{ realisateur.nom }}</p>
-		{% endfor %}
-        </div>
+		<div>
+			<p class="white">Acteurs :</p>
+			{% for acteurs in films.acteurs %}
+				<p class="white">{{ acteurs.prenom }}
+					{{ acteurs.nom }}</p>
+			{% endfor %}
+		</div>
+		<div>
+			<p class="white ">Réalisateur :</p>
+			{% for realisateur in films.realisateur %}
+				<p class="white">{{ realisateur.prenom }}
+					{{ realisateur.nom }}</p>
+			{% endfor %}
+		</div>
 	</div>
 
 </div></div>{% endblock %}
