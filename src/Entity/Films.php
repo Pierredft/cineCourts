@@ -71,6 +71,9 @@ class Films
     #[ORM\OneToMany(targetEntity: Subtitle::class, mappedBy: 'films')]
     private Collection $subtitle;
 
+    #[ORM\Column(length: 255)]
+    private ?string $VO = null;
+
 
     public function __construct()
     {
@@ -314,6 +317,18 @@ class Films
             }
         }
 
+
+        return $this;
+    }
+
+    public function getVO(): ?string
+    {
+        return $this->VO;
+    }
+
+    public function setVO(string $VO): static
+    {
+        $this->VO = $VO;
 
         return $this;
     }

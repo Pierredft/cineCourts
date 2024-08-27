@@ -43,6 +43,7 @@ class FilmsCrudController extends AbstractCrudController
                 ->setUploadDir('public/images/banniere')
                 ->setRequired($pageName === Crud::PAGE_EDIT)
                 ->setFormTypeOptions($pageName === Crud::PAGE_EDIT ? ['allow_delete' => false] : []),
+                TextField::new('vo'),
             
             AssociationField::new('genres'),
             AssociationField::new('acteurs'),

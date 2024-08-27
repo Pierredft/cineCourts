@@ -4,14 +4,16 @@ namespace App\Controller;
 
 use App\Entity\Video;
 use App\Form\VideoType;
+use App\Entity\UserVideoProgress;
 use App\Repository\FilmsRepository;
 use App\Repository\VideoRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Repository\UserVideoProgressRepository;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/video')]
 class VideoController extends AbstractController
@@ -91,7 +93,7 @@ class VideoController extends AbstractController
     #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Video $video, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$video->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$video->getId(), $request->request->get('_token'))) {
             $entityManager->remove($video);
             $entityManager->flush();
         }
