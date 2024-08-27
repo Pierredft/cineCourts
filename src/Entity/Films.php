@@ -61,6 +61,8 @@ class Films
     #[ORM\ManyToOne(inversedBy: 'films')]
     private ?Arcom $arcom = null;
 
+    #[ORM\Column(type: 'boolean')]
+    private ?bool $nouveauté = null;
 
     public function __construct()
     {
@@ -262,6 +264,18 @@ class Films
     public function setArcom(?Arcom $arcom): static
     {
         $this->arcom = $arcom;
+
+        return $this;
+    }
+
+    public function getNouveauté(): ?bool
+    {
+        return $this->nouveauté;
+    }
+
+    public function setNouveauté(bool $nouveauté): static
+    {
+        $this->nouveauté = $nouveauté;
 
         return $this;
     }
