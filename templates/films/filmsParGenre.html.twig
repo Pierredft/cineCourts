@@ -24,6 +24,7 @@
 												{% endif %}
 											{% endfor %}
 										</p>
+										<div class="infoCenterH">
 										{% for video in film.videos %}
 											<a href="{{ path('app_films_view', {'id' : video.films.id}) }}" class="btn">
 												<i class="fa-solid fa-play white"></i>
@@ -32,6 +33,16 @@
 										<a href="{{ path('app_films_show', {'id' : film.id}) }}" class="btn">
 											<i class="fa-solid fa-circle-info white"></i>
 										</a>
+										{% if filmsWithImages is defined and filmsWithImages is not empty %}
+                                        {% for item in filmsWithImages %}
+                                            {% if item.film is defined and item.imagePath is defined %}
+                                                {% if item.imagePath %}
+                                                    <img class="imgArcom" src="{{ asset(item.imagePath) }}" alt="Arcom {{ item.film.arcom }}">
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+									</div>
 									</div>
 								{% else %}
 									<p>Aucune affiche disponible.</p>
