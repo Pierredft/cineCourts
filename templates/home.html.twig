@@ -68,11 +68,27 @@
                                 <div class="film-details mb-2">
                                     <h5>{{ films.name }}</h5>
                                     <p>{{films.duree | date('H:i:s')}}</p>
-                                    {# <img class="" src="{{ asset ('/images/arcom/' ~ films.arcom)}}" alt=""> #}
-                                    {% for video in films.videos %}
-                                        <a href="{{ path('app_films_view', {'id' : video.films.id}) }}" class="btn"><i class="fa-solid fa-play white"></i></a>
-                                    {% endfor %}
-                                    <a href="{{ path('app_films_show', {'id' : films.id}) }}" class="btn"><i class="fa-solid fa-circle-info white"></i></a>
+                                    <div class="infoCenterH">
+                                        {% for video in films.videos %}
+                                        <div>
+                                            <a href="{{ path('app_films_view', {'id' : video.films.id}) }}" class="btn"><i class="fa-solid fa-play white"></i></a>
+                                        </div>
+                                        {% endfor %}
+                                        <div>
+                                        <a href="{{ path('app_films_show', {'id' : films.id}) }}" class="btn"><i class="fa-solid fa-circle-info white"></i></a>
+                                        </div>
+                                        {% if filmsWithImages is defined and filmsWithImages is not empty %}
+                                            {% for item in filmsWithImages %}
+                                                {% if item.film is defined and item.imagePath is defined %}
+                                                    {% if item.imagePath %}
+                                        <div>
+                                                        <img class="imgArcom" src="{{ asset(item.imagePath) }}" alt="Arcom {{ item.film.arcom }}">
+                                        </div>
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
                                 </div>
                             </div>
                         </swiper-slide>

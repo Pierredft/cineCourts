@@ -61,8 +61,16 @@ class Films
     #[ORM\ManyToOne(inversedBy: 'films')]
     private ?Arcom $arcom = null;
 
+
     #[ORM\Column(type: 'boolean')]
     private ?bool $nouveauté = null;
+
+    /**
+     * @var Collection<int, Subtitle>
+     */
+    #[ORM\OneToMany(targetEntity: Subtitle::class, mappedBy: 'films')]
+    private Collection $subtitle;
+
 
     public function __construct()
     {
@@ -70,6 +78,7 @@ class Films
         $this->acteurs = new ArrayCollection();
         $this->realisateur = new ArrayCollection();
         $this->genres = new ArrayCollection();
+        $this->subtitle = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -268,6 +277,7 @@ class Films
         return $this;
     }
 
+
     public function getNouveauté(): ?bool
     {
         return $this->nouveauté;
@@ -276,6 +286,34 @@ class Films
     public function setNouveauté(bool $nouveauté): static
     {
         $this->nouveauté = $nouveauté;
+
+    /**
+     * @return Collection<int, Subtitle>
+     */
+    public function getSubtitle(): Collection
+    {
+        return $this->subtitle;
+    }
+
+    public function addSubtitle(Subtitle $subtitle): static
+    {
+        if (!$this->subtitle->contains($subtitle)) {
+            $this->subtitle[] = $subtitle;
+            $subtitle->setFilms($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSubtitle(Subtitle $subtitle): static
+    {
+        if ($this->subtitle->removeElement($subtitle)) {
+            // set the owning side to null (unless already changed)
+            if ($subtitle->getFilms() === $this) {
+                $subtitle->setFilms(null);
+            }
+        }
+
 
         return $this;
     }

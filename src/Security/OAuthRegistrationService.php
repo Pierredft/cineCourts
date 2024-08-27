@@ -24,6 +24,7 @@ final  class OAuthRegistrationService
         $user = (new User())
             ->setEmail($resourceOwner->getEmail())
             ->setGoogleId($resourceOwner->getId())
+            ->setRoles(['ROLE_USER'])
             ->setPassword('password')
             ->setNom($resourceOwner->getLastName())
             ->setPrenom($resourceOwner->getFirstName())

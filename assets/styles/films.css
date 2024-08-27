@@ -162,6 +162,24 @@
     opacity: 1;
 }
 
+.imgArcom {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: cover; 
+    margin: 0 5px; /* Espacement autour de l'image */
+}
+
+.infoCenterH {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px; /* Espacement entre les éléments */
+    padding: 10px; /* Padding autour des éléments */
+}
+
+
+
 
 
 

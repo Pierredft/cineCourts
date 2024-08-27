@@ -11,6 +11,7 @@ use App\Entity\FilmsMovie;
 use App\Entity\FilmsMovies;
 use App\Entity\Genres;
 use App\Entity\Realisateur;
+use App\Entity\Subtitle;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -45,5 +46,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Arcom', 'fas fa-film', Arcom::class);
         yield MenuItem::linkToCrud('Catégories', 'fas fa-list', Categories::class);
         yield MenuItem::linkToCrud('Films', 'fas fa-film', Films::class);
+        yield MenuItem::linkToCrud('Subtitle', 'fas fa-file-alt', Subtitle::class);
     }
 }
