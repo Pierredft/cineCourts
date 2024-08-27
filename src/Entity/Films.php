@@ -289,6 +289,8 @@ class Films
     public function setNouveauté(bool $nouveauté): static
     {
         $this->nouveauté = $nouveauté;
+        return $this;
+    }
 
     /**
      * @return Collection<int, Subtitle>

@@ -27,7 +27,7 @@ class DashboardController extends AbstractDashboardController
     public function index(): Response
     {   
         $routeBuilder = $this->container->get(AdminUrlGenerator::class);
-        $url = $routeBuilder->setController(ActeursCrudController::class)->generateUrl();
+        $url = $routeBuilder->setController(FilmsCrudController::class)->generateUrl();
         return $this->redirect($url);
     }
 
@@ -42,9 +42,9 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToRoute('Retour sur le site', 'fas fa-home', 'app_home');
         yield MenuItem::linkToCrud('Acteurs', 'fas fa-user', Acteurs::class);
         yield MenuItem::linkToCrud('Réalisateurs', 'fas fa-user', Realisateur::class);
-        yield MenuItem::linkToCrud('Genres', 'fas fa-list', Genres::class);
-        yield MenuItem::linkToCrud('Arcom', 'fas fa-film', Arcom::class);
-        yield MenuItem::linkToCrud('Catégories', 'fas fa-list', Categories::class);
+        yield MenuItem::linkToCrud('Genres', 'fas fa-genderless', Genres::class);
+        yield MenuItem::linkToCrud('Arcom', 'fas fa-ban', Arcom::class);
+        yield MenuItem::linkToCrud('Catégories', 'fas fa-layer-group', Categories::class);
         yield MenuItem::linkToCrud('Films', 'fas fa-film', Films::class);
         yield MenuItem::linkToCrud('Subtitle', 'fas fa-file-alt', Subtitle::class);
     }
