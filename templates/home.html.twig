@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %} 
 {% block title %}Accueil {% endblock %}
 {% block body %}
-{# !!!!!! CAROUSEL DES NOUVEAUTÉ !!!!! #}
+{# !!!!!! CAROUSEL DES nouveaute !!!!! #}
 <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
         {% for film in films %}
-            {% if film.nouveauté %}
+            {% if film.nouveaute %}
                 <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="{{ loop.index0 }}" {% if loop.first %}class="active" {% endif %}aria-label="Slide {{ loop.index }}" style="background-color: rgba(255, 255, 255, 1);"></button>
             {% endif %}
         {% endfor %}
     </div>
     <div class="carousel-inner">
         {% for film in films %}
-            {% if film.nouveauté %}
+            {% if film.nouveaute %}
                 <div class="carousel-item {% if loop.first %}active{% endif %}" data-bs-interval="5000">
                     <img src="{{ asset('/images/banniere/' ~ film.ban) }}" class="imgSizeCarousel" alt="...">
                     <div class="carousel-caption d-none d-md-block">
@@ -32,7 +32,7 @@
         <span class="visually-hidden">Next</span>
     </button>
 </div>
-{# !!!!!! CAROUSEL DES NOUVEAUTÉ !!!!! #}
+{# !!!!!! CAROUSEL DES nouveaute !!!!! #}
 
 
 {% for genre in genres %}

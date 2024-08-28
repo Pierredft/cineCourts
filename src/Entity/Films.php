@@ -63,7 +63,7 @@ class Films
 
 
     #[ORM\Column(type: 'boolean')]
-    private ?bool $nouveauté = null;
+    private ?bool $nouveaute = null;
 
     /**
      * @var Collection<int, Subtitle>
@@ -281,14 +281,14 @@ class Films
     }
 
 
-    public function getNouveauté(): ?bool
+    public function getnouveaute(): ?bool
     {
-        return $this->nouveauté;
+        return $this->nouveaute;
     }
 
-    public function setNouveauté(bool $nouveauté): static
+    public function setnouveaute(bool $nouveaute): static
     {
-        $this->nouveauté = $nouveauté;
+        $this->nouveaute = $nouveaute;
         return $this;
     }
 
