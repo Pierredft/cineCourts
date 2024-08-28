@@ -7,6 +7,7 @@ parameters:
     profile_images_directory: '%kernel.project_dir%/public/uploads/profile_images'
     videos_directory: '%kernel.project_dir%/public/uploads/videos'
     dossier_videos_user: '%kernel.project_dir%/public/uploads/videos_user'
+    subtitles_directory: '%kernel.project_dir%/public/subtitle'
 
 services:
     # default configuration for services in *this* file

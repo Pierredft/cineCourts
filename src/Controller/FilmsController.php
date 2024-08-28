@@ -8,6 +8,7 @@ use App\Entity\Video;
 use App\Form\FilmsType;
 use App\Repository\FilmsRepository;
 use App\Repository\GenresRepository;
+use App\Repository\SubtitleRepository;
 use App\Repository\VideoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,7 +27,30 @@ class FilmsController extends AbstractController
         $videos = $videoRepository->findAll();
         $genres = $genresRepository->findAll();
 
+        // Construction du tableau associatif films avec leurs images
+        $filmsWithImages = [];
+        $extensions = ['jpg', 'png', 'jpeg'];
+
+        foreach ($films as $film) {
+            $imagePath = null;
+
+            foreach ($extensions as $ext) {
+                $potentialPath = 'images/arcom/' . $film->getArcom() . '.' . $ext;
+                $fullPath = $this->getParameter('kernel.project_dir') . '/public/' . $potentialPath;
+                if (file_exists($fullPath)) {
+                    $imagePath = $potentialPath;
+                    break;
+                }
+            }
+
+            $filmsWithImages[] = [
+                'film' => $film,
+                'imagePath' => $imagePath,
+            ];
+        }
+
         return $this->render('films/films.html.twig', [
+            'filmsWithImages' => $filmsWithImages,
             'films' => $films,
             'videos' => $videos,
             'genres' => $genres,
@@ -44,12 +68,14 @@ class FilmsController extends AbstractController
     }
     #[IsGranted("IS_AUTHENTICATED_FULLY")]
     #[Route('/{id}/view', name: 'app_films_view', methods: ['GET'])]
-    public function view(Films $films, VideoRepository $videoRepository): Response
+    public function view(Films $films, VideoRepository $videoRepository, SubtitleRepository $subtitleRepository): Response
     {
         $videos = $videoRepository->findBy(['films' => $films->getId()]);
+        $subtitles = $subtitleRepository->findBy(['films' => $films->getId()]);
         return $this->render('films/viewFilm.html.twig', [
             'films' => $films,
             'videos' => $videos,
+            'subtitles' => $subtitles,
         ]);
     }
 
@@ -59,7 +85,30 @@ class FilmsController extends AbstractController
     {
         $films = $genre->getFilms();
 
+        // Construction du tableau associatif films avec leurs images
+        $filmsWithImages = [];
+        $extensions = ['jpg', 'png', 'jpeg'];
+
+        foreach ($films as $film) {
+            $imagePath = null;
+
+            foreach ($extensions as $ext) {
+                $potentialPath = 'images/arcom/' . $film->getArcom() . '.' . $ext;
+                $fullPath = $this->getParameter('kernel.project_dir') . '/public/' . $potentialPath;
+                if (file_exists($fullPath)) {
+                    $imagePath = $potentialPath;
+                    break;
+                }
+            }
+
+            $filmsWithImages[] = [
+                'film' => $film,
+                'imagePath' => $imagePath,
+            ];
+        }
+
         return $this->render('films/filmsParGenre.html.twig', [
+            'filmsWithImages' => $filmsWithImages,
             'genre' => $genre,
             'films' => $films,
         ]);
