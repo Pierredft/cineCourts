@@ -29,24 +29,14 @@ class FilmsController extends AbstractController
 
         // Construction du tableau associatif films avec leurs images
         $filmsWithImages = [];
-        $extensions = ['jpg', 'png', 'jpeg'];
 
         foreach ($films as $film) {
-            $imagePath = null;
-
-            foreach ($extensions as $ext) {
-                $potentialPath = 'images/arcom/' . $film->getArcom() . '.' . $ext;
-                $fullPath = $this->getParameter('kernel.project_dir') . '/public/' . $potentialPath;
-                if (file_exists($fullPath)) {
-                    $imagePath = $potentialPath;
-                    break;
-                }
+            if ($film->getArcom() && $film->getArcom()->getPicto()) {
+                $filmsWithImages[] = [
+                    'film' => $film,
+                    'picto' => $film->getArcom()->getPicto()
+                ];
             }
-
-            $filmsWithImages[] = [
-                'film' => $film,
-                'imagePath' => $imagePath,
-            ];
         }
 
         return $this->render('films/films.html.twig', [
@@ -87,24 +77,14 @@ class FilmsController extends AbstractController
 
         // Construction du tableau associatif films avec leurs images
         $filmsWithImages = [];
-        $extensions = ['jpg', 'png', 'jpeg'];
 
         foreach ($films as $film) {
-            $imagePath = null;
-
-            foreach ($extensions as $ext) {
-                $potentialPath = 'images/arcom/' . $film->getArcom() . '.' . $ext;
-                $fullPath = $this->getParameter('kernel.project_dir') . '/public/' . $potentialPath;
-                if (file_exists($fullPath)) {
-                    $imagePath = $potentialPath;
-                    break;
-                }
+            if ($film->getArcom() && $film->getArcom()->getPicto()) {
+                $filmsWithImages[] = [
+                    'film' => $film,
+                    'picto' => $film->getArcom()->getPicto()
+                ];
             }
-
-            $filmsWithImages[] = [
-                'film' => $film,
-                'imagePath' => $imagePath,
-            ];
         }
 
         return $this->render('films/filmsParGenre.html.twig', [
