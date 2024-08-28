@@ -59,26 +59,58 @@ class UserCourtMetrageController extends AbstractController
                 ->from('votre_adresse_email@gmail.com')
                 ->to('hackathon.cinecourts@gmail.com') // Remplacez par l'adresse e-mail de l'administrateur
                 ->subject('Nouvelle soumission de court métrage')
-                ->text(
-                    "Un nouveau court métrage a été soumis.\n\n" .
-                        "Titre: " . $courtMetrage->getTitre() . "\n" .
-                        "Description: " . $courtMetrage->getDescription() . "\n" .
-                        "Email: " . $courtMetrage->getEmail() . "\n" .
-                        "Nom du fichier vidéo: " . $courtMetrage->getNomFichierVideo()
+                ->html(
+                    "<html>
+                    <body>
+                    <p>Un nouveau court métrage a été soumis.</p>
+                    <p><strong>Titre :</strong> " . $courtMetrage->getTitre() . "</p>
+                    <p><strong>Description :</strong> " . $courtMetrage->getDescription() . "</p>
+                    <p><strong>Email :</strong> " . $courtMetrage->getEmail() . "</p>
+                    <p><strong>Nom du fichier vidéo:</strong> " . $courtMetrage->getNomFichierVideo() . "</p>
+                    <style>
+                                body {
+                                    font-family: Arial, sans-serif;
+                                    line-height: 1.6;
+                                }
+                                p {
+                                    margin: 0 0 10px;
+                                }
+                                strong {
+                                    color: #333;
+                                }
+                            </style>
+                        </body>
+                    </html>"
                 );
 
             $mailer->send($emailAdmin);
 
             // Envoyer un e-mail de confirmation à l'utilisateur
             $emailUser = (new Email())
-                ->from('votre_adresse_email@gmail.com')
+                ->from('CinéCourts <votre_adresse_email@gmail.com>')
                 ->to($courtMetrage->getEmail()) // L'adresse e-mail de l'utilisateur soumettant le formulaire
                 ->subject('Confirmation de soumission')
-                ->text(
-                    "Merci d'avoir soumis votre court métrage.\n\n" .
-                        "Titre: " . $courtMetrage->getTitre() . "\n" .
-                        "Description: " . $courtMetrage->getDescription() . "\n" .
-                        "Nous reviendrons vers vous bientôt."
+                ->html(
+                    "<html>
+                        <body>
+                            <p>Merci d'avoir soumis votre court métrage.</p>
+                            <p><strong>Titre :</strong> " . $courtMetrage->getTitre() . "</p>
+                            <p><strong>Description :</strong> " . $courtMetrage->getDescription() . "</p>
+                            <p>Nous reviendrons vers vous bientôt.</p>
+                            <style>
+                                body {
+                                    font-family: Arial, sans-serif;
+                                    line-height: 1.6;
+                                }
+                                p {
+                                    margin: 0 0 10px;
+                                }
+                                strong {
+                                    color: #333;
+                                }
+                            </style>
+                        </body>
+                    </html>"
                 );
 
             $mailer->send($emailUser);
