@@ -31,6 +31,9 @@
 												<i class="fa-solid fa-play white"></i>
 											</a>
 										{% endfor %}
+										<div>
+                                        <a href="{{ path('app_films_show', {'id' : film.id}) }}" class="btn"><i class="fa-solid fa-circle-info white"></i></a>
+                                        </div>
                                         {% for item in filmsWithImages %}
                                             {% if item.film.id == film.id %}
                                                 <div>
