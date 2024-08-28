@@ -61,11 +61,18 @@ class Films
     #[ORM\ManyToOne(inversedBy: 'films')]
     private ?Arcom $arcom = null;
 
+
+    #[ORM\Column(type: 'boolean')]
+    private ?bool $nouveauté = null;
+
     /**
      * @var Collection<int, Subtitle>
      */
     #[ORM\OneToMany(targetEntity: Subtitle::class, mappedBy: 'films')]
     private Collection $subtitle;
+
+    #[ORM\Column(length: 255)]
+    private ?string $VO = null;
 
 
     public function __construct()
@@ -273,6 +280,18 @@ class Films
         return $this;
     }
 
+
+    public function getNouveauté(): ?bool
+    {
+        return $this->nouveauté;
+    }
+
+    public function setNouveauté(bool $nouveauté): static
+    {
+        $this->nouveauté = $nouveauté;
+        return $this;
+    }
+
     /**
      * @return Collection<int, Subtitle>
      */
@@ -299,6 +318,19 @@ class Films
                 $subtitle->setFilms(null);
             }
         }
+
+
+        return $this;
+    }
+
+    public function getVO(): ?string
+    {
+        return $this->VO;
+    }
+
+    public function setVO(string $VO): static
+    {
+        $this->VO = $VO;
 
         return $this;
     }

@@ -2,34 +2,36 @@
 {% block title %}Accueil {% endblock %}
 {% block body %}
 {# !!!!!! CAROUSEL DES NOUVEAUTÉ !!!!! #}
-    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            {% for films in films %}
+<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        {% for film in films %}
+            {% if film.nouveauté %}
                 <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="{{ loop.index0 }}" {% if loop.first %}class="active" {% endif %}aria-label="Slide {{ loop.index }}" style="background-color: rgba(255, 255, 255, 1);"></button>
-            {% endfor %}
-        </div>
-        <div class="carousel-inner">
-            {% for films in films %}
-                <div class="carousel-item {% if loop.first %}active{% endif %}" data-bs-interval="5000">
-                    <img src="{{ asset ('/images/banniere/' ~ films.ban)}}" class="imgSizeCarousel" alt="...">
-                    {% for video in videos %}
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5 class="white">{{films.name}}</h5>
-                            <a href="{{ path('app_films_show', {'id' : films.id}) }}" class="btn btnReg">Voir</a>
-                        </div>
-                    {% endfor %}
-                </div>
-            {% endfor %}
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev" style="background-color: rgba(255, 255, 255);">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next" style="background-color: rgba(255, 255, 255);">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden" >Next</span>
-        </button>
+            {% endif %}
+        {% endfor %}
     </div>
+    <div class="carousel-inner">
+        {% for film in films %}
+            {% if film.nouveauté %}
+                <div class="carousel-item {% if loop.first %}active{% endif %}" data-bs-interval="5000">
+                    <img src="{{ asset('/images/banniere/' ~ film.ban) }}" class="imgSizeCarousel" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 class="white">{{ film.name }}</h5>
+                        <a href="{{ path('app_films_show', {'id': film.id}) }}" class="btn btnReg">Voir</a>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev" style="background-color: rgba(255, 255, 255);">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next" style="background-color: rgba(255, 255, 255);">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
 {# !!!!!! CAROUSEL DES NOUVEAUTÉ !!!!! #}
 
 

@@ -15,6 +15,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use PHPUnit\TextUI\XmlConfiguration\File;
 use App\Form\FilmType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -43,6 +44,8 @@ class FilmsCrudController extends AbstractCrudController
                 ->setUploadDir('public/images/banniere')
                 ->setRequired($pageName === Crud::PAGE_EDIT)
                 ->setFormTypeOptions($pageName === Crud::PAGE_EDIT ? ['allow_delete' => false] : []),
+            TextField::new('vo'),
+            BooleanField::new('Nouveauté'),
             
             AssociationField::new('genres'),
             AssociationField::new('acteurs'),

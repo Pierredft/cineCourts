@@ -7,6 +7,7 @@ import './swiper-element-bundle.min.js';
 import './swipper.js';
 import './modalMoviesHome.js';
 import './test.js';
+import './VideoProgress.js';
 /*
  * Welcome to your app's main JavaScript file!
  *
