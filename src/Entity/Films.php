@@ -280,6 +280,11 @@ class Films
         return $this;
     }
 
+    public function isnouveaute(): ?bool
+    {
+        return $this->nouveaute;
+    }
+
 
     public function getnouveaute(): ?bool
     {
