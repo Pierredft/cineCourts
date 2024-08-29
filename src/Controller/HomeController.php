@@ -26,6 +26,9 @@ class HomeController extends AbstractController
         $films = $filmsRepository->findAll();
         $videos = $videoRepository->findAll();
         $genres = $genresRepository->findAll();
+        $nouveaute = array_filter($films, function($film) {
+            return $film->getNouveaute();
+        });
 
         // Filtrage des films par genre si un genre est sélectionné
         if ($selectedGenreId) {
@@ -53,6 +56,7 @@ class HomeController extends AbstractController
             'genres' => $genres,
             'selectedGenre' => $selectedGenreId,
             'filmsGenre' => $filmsGenre,
+            'nouveaute' => $nouveaute,
         ]);
     }
 }
